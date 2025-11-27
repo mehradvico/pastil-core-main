@@ -1,0 +1,121 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>SignalR Example</title>
+</head>
+<body>
+
+    <input type="text" id="tokenInput" placeholder="توکن را وارد کنید" style="width: 300px;">
+    <button id="connectButton">اتصال</button>
+    <button id="joinButton" disabled>به چت اضافه شو</button>
+
+    <div id="welcomeMessage" style="display: none; margin-top: 20px; padding: 10px; background: lightblue; border-radius: 5px;"></div>
+    <input type="hidden" id="welcomeMessage2" style="display: none; margin-top: 20px; padding: 10px; background: lightblue; border-radius: 5px;"/>
+
+    <h3>کاربران آنلاین:</h3>
+    <ul id="usersList"></ul>
+
+    <h3>ارسال پیام:</h3>
+    <select id="userSelect"></select>
+    <input type="text" id="messageInput" placeholder="پیام خود را وارد کنید">
+    <button id="sendMessageButton" disabled>ارسال</button>
+
+    <h3>چت:</h3>
+    <div id="chatBox" style="border: 1px solid gray; padding: 10px; width: 400px; height: 200px; overflow-y: scroll;"></div>
+
+    <script>
+        let connection;
+        let currentUserId;
+
+        $("#connectButton").click(function () {
+            const token = $("#tokenInput").val().trim();
+            if (!token) {
+                alert("لطفا توکن را وارد کنید.");
+                return;
+            }
+
+            connection = new signalR.HubConnectionBuilder()
+                // .withUrl("https://pastil-realtime.bhptest.ir/driverHub", {
+
+                .withUrl("https://localhost:7215/driverHub", {
+                    accessTokenFactory: () => token
+                })
+                .build();
+
+            connection.start()
+                .then(() => {
+                    console.log("اتصال برقرار شد!");
+                    $("#joinButton").prop("disabled", false);
+                })
+                .catch(err => console.error("خطا در اتصال: ", err.toString()));
+
+            connection.on("wellcom", function (message) {
+                $("#welcomeMessage").text("سلام "+message).show();
+                $("#welcomeMessage2").val(message);
+
+            });
+
+            connection.on("usersList", function (users) {
+                $("#usersList").empty();
+                $("#userSelect").empty();
+                debugger
+                users.forEach(user => {
+
+ $("#usersList").append(`<li>${user.name}</li>`);
+ if($("#welcomeMessage2").val()!=user.name){
+                    $("#userSelect").append(`<option value="${user.connctionId}">${user.name}</option>`);
+
+ }
+                    
+                   
+                });
+                $("#sendMessageButton").prop("disabled", users.length === 0);
+            });
+
+            connection.on("chatList", function (message) {
+                $("#chatBox").append(`<p>${message}</p>`);
+                $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
+            });
+        });
+
+        $("#joinButton").click(function () {
+            connection.invoke("JoinChat")
+                .then(() => console.log("JoinChat فراخوانی شد"))
+                .catch(err => console.error("خطا در JoinChat: ", err.toString()));
+        });
+
+        $("#sendMessageButton").click(function () {
+            const selectedUser = $("#userSelect").val();
+            const selectedUserText = $("#userSelect  option:selected").text();
+            const message = $("#messageInput").val().trim();
+            if (!selectedUser || !message) {
+                alert("لطفاً یک کاربر را انتخاب کرده و پیام را وارد کنید.");
+                return;
+            }
+
+            connection.invoke("SendMessage", selectedUser, message)
+                .then(() => {
+                    $("#messageInput").val("");
+                     $("#chatBox").append(`<p>به ${selectedUserText} گفتی : ${message}</p>`);
+                $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
+                })
+                .catch(err => console.error("خطا در ارسال پیام: ", err.toString()));
+        });
+        window.onbeforeunload = function () {
+    connection.stop();
+        
+        };
+        window.addEventListener("unload", function () {
+        connection.stop();
+
+});
+    </script>
+
+</body>
+</html>

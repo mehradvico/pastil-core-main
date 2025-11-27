@@ -1,0 +1,75 @@
+﻿using Application.Common.Dto.Result;
+using Application.Common.Service;
+using Application.Services.Accounting.UserPetSrv.Dto;
+using Application.Services.Accounting.UserPetSrv.Iface;
+using AutoMapper;
+using Entities.Entities;
+using Microsoft.EntityFrameworkCore;
+using Persistence.Interface;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Application.Services.Accounting.UserPetSrv
+{
+    public class UserPetService : CommonSrv<UserPet, UserPetDto>, IUserPetService
+    {
+        private readonly IDataBaseContext _context;
+        private readonly IMapper mapper;
+        public UserPetService(IDataBaseContext _context, IMapper mapper) : base(_context, mapper)
+        {
+            this._context = _context;
+            this.mapper = mapper;
+        }
+
+
+        public override async Task<BaseResultDto<UserPetDto>> FindAsyncDto(long id)
+        {
+            var item = await _context.UserPets.Include(s => s.User).Include(s => s.Pet).Include(s => s.Picture).Where(s => s.Deleted == false).FirstOrDefaultAsync(s => s.Id == id && s.Active && s.Deleted == false);
+            if (item != null)
+                return new BaseResultDto<UserPetDto>(true, mapper.Map<UserPetDto>(item));
+            return new BaseResultDto<UserPetDto>(false, mapper.Map<UserPetDto>(item));
+        }
+
+        public async Task<BaseResultDto<UserPetVDto>> FindAsyncVDto(long id)
+        {
+            var item = await _context.UserPets.Include(s => s.User).Include(s => s.Pet).Include(s => s.Picture).Where(s => s.Deleted == false).FirstOrDefaultAsync(s => s.Id == id && s.Active && s.Deleted == false);
+            if (item != null)
+                return new BaseResultDto<UserPetVDto>(true, mapper.Map<UserPetVDto>(item));
+            return new BaseResultDto<UserPetVDto>(false, mapper.Map<UserPetVDto>(item));
+        }
+
+        public UserPetSearchDto Search(UserPetInputDto baseSearchDto)
+        {
+            var model = _context.UserPets.Include(s => s.User).Include(s => s.Pet).Include(s => s.Picture).AsQueryable().Where(s => s.Deleted == false);
+            if (baseSearchDto.UserId.HasValue)
+            {
+                model = model.Where(s => s.UserId == baseSearchDto.UserId);
+            }
+            if (baseSearchDto.Available.HasValue)
+            {
+                model = model.Where(s => s.Active == baseSearchDto.Available.Value);
+            }
+            switch (baseSearchDto.SortBy)
+            {
+                case Common.Enumerable.SortEnum.New:
+                    {
+                        model = model.OrderByDescending(s => s.Id);
+                        break;
+                    }
+                case Common.Enumerable.SortEnum.Old:
+                    {
+                        model = model.OrderBy(s => s.Id);
+                        break;
+                    }
+                case Common.Enumerable.SortEnum.Name:
+                    {
+                        model = model.OrderByDescending(s => s.Name);
+                        break;
+                    }
+                default:
+                    break;
+            }
+            return new UserPetSearchDto(baseSearchDto, model, mapper);
+        }
+    }
+}

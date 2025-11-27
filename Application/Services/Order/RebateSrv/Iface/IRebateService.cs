@@ -1,0 +1,25 @@
+﻿using Application.Common.Dto.Input;
+using Application.Common.Dto.Result;
+using Application.Common.Interface;
+using Application.Services.Order.RebateSrv.Dto;
+using Entities.Entities;
+using Entities.Entities.CompanionField;
+
+namespace Application.Services.Order.RebateSrv.Iface
+{
+    public interface IRebateService : ICommonSrv<Rebate, RebateDto>
+    {
+        BaseSearchDto<RebateDto> Search(BaseInputDto baseSearchDto);
+        BaseResultDto<RebateVDto> GetRebateByCodeAsync(Cart cart, string Code);
+        BaseResultDto<RebateVDto> GetRebateByCodeAsync(CompanionReserve companionReserve, string Code);
+        BaseResultDto<RebateVDto> GetRebateByCodeAsync(Cargo cargo, string Code);
+        BaseResultDto<RebateVDto> GetRebateByCodeAsync(CompanionInsurancePackageSale insurance, string Code);
+        BaseResultDto<RebateVDto> GetRebateByCodeAsync(Trip trip, string Code);
+        void IncreaseUseCount(ProductOrder order);
+        void IncreaseUseCount(CompanionReserve reserve);
+        void IncreaseUseCount(Cargo cargo);
+        void IncreaseUseCount(Trip trip);
+        void IncreaseUseCount(CompanionInsurancePackageSale insurance);
+
+    }
+}
