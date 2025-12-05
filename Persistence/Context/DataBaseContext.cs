@@ -132,6 +132,7 @@ namespace Persistence.Context
         public DbSet<Cargo> Cargoes { get; set; }
         public DbSet<CompanionInsurancePackage> CompanionInsurancePackages { get; set; }
         public DbSet<CompanionInsurancePackageSale> CompanionInsurancePackageSales { get; set; }
+        public DbSet<CompanionComment> CompanionComments { get; set; }
         public DbSet<Reminder> Reminders { get; set; }
         public DbSet<ReminderCycle> ReminderCycles { get; set; }
         public DbSet<ReminderType> ReminderTypes { get; set; }

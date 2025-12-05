@@ -18,6 +18,8 @@ namespace Application.Services.CompanionSrvs.CompanionSrv.Iface
         BaseResultDto CompanionShareDto(CompanionShareDto dto);
         Task<BaseResultDto> UpdateAsyncDto(CompanionDto dto);
         Task<List<SearchCompanionDto>> SearchMinAsync(SearchRequestDto request);
+        void UpdateCompanionCommentCount(long companionId);
+        Task UpdateCompanionCommentRateAsync(long Id);
 
     }
 }

@@ -222,7 +222,11 @@ namespace Application.Maping
             CreateMap<Companion, CompanionDto>();
             CreateMap<Companion, CompanionActivationDto>().ReverseMap();
             CreateMap<Companion, CompanionShareDto>().ReverseMap();
-            CreateMap<CompanionDto, Companion>().ForMember(x => x.CompanionPets, y => y.Ignore()).ForMember(x => x.CompanionTypes, y => y.Ignore()).ForMember(x => x.ActivationValue, y => y.Ignore()).ForMember(x => x.RateAvg, y => y.Ignore()).ForMember(x => x.RateCount, y => y.Ignore()).ForMember(x => x.Picture, y => y.Ignore()).ForMember(x => x.Icon, y => y.Ignore()).ForMember(x => x.GoldAccountDate, y => y.Ignore()).ForMember(x => x.SilverAccountDate, y => y.Ignore()).ForMember(x => x.SilverAccountCreateDate, y => y.Ignore()).ForMember(x => x.Owner, y => y.Ignore());
+            CreateMap<CompanionDto, Companion>()
+                .ForMember(x => x.CompanionPets, y => y.Ignore()).ForMember(x => x.CompanionTypes, y => y.Ignore()).ForMember(x => x.ActivationValue, y => y.Ignore())
+                .ForMember(x => x.RateAvg, y => y.Ignore()).ForMember(x => x.RateCount, y => y.Ignore()).ForMember(x => x.Picture, y => y.Ignore())
+                .ForMember(x => x.Icon, y => y.Ignore()).ForMember(x => x.GoldAccountDate, y => y.Ignore()).ForMember(x => x.SilverAccountDate, y => y.Ignore())
+                .ForMember(x => x.SilverAccountCreateDate, y => y.Ignore()).ForMember(x => x.Owner, y => y.Ignore()).ForMember(x => x.BackgroundPicture, y => y.Ignore());
             CreateMap<Companion, CompanionVDto>()
                 .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner))
                 .ForMember(dest => dest.Picture, opt => opt.MapFrom(src => src.Picture))
@@ -233,25 +237,36 @@ namespace Application.Maping
                 .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner))
                 .ForMember(dest => dest.IsGold, opt => opt.MapFrom(src => src.GoldAccountDate.HasValue && src.GoldAccountDate > DateTime.Now))
                 .ForMember(dest => dest.IsSilver, opt => opt.MapFrom(src => src.SilverAccountDate.HasValue && src.SilverAccountDate > DateTime.Now));
-            CreateMap<CompanionAssistanceDto, CompanionAssistance>().ForMember(x => x.ActivationValue, y => y.Ignore()).ForMember(x => x.Companion, y => y.Ignore()).ForMember(x => x.Assistance, y => y.Ignore());
-            CreateMap<CompanionAssistance, CompanionAssistanceDto>().ForMember(dest => dest.CompanionAssistanceTypeIds, opt => opt.MapFrom(src => src.Codes.Select(s => s.Id)));
-            CreateMap<CompanionAssistanceDto, CompanionAssistance>().ForMember(dest => dest.CompanionType, opt => opt.Ignore());
+            CreateMap<CompanionAssistanceDto, CompanionAssistance>()
+                .ForMember(x => x.ActivationValue, y => y.Ignore()).ForMember(x => x.Companion, y => y.Ignore()).ForMember(x => x.Assistance, y => y.Ignore());
+            CreateMap<CompanionAssistance, CompanionAssistanceDto>()
+                .ForMember(dest => dest.CompanionAssistanceTypeIds, opt => opt.MapFrom(src => src.Codes.Select(s => s.Id)));
+            CreateMap<CompanionAssistanceDto, CompanionAssistance>()
+                .ForMember(dest => dest.CompanionType, opt => opt.Ignore());
             CreateMap<CompanionAssistance, CompanionAssistanceVDto>();
             CreateMap<CompanionAssistance, CompanionAssistanceActivationDto>().ReverseMap();
-            CreateMap<CompanionAssistancePackageDto, CompanionAssistancePackage>().ForMember(x => x.ActivationValue, y => y.Ignore()).ForMember(x => x.CompanionAssistance, y => y.Ignore());
+            CreateMap<CompanionAssistancePackageDto, CompanionAssistancePackage>()
+                .ForMember(x => x.ActivationValue, y => y.Ignore()).ForMember(x => x.CompanionAssistance, y => y.Ignore());
             CreateMap<CompanionAssistancePackage, CompanionAssistancePackageDto>();
             CreateMap<CompanionAssistancePackage, CompanionAssistancePackageActivationDto>().ReverseMap();
             CreateMap<CompanionAssistancePackage, CompanionAssistancePackageVDto>();
             CreateMap<CompanionAssistanceTime, CompanionAssistanceTimeDto>().ReverseMap();
             CreateMap<CompanionAssistanceTime, CompanionAssistanceTimeVDto>();
-            CreateMap<IGrouping<WeekDay, CompanionAssistanceTime>, CompanionAssistanceTimeUpdateDto>().ForMember(s => s.WeekDay, y => y.MapFrom(m => m.Key)).ForMember(s => s.CompanionAssistanceTimes, y => y.MapFrom(m => m.ToList()));
-            CreateMap<CompanionAssistanceUserDto, CompanionAssistanceUser>().ForMember(x => x.ActivationValue, y => y.Ignore()).ForMember(x => x.CompanionAssistance, y => y.Ignore()).ForMember(x => x.User, y => y.Ignore());
+            CreateMap<IGrouping<WeekDay, CompanionAssistanceTime>, CompanionAssistanceTimeUpdateDto>()
+                .ForMember(s => s.WeekDay, y => y.MapFrom(m => m.Key)).ForMember(s => s.CompanionAssistanceTimes, y => y.MapFrom(m => m.ToList()));
+            CreateMap<CompanionAssistanceUserDto, CompanionAssistanceUser>()
+                .ForMember(x => x.ActivationValue, y => y.Ignore()).ForMember(x => x.CompanionAssistance, y => y.Ignore()).ForMember(x => x.User, y => y.Ignore());
             CreateMap<CompanionAssistanceUser, CompanionAssistanceUserDto>();
             CreateMap<CompanionAssistanceUser, CompanionAssistanceUserActivationDto>().ReverseMap();
             CreateMap<CompanionAssistanceUser, CompanionAssistanceUserVDto>();
             CreateMap<CompanionReserve, CompanionReserveCancelDto>().ReverseMap();
             CreateMap<CompanionReserve, CompanionReserveOperatorDto>().ReverseMap();
-            CreateMap<CompanionReserveDto, CompanionReserve>().ForMember(x => x.FromWallet, y => y.Ignore()).ForMember(x => x.WalletPrice, y => y.Ignore()).ForMember(x => x.Wallet, y => y.Ignore()).ForMember(x => x.Address, y => y.Ignore()).ForMember(x => x.Booker, y => y.Ignore()).ForMember(x => x.CompanionAssistance, y => y.Ignore()).ForMember(x => x.CompanionAssistanceTime, y => y.Ignore()).ForMember(x => x.CompanionAssistanceUser, y => y.Ignore()).ForMember(x => x.UserPet, y => y.Ignore()).ForMember(x => x.State, y => y.Ignore()).ForMember(x => x.CompanionAssistanceType, y => y.Ignore()).ForMember(x => x.OperatorStateId, y => y.Ignore());
+            CreateMap<CompanionReserveDto, CompanionReserve>()
+                .ForMember(x => x.FromWallet, y => y.Ignore()).ForMember(x => x.WalletPrice, y => y.Ignore()).ForMember(x => x.Wallet, y => y.Ignore())
+                .ForMember(x => x.Address, y => y.Ignore()).ForMember(x => x.Booker, y => y.Ignore()).ForMember(x => x.CompanionAssistance, y => y.Ignore())
+                .ForMember(x => x.CompanionAssistanceTime, y => y.Ignore()).ForMember(x => x.CompanionAssistanceUser, y => y.Ignore())
+                .ForMember(x => x.UserPet, y => y.Ignore()).ForMember(x => x.State, y => y.Ignore()).ForMember(x => x.CompanionAssistanceType, y => y.Ignore())
+                .ForMember(x => x.OperatorStateId, y => y.Ignore());
             CreateMap<CompanionReserveSetRebateCodeDto, CompanionReserve>();
             CreateMap<CompanionReserveSetWalletDto, CompanionReserve>();
             CreateMap<CompanionReserve, CompanionReserveAdminVDto>();
@@ -279,7 +294,12 @@ namespace Application.Maping
             CreateMap<CompanionInsurancePackageActivationDto, CompanionInsurancePackage>();
             CreateMap<CompanionInsurancePackageSale, CompanionInsurancePackageSaleDto>();
             CreateMap<CompanionInsurancePackageSaleSetWalletDto, CompanionInsurancePackageSale>();
-            CreateMap<CompanionInsurancePackageSaleDto, CompanionInsurancePackageSale>().ForMember(x => x.Wallet, y => y.Ignore()).ForMember(x => x.FromWallet, y => y.Ignore()).ForMember(x => x.WalletPrice, y => y.Ignore()).ForMember(x => x.PaymentPrice, y => y.Ignore()).ForMember(x => x.Discount, y => y.Ignore()).ForMember(x => x.RebatePrice, y => y.Ignore()).ForMember(x => x.RebateId, y => y.Ignore()).ForMember(x => x.Rebate, y => y.Ignore()).ForMember(x => x.Address, y => y.Ignore()).ForMember(x => x.UserPet, y => y.Ignore()).ForMember(x => x.Address, y => y.Ignore()).ForMember(x => x.IsPaid, y => y.Ignore()).ForMember(x => x.Price, y => y.Ignore()).ForMember(x => x.CompanionInsurancePackage, y => y.Ignore());
+            CreateMap<CompanionInsurancePackageSaleDto, CompanionInsurancePackageSale>()
+                .ForMember(x => x.Wallet, y => y.Ignore()).ForMember(x => x.FromWallet, y => y.Ignore()).ForMember(x => x.WalletPrice, y => y.Ignore())
+                .ForMember(x => x.PaymentPrice, y => y.Ignore()).ForMember(x => x.Discount, y => y.Ignore()).ForMember(x => x.RebatePrice, y => y.Ignore())
+                .ForMember(x => x.RebateId, y => y.Ignore()).ForMember(x => x.Rebate, y => y.Ignore()).ForMember(x => x.Address, y => y.Ignore()).ForMember(x => x.UserPet, y => y.Ignore())
+                .ForMember(x => x.Address, y => y.Ignore()).ForMember(x => x.IsPaid, y => y.Ignore()).ForMember(x => x.Price, y => y.Ignore())
+                .ForMember(x => x.CompanionInsurancePackage, y => y.Ignore());
             CreateMap<CompanionInsurancePackageSaleSetRebateCodeDto, CompanionInsurancePackageSale>();
             CreateMap<CompanionInsurancePackageSale, CompanionInsurancePackageSaleVDto>();
             CreateMap<WeekDay, WeekDayDto>().ReverseMap();

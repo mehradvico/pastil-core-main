@@ -6,7 +6,7 @@
     <members>
         <member name="T:Api.Areas.Admin.Controllers.AssistanceController">
             <summary>
-            مدیریت  خدمات
+            مدیریت خدمات
             </summary>
             
         </member>
@@ -7119,6 +7119,19 @@
             جستجو
             </summary>
             <returns></returns> 
+        </member>
+        <member name="T:Api.Controllers.CompanionReserveController">
+            <summary>
+            مدیریت  رزرو همکاران
+            </summary>
+            
+        </member>
+        <member name="M:Api.Controllers.CompanionReserveController.GetCount(System.Int64)">
+            <summary>
+            تعداد رزروهای آیتم
+            </summary>
+            <param name="companionId">شناسه همکار</param>
+            <returns>تعداد رزروها</returns>
         </member>
         <member name="T:Api.Controllers.CompanionTypeController">
             <summary>

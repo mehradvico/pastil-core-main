@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using Persistence.Context;
@@ -12,9 +13,11 @@ using Persistence.Context;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20251205161442_mig_companionCommentadd")]
+    partial class mig_companionCommentadd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1024,9 +1027,6 @@ namespace Persistence.Migrations
                     b.Property<bool>("Approved")
                         .HasColumnType("bit");
 
-                    b.Property<long?>("BackgroundPictureId")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("CityId")
                         .HasColumnType("bigint");
 
@@ -1121,8 +1121,6 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BackgroundPictureId");
 
                     b.HasIndex("CityId");
 
@@ -5953,10 +5951,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Entities.Entities.Companion", b =>
                 {
-                    b.HasOne("Entities.Entities.Picture", "BackgroundPicture")
-                        .WithMany()
-                        .HasForeignKey("BackgroundPictureId");
-
                     b.HasOne("Entities.Entities.City", "City")
                         .WithMany()
                         .HasForeignKey("CityId")
@@ -5988,8 +5982,6 @@ namespace Persistence.Migrations
                     b.HasOne("Entities.Entities.Picture", "Picture")
                         .WithMany()
                         .HasForeignKey("PictureId");
-
-                    b.Navigation("BackgroundPicture");
 
                     b.Navigation("City");
 

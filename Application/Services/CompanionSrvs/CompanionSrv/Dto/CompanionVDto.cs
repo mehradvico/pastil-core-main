@@ -20,6 +20,7 @@ namespace Application.Services.CompanionSrvs.CompanionSrv.Dto
         public DateTime? SilverAccountCreateDate { get; set; }
 
         public long? PictureId { get; set; }
+        public long? BackgroundPictureId { get; set; }
         public long? IconId { get; set; }
         public bool Active { get; set; }
         public bool Approved { get; set; }
@@ -28,6 +29,7 @@ namespace Application.Services.CompanionSrvs.CompanionSrv.Dto
         public string Phone { get; set; }
         public long CityId { get; set; }
         public long? NeighborhoodId { get; set; }
+        public int CommentCount { get; set; }
         public double RateAvg { get; set; }
         public int RateCount { get; set; }
         public bool IsSilver { get; set; }
@@ -40,6 +42,7 @@ namespace Application.Services.CompanionSrvs.CompanionSrv.Dto
         public NeighborhoodVDto Neighborhood { get; set; }
         public PointDto Location { get; set; }
         public PictureVDto Picture { get; set; }
+        public PictureVDto BackgroundPicture { get; set; }
         public PictureVDto Icon { get; set; }
         public List<CompanionPetVDto> CompanionPets { get; set; }
         public List<CompanionTypeVDto> CompanionTypes { get; set; }

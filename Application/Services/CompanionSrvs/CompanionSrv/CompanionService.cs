@@ -1,4 +1,5 @@
 ﻿using Application.Common.Dto.Result;
+using Application.Common.Enumerable;
 using Application.Common.Enumerable.Code;
 using Application.Common.Helpers;
 using Application.Common.Service;
@@ -11,12 +12,15 @@ using Application.Services.Setting.CodeSrv.Iface;
 using Application.Services.Setting.NoticeSrv.Iface;
 using AutoMapper;
 using Entities.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace Application.Services.CompanionSrvs.CompanionSrv
 {
@@ -27,13 +31,16 @@ namespace Application.Services.CompanionSrvs.CompanionSrv
         private readonly IUserService _userService;
         private readonly ICodeService _codeService;
         private readonly INoticeService _notificationService;
-        public CompanionService(IDataBaseContext _context, IMapper mapper, IUserService userService, INoticeService notificationService, ICodeService codeService) : base(_context, mapper)
+        private readonly string connectionString;
+        public CompanionService(IDataBaseContext _context, IMapper mapper, IConfiguration config, IUserService userService, INoticeService notificationService, ICodeService codeService) : base(_context, mapper)
         {
             this._context = _context;
             this.mapper = mapper;
             this._userService = userService;
             this._codeService = codeService;
             this._notificationService = notificationService;
+            this.connectionString = config.GetValue<string>(
+"conection");
         }
 
         public async Task<BaseResultDto<CompanionVDto>> FindAsyncVDto(long id)
@@ -367,6 +374,19 @@ namespace Application.Services.CompanionSrvs.CompanionSrv
         {
             var list = await _context.Companions.Where(s => s.Deleted == false && s.Active && s.SearchKey.Contains(request.Q) && (s.Name.Contains(request.Q) || s.CompanionAssistances.Any(a => a.Active && a.Approved && a.Assistance.Deleted == false && a.Assistance.Active && a.Assistance.Name.Contains(request.Q)))).Take(request.CompanionCount).Select(s => new SearchCompanionDto { Id = s.Id, Name = s.Name, RateAvg = s.RateAvg, RateCount = s.RateCount, IconId = s.IconId, Icon = mapper.Map<PictureVDto>(s.Icon) }).ToListAsync();
             return list;
+        }
+
+        public void UpdateCompanionCommentCount(long CompanionId)
+        {
+            var item = _context.Companions.Include(s => s.CompanionComments).ThenInclude(s => s.Status).AsTracking().FirstOrDefault(s => s.Id == CompanionId);
+            item.CommentCount = item.CompanionComments.Count(c => c.Status.Label == CommentEnum.Comment_Accept.ToString());
+            _context.Companions.Update(item);
+            _context.SaveChanges();
+        }
+        public async Task UpdateCompanionCommentRateAsync(long Id)
+        {
+            var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync("UpdateCompanionCommentsRate", new { FilterIds = Id }, commandType: System.Data.CommandType.StoredProcedure);
         }
     }
 }

@@ -37,7 +37,6 @@ builder.Services.AddSwaggerGen(c =>
         Title = "Pastil.Api",
         Version = "v2",
     });
-
     var security = new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -134,7 +133,6 @@ builder.Services.AddHangfire(configuration => configuration
            DisableGlobalLocks = true
        }));
 
-// Add the processing server as IHostedService
 builder.Services.AddHangfireServer();
 
 var app = builder.Build();
@@ -156,36 +154,6 @@ app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v2/swagger.json", "v2");
     options.DefaultModelsExpandDepth(-1);
-    //app.Use(async (context, next) =>
-    //{
-    //    if (context.Request.Path.StartsWithSegments("/swagger"))
-    //    {
-    //        string authHeader = context.Request.Headers["Authorization"];
-
-    //        if (authHeader != null && authHeader.StartsWith("Basic "))
-    //        {
-    //            var encodedUsernamePassword = authHeader.Substring("Basic ".Length).Trim();
-    //            var decodedUsernamePassword = Encoding.UTF8.GetString(Convert.FromBase64String(encodedUsernamePassword));
-    //            var usernamePassword = decodedUsernamePassword.Split(':');
-
-    //            var username = usernamePassword[0];
-    //            var password = usernamePassword[1];
-
-    //            if (username == "admin" && password == "1234")
-    //            {
-    //                await next.Invoke();
-    //                return;
-    //            }
-    //        }
-
-    //        context.Response.Headers["WWW-Authenticate"] = "Basic";
-    //        context.Response.StatusCode = 401;
-    //    }
-    //    else
-    //    {
-    //        await next.Invoke();
-    //    }
-    //});
 });
 app.UseOutputCache();
 app.Run();

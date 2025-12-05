@@ -16,6 +16,7 @@ namespace Application.Services.CompanionSrvs.CompanionSrv.Dto
         public DateTime? GoldAccountDate { get; set; }
         public DateTime? SilverAccountDate { get; set; }
         public long? PictureId { get; set; }
+        public long? BackgroundPictureId { get; set; }
         public long? IconId { get; set; }
         public bool Active { get; set; }
         public bool Approved { get; set; }
@@ -24,13 +25,12 @@ namespace Application.Services.CompanionSrvs.CompanionSrv.Dto
         public string Phone { get; set; }
         public long CityId { get; set; }
         public long? NeighborhoodId { get; set; }
-        public double RateAvg { get; set; }
-        public int RateCount { get; set; }
         public int SharePercent { get; set; }
         public string SearchKey { get; set; }
 
         public PointDto Location { get; set; }
         public PictureVDto Picture { get; set; }
+        public PictureVDto BackgroundPicture { get; set; }
         public PictureVDto Icon { get; set; }
         public UserMinVDto Owner { get; set; }
         public List<CompanionPetVDto> CompanionPets { get; set; }

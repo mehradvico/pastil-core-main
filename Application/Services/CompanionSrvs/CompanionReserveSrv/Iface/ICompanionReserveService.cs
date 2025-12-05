@@ -24,6 +24,7 @@ namespace Application.Services.CompanionSrv.CompanionReserveSrv.Iface
         Task<BaseResultDto> SetRebateCodeAsyncDto(CompanionReserveSetRebateCodeDto dto);
         Task<BaseResultDto> SetWalletAsyncDto(CompanionReserveSetWalletDto dto);
         Task<BaseResultDto> ClearRebateCodeAsync(long id);
+        Task<BaseResultDto<int>> ReserveCountAsync(long id);
 
     }
 }

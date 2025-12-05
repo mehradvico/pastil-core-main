@@ -605,5 +605,11 @@ namespace Application.Services.CompanionSrv.CompanionReserveSrv
             _context.SaveChanges();
             return new BaseResultDto<CompanionReserveShareDto>(true, mapper.Map<CompanionReserveShareDto>(item));
         }
+
+        public async Task<BaseResultDto<int>> ReserveCountAsync(long id)
+        {
+            var count = await _context.CompanionReserves.Include(s => s.CompanionAssistance).CountAsync(s => s.CompanionAssistance.CompanionId == id);
+            return new BaseResultDto<int>(true, count);
+        }
     }
 }

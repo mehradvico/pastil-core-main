@@ -15,6 +15,7 @@ namespace Entities.Entities
         public DateTime? SilverAccountDate { get; set; }
         public DateTime? SilverAccountCreateDate { get; set; }
         public long? PictureId { get; set; }
+        public long? BackgroundPictureId { get; set; }
         public long? IconId { get; set; }
         public bool Active { get; set; }
         public bool Deleted { get; set; }
@@ -24,6 +25,7 @@ namespace Entities.Entities
         public long? NeighborhoodId { get; set; }
         public bool Approved { get; set; }
         public string ActivationValue { get; set; }
+        public int CommentCount { get; set; }
         public double RateAvg { get; set; }
         public int RateCount { get; set; }
         public int SharePercent { get; set; }
@@ -32,6 +34,7 @@ namespace Entities.Entities
         public Neighborhood Neighborhood { get; set; }
         public Point Location { get; set; }
         public Picture Picture { get; set; }
+        public Picture BackgroundPicture { get; set; }
         public Picture Icon { get; set; }
         public User Owner { get; set; }
         public ICollection<CompanionType> CompanionTypes { get; set; }
@@ -40,6 +43,8 @@ namespace Entities.Entities
         public ICollection<CompanionReport> CompanionReports { get; set; }
         public ICollection<CompanionInsurancePackage> CompanionInsurancePackages { get; set; }
         public ICollection<CompanionPet> CompanionPets { get; set; }
+        public ICollection<CompanionComment> CompanionComments { get; set; }
+
 
     }
 }
