@@ -61,6 +61,8 @@ using Application.Services.CompanionSrvs.AssistanceQuestionnaireSrv;
 using Application.Services.CompanionSrvs.AssistanceQuestionnaireSrv.Iface;
 using Application.Services.CompanionSrvs.AssistanceSrv;
 using Application.Services.CompanionSrvs.AssistanceSrv.Iface;
+using Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv;
+using Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Iface;
 using Application.Services.CompanionSrvs.CompanionAssistanceReportSrv.Iface;
 using Application.Services.CompanionSrvs.CompanionInsurancePackageSaleSrv;
 using Application.Services.CompanionSrvs.CompanionInsurancePackageSaleSrv.Iface;
@@ -76,6 +78,8 @@ using Application.Services.CompanionSrvs.CompanionReserveCommentSrv;
 using Application.Services.CompanionSrvs.CompanionReserveCommentSrv.Iface;
 using Application.Services.CompanionSrvs.CompanionReserveExcelSrv;
 using Application.Services.CompanionSrvs.CompanionReserveExcelSrv.Iface;
+using Application.Services.CompanionSrvs.CompanionReserveUserPetSrv;
+using Application.Services.CompanionSrvs.CompanionReserveUserPetSrv.Iface;
 using Application.Services.CompanionSrvs.CompanionSrv;
 using Application.Services.CompanionSrvs.CompanionSrv.Iface;
 using Application.Services.CompanionSrvs.CompanionTypeSrv;
@@ -240,6 +244,11 @@ using Application.Services.Setting.MessageSenderSrv;
 using Application.Services.Setting.MessageSenderSrv.Iface;
 using Application.Services.Setting.NoticeSrv;
 using Application.Services.Setting.NoticeSrv.Iface;
+using Application.Services.Setting.NotifyMessageSrv;
+using Application.Services.Setting.NotifyMessageSrv.Iface;
+using Application.Services.Setting.PushMessageSrv;
+using Application.Services.Setting.PushMessageSrv.Dto;
+using Application.Services.Setting.PushMessageSrv.Iface;
 using Application.Services.Setting.SettingSrv;
 using Application.Services.Setting.SmsSrv;
 using Application.Services.Setting.SmsSrv.Iface;
@@ -450,7 +459,10 @@ public static class ConfigureServices
         services.AddScoped<IUserPetRecordService, UserPetRecordService>();
         services.AddScoped<IDayToDateService, DayToDateService>();
         services.AddScoped<ICompanionReserveExcelService, CompanionReserveExcelService>();
-
+        services.AddScoped<IPushService, PushService>();
+        services.AddScoped<INotifyMessageService, NotifyMessageService>();
+        services.AddScoped<ICompanionReserveUserPetService, CompanionReserveUserPetService>();
+        services.AddScoped<ICompanionAssistancePackagePictureService, CompanionAssistancePackagePictureService>();
         services.AddCors(option => option.AddPolicy("AllowAnyOrigin", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
         // تنظیم MapperConfiguration
         var mapperConfig = new MapperConfiguration(cfg =>

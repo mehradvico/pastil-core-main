@@ -24,6 +24,7 @@ using Application.Services.CompanionSrv.CompanionAssistanceUserSrv.Dto;
 using Application.Services.CompanionSrv.CompanionReserveSrv.Dto;
 using Application.Services.CompanionSrvs.AssistanceQuestionnaireSrv.Dto;
 using Application.Services.CompanionSrvs.AssistanceSrv.Dto;
+using Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionAssistancePackageSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionAssistanceReportSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionAssistanceSrv.Dto;
@@ -250,6 +251,8 @@ namespace Application.Maping
             CreateMap<CompanionAssistancePackage, CompanionAssistancePackageDto>();
             CreateMap<CompanionAssistancePackage, CompanionAssistancePackageActivationDto>().ReverseMap();
             CreateMap<CompanionAssistancePackage, CompanionAssistancePackageVDto>();
+            CreateMap<CompanionAssistancePackagePicture, CompanionAssistancePackagePictureDto>().ReverseMap();
+            CreateMap<CompanionAssistancePackagePicture, CompanionAssistancePackagePictureVDto>();
             CreateMap<CompanionAssistanceTime, CompanionAssistanceTimeDto>().ReverseMap();
             CreateMap<CompanionAssistanceTime, CompanionAssistanceTimeVDto>();
             CreateMap<IGrouping<WeekDay, CompanionAssistanceTime>, CompanionAssistanceTimeUpdateDto>()
@@ -265,7 +268,7 @@ namespace Application.Maping
                 .ForMember(x => x.FromWallet, y => y.Ignore()).ForMember(x => x.WalletPrice, y => y.Ignore()).ForMember(x => x.Wallet, y => y.Ignore())
                 .ForMember(x => x.Address, y => y.Ignore()).ForMember(x => x.Booker, y => y.Ignore()).ForMember(x => x.CompanionAssistance, y => y.Ignore())
                 .ForMember(x => x.CompanionAssistanceTime, y => y.Ignore()).ForMember(x => x.CompanionAssistanceUser, y => y.Ignore())
-                .ForMember(x => x.UserPet, y => y.Ignore()).ForMember(x => x.State, y => y.Ignore()).ForMember(x => x.CompanionAssistanceType, y => y.Ignore())
+                .ForMember(x => x.UserPets, y => y.Ignore()).ForMember(x => x.State, y => y.Ignore()).ForMember(x => x.CompanionAssistanceType, y => y.Ignore())
                 .ForMember(x => x.OperatorStateId, y => y.Ignore());
             CreateMap<CompanionReserveSetRebateCodeDto, CompanionReserve>();
             CreateMap<CompanionReserveSetWalletDto, CompanionReserve>();

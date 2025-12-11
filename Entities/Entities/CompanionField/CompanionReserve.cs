@@ -8,8 +8,6 @@ namespace Entities.Entities
     public class CompanionReserve : Id_Field
     {
         public long BookerId { get; set; }
-        public long UserPetId { get; set; }
-
         public double PrePaymentPrice { get; set; }
         public double OperatorFinalPrice { get; set; }
         public double OperatorStuffPrice { get; set; }
@@ -58,12 +56,12 @@ namespace Entities.Entities
         public CompanionAssistance CompanionAssistance { get; set; }
         public CompanionAssistanceTime CompanionAssistanceTime { get; set; }
         public CompanionAssistanceUser CompanionAssistanceUser { get; set; }
-        public UserPet UserPet { get; set; }
         public Code State { get; set; }
         public Code OperatorState { get; set; }
         public Address Address { get; set; }
         public Rebate Rebate { get; set; }
         public Wallet Wallet { get; set; }
         public ICollection<CompanionAssistancePackage> CompanionAssistancePackages { get; set; }
+        public ICollection<UserPet> UserPets { get; set; }
     }
 }

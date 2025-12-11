@@ -6,9 +6,12 @@ namespace Application.Services.CompanionSrv.CompanionAssistancePackageSrv.Dto
     public class CompanionAssistancePackageDto : Name_FieldDto
     {
         public double Price { get; set; }
+        public double PrePaymentPrice { get; set; }
+        public long? PictureId { get; set; }
         public bool Active { get; set; }
         public string ActivationValue { get; set; }
         public long CompanionAssistanceId { get; set; }
+        public string Discription { get; set; }
 
         public CompanionAssistanceVDto CompanionAssistance { get; set; }
     }

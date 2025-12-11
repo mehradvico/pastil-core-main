@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using Persistence.Context;
@@ -12,9 +13,11 @@ using Persistence.Context;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20251211094205_Mig_userpetreserve")]
+    partial class Mig_userpetreserve
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1664,6 +1667,9 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("ToDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<long?>("UserPetId")
+                        .HasColumnType("bigint");
+
                     b.Property<bool?>("UserResponse")
                         .HasColumnType("bit");
 
@@ -1689,6 +1695,8 @@ namespace Persistence.Migrations
                     b.HasIndex("RebateId");
 
                     b.HasIndex("StateId");
+
+                    b.HasIndex("UserPetId");
 
                     b.ToTable("CompanionReserves");
                 });
@@ -6300,6 +6308,10 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Entities.Entities.UserPet", "UserPet")
+                        .WithMany()
+                        .HasForeignKey("UserPetId");
+
                     b.Navigation("Address");
 
                     b.Navigation("Booker");
@@ -6317,6 +6329,8 @@ namespace Persistence.Migrations
                     b.Navigation("Rebate");
 
                     b.Navigation("State");
+
+                    b.Navigation("UserPet");
                 });
 
             modelBuilder.Entity("Entities.Entities.CompanionReserveCommentRate", b =>

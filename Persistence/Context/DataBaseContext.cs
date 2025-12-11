@@ -139,6 +139,8 @@ namespace Persistence.Context
         public DbSet<TripAddress> TripAddresses { get; set; }
         public DbSet<UserPetRecord> UserPetRecords { get; set; }
         public DbSet<NotifyMessage> NotifyMessages { get; set; }
+        public DbSet<PushSubscriber> PushSubscribers { get; set; }
+        public DbSet<CompanionAssistancePackagePicture> CompanionAssistancePackagePictures { get; set; }
 
         public IDbContextTransaction CurrentTransaction => base.Database.CurrentTransaction;
 

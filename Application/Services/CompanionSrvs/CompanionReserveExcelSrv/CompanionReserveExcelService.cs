@@ -44,7 +44,7 @@ namespace Application.Services.CompanionSrvs.CompanionReserveExcelSrv
 
         public MemoryStream GetReserveExcel(SearchCompanionReserveExcelDto search)
         {
-            var query = _context.CompanionReserves.Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion).Include(s => s.CompanionAssistance).ThenInclude(s => s.Assistance).Include(p => p.CompanionAssistanceUser).ThenInclude(s => s.User).Include(s => s.Booker).Include(s => s.UserPet).ThenInclude(s => s.Pet).AsQueryable();
+            var query = _context.CompanionReserves.Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion).Include(s => s.CompanionAssistance).ThenInclude(s => s.Assistance).Include(p => p.CompanionAssistanceUser).ThenInclude(s => s.User).Include(s => s.Booker).Include(s => s.UserPets).ThenInclude(s => s.Pet).AsQueryable();
 
             if (search.CompanionId.HasValue)
             {
@@ -90,7 +90,6 @@ namespace Application.Services.CompanionSrvs.CompanionReserveExcelSrv
             {
                 Id = s.Id,
                 BookerName = string.Format("{0} {1}", s.Booker.FirstName, s.Booker.LastName),
-                PetType = s.UserPet.Pet.Name,
                 CompanionName = s.CompanionAssistance.Companion.Name,
                 AssistanceName = s.CompanionAssistance.Assistance.Name,
                 OperatorName = s.CompanionAssistanceUserId == null ? "کلینیک" : string.Format("{0} {1}", s.CompanionAssistanceUser.User.FirstName, s.CompanionAssistanceUser.User.LastName),

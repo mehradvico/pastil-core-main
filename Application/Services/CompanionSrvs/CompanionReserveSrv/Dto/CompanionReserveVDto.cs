@@ -1,5 +1,6 @@
 ﻿using Application.Common.Dto.Field;
 using Application.Services.Accounting.UserPetSrv.Dto;
+using Application.Services.CompanionSrv.CompanionAssistancePackageSrv.Dto;
 using Application.Services.CompanionSrv.CompanionAssistanceSrv.Dto;
 using Application.Services.CompanionSrv.CompanionAssistanceTimeSrv.Dto;
 using Application.Services.CompanionSrv.CompanionAssistanceUserSrv.Dto;
@@ -7,13 +8,13 @@ using Application.Services.Dto;
 using Application.Services.Order.AddressSrv.Dto;
 using Application.Services.Setting.CodeSrv.Dto;
 using System;
+using System.Collections.Generic;
 
 namespace Application.Services.CompanionSrv.CompanionReserveSrv.Dto
 {
     public class CompanionReserveVDto : Id_FieldDto
     {
         public long BookerId { get; set; }
-        public long UserPetId { get; set; }
 
         public double PrePaymentPrice { get; set; }
         public double OperatorFinalPrice { get; set; }
@@ -56,10 +57,12 @@ namespace Application.Services.CompanionSrv.CompanionReserveSrv.Dto
         public CompanionAssistanceVDto CompanionAssistance { get; set; }
         public CompanionAssistanceTimeVDto CompanionAssistanceTime { get; set; }
         public CompanionAssistanceUserVDto CompanionAssistanceUser { get; set; }
-        public UserPetVDto UserPet { get; set; }
         public CodeVDto State { get; set; }
         public CodeVDto OperatorState { get; set; }
         public CodeVDto CompanionAssistanceType { get; set; }
         public AddressVDto Address { get; set; }
+
+        public List<UserPetVDto> UserPets { get; set; }
+        public List<CompanionAssistancePackageVDto> CompanionAssistancePackages { get; set; }
     }
 }
