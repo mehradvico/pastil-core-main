@@ -11,5 +11,6 @@ namespace Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSr
     public class CompanionAssistancePackagePictureInputDto : BaseInputDto, ICompanionAssistancePackagePictureSearchFields
     {
         public long? CompanionAssistancePackageId { get; set; }
+        public long? CompanionId { get; set; }
     }
 }

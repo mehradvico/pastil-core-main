@@ -17,7 +17,9 @@ namespace Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSr
 
         {
             CompanionAssistancePackageId = dto.CompanionAssistancePackageId;
+            CompanionId = dto.CompanionId;
         }
         public long? CompanionAssistancePackageId { get; set; }
+        public long? CompanionId { get; set; }
     }
 }

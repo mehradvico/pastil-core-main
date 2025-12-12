@@ -37,7 +37,7 @@ namespace Application.Services.CompanionSrv.CompanionAssistancePackageSrv
         public override async Task<BaseResultDto<CompanionAssistancePackageDto>> FindAsyncDto(long id)
         {
             var item = await _context.CompanionAssistancePackages.Include(s => s.CompanionAssistance).ThenInclude(s => s.Assistance).ThenInclude(s => s.Picture)
-                .Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion).ThenInclude(s => s.Picture)
+                .Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion).ThenInclude(s => s.Picture).Include(s => s.Picture)
                 .Include(s => s.CompanionAssistancePackagePictures).ThenInclude(s => s.Picture).FirstOrDefaultAsync(s => s.Id == id && !s.Deleted);
             if (item != null)
             {
@@ -48,7 +48,7 @@ namespace Application.Services.CompanionSrv.CompanionAssistancePackageSrv
         public async Task<BaseResultDto<CompanionAssistancePackageVDto>> FindAsyncVDto(long id)
         {
             var item = await _context.CompanionAssistancePackages.Include(s => s.CompanionAssistance).ThenInclude(s => s.Assistance).ThenInclude(s => s.Picture)
-                .Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion).ThenInclude(s => s.Picture)
+                .Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion).ThenInclude(s => s.Picture).Include(s => s.Picture)
                 .Include(s => s.CompanionAssistancePackagePictures).ThenInclude(s => s.Picture).FirstOrDefaultAsync(s => s.Id == id && !s.Deleted);
             if (item != null)
             {
@@ -60,7 +60,7 @@ namespace Application.Services.CompanionSrv.CompanionAssistancePackageSrv
         public CompanionAssistancePackageSearchDto Search(CompanionAssistancePackageInputDto baseSearchDto)
         {
             var model = _context.CompanionAssistancePackages.Include(s => s.CompanionAssistance).ThenInclude(s => s.Assistance).ThenInclude(s => s.Picture)
-                .Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion).ThenInclude(s => s.Picture)
+                .Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion).ThenInclude(s => s.Picture).Include(s => s.Picture)
                 .Include(s => s.CompanionAssistancePackagePictures).ThenInclude(s => s.Picture).AsQueryable().Where(s => !s.Deleted);
 
             if (baseSearchDto.CompanionAssistanceId.HasValue)

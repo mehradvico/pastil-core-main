@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using Persistence.Context;
@@ -12,9 +13,11 @@ using Persistence.Context;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20251212112722_mig_packageupdate")]
+    partial class mig_packageupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2945,216 +2948,6 @@ namespace Persistence.Migrations
                     b.ToTable("NotifyMessages");
                 });
 
-            modelBuilder.Entity("Entities.Entities.PansionField.Pansion", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("AddressValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Approve")
-                        .HasColumnType("bit");
-
-                    b.Property<long>("CityId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("CloseHour")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CommentCount")
-                        .HasColumnType("int");
-
-                    b.Property<long>("CompanionId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Discription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsSchool")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OpenHour")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("PictureId")
-                        .HasColumnType("bigint");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<double>("RateAvg")
-                        .HasColumnType("float");
-
-                    b.Property<int>("RateCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Regulations")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("StateId")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("Suggested")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.HasIndex("CompanionId");
-
-                    b.HasIndex("PictureId");
-
-                    b.HasIndex("StateId");
-
-                    b.ToTable("Pansions");
-                });
-
-            modelBuilder.Entity("Entities.Entities.PansionField.PansionPet", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("PansionId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("PetId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PansionId");
-
-                    b.HasIndex("PetId");
-
-                    b.ToTable("PansionPets");
-                });
-
-            modelBuilder.Entity("Entities.Entities.PansionField.PansionPicture", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("PansionId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("PictureId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PansionId");
-
-                    b.HasIndex("PictureId");
-
-                    b.ToTable("PansionPictures");
-                });
-
-            modelBuilder.Entity("Entities.Entities.PansionField.PansionReserve", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("BookerId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("CancelDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CancelDetail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("CompanionShare")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Discount")
-                        .HasColumnType("float");
-
-                    b.Property<string>("EndTime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("FromDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("FromWallet")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsCancel")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsReserved")
-                        .HasColumnType("bit");
-
-                    b.Property<double>("PaymentPrice")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<long?>("RebateId")
-                        .HasColumnType("bigint");
-
-                    b.Property<double>("RebatePrice")
-                        .HasColumnType("float");
-
-                    b.Property<double>("SiteShare")
-                        .HasColumnType("float");
-
-                    b.Property<string>("StartTime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("StatusId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("ToDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("UserPetId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("WalletId")
-                        .HasColumnType("bigint");
-
-                    b.Property<double>("WalletPrice")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookerId");
-
-                    b.HasIndex("RebateId");
-
-                    b.HasIndex("StatusId");
-
-                    b.HasIndex("UserPetId");
-
-                    b.HasIndex("WalletId");
-
-                    b.ToTable("PansionReserves");
-                });
-
             modelBuilder.Entity("Entities.Entities.Payment", b =>
                 {
                     b.Property<long>("Id")
@@ -5736,18 +5529,6 @@ namespace Persistence.Migrations
                     b.ToTable("CompanionReserveComments", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Entities.PansionField.PansionComment", b =>
-                {
-                    b.HasBaseType("Entities.Entities.Comment");
-
-                    b.Property<long>("PansionId")
-                        .HasColumnType("bigint");
-
-                    b.HasIndex("PansionId");
-
-                    b.ToTable("PansionComments");
-                });
-
             modelBuilder.Entity("Entities.Entities.PostComment", b =>
                 {
                     b.HasBaseType("Entities.Entities.Comment");
@@ -7093,116 +6874,6 @@ namespace Persistence.Migrations
                     b.Navigation("Picture");
                 });
 
-            modelBuilder.Entity("Entities.Entities.PansionField.Pansion", b =>
-                {
-                    b.HasOne("Entities.Entities.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.Companion", "Companion")
-                        .WithMany("Pansions")
-                        .HasForeignKey("CompanionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.Picture", "Picture")
-                        .WithMany()
-                        .HasForeignKey("PictureId");
-
-                    b.HasOne("Entities.Entities.State", "State")
-                        .WithMany()
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("City");
-
-                    b.Navigation("Companion");
-
-                    b.Navigation("Picture");
-
-                    b.Navigation("State");
-                });
-
-            modelBuilder.Entity("Entities.Entities.PansionField.PansionPet", b =>
-                {
-                    b.HasOne("Entities.Entities.PansionField.Pansion", "Pansion")
-                        .WithMany("PansionPets")
-                        .HasForeignKey("PansionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.Pet", "Pet")
-                        .WithMany()
-                        .HasForeignKey("PetId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Pansion");
-
-                    b.Navigation("Pet");
-                });
-
-            modelBuilder.Entity("Entities.Entities.PansionField.PansionPicture", b =>
-                {
-                    b.HasOne("Entities.Entities.PansionField.Pansion", "Pansion")
-                        .WithMany()
-                        .HasForeignKey("PansionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.Picture", "Picture")
-                        .WithMany()
-                        .HasForeignKey("PictureId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Pansion");
-
-                    b.Navigation("Picture");
-                });
-
-            modelBuilder.Entity("Entities.Entities.PansionField.PansionReserve", b =>
-                {
-                    b.HasOne("Entities.Entities.Security.User", "Booker")
-                        .WithMany()
-                        .HasForeignKey("BookerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.Rebate", "Rebate")
-                        .WithMany()
-                        .HasForeignKey("RebateId");
-
-                    b.HasOne("Entities.Entities.Code", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.UserPet", "UserPet")
-                        .WithMany()
-                        .HasForeignKey("UserPetId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.Wallet", "Wallet")
-                        .WithMany()
-                        .HasForeignKey("WalletId");
-
-                    b.Navigation("Booker");
-
-                    b.Navigation("Rebate");
-
-                    b.Navigation("Status");
-
-                    b.Navigation("UserPet");
-
-                    b.Navigation("Wallet");
-                });
-
             modelBuilder.Entity("Entities.Entities.Payment", b =>
                 {
                     b.HasOne("Entities.Entities.File", "File")
@@ -8377,23 +8048,6 @@ namespace Persistence.Migrations
                     b.Navigation("CompanionReserve");
                 });
 
-            modelBuilder.Entity("Entities.Entities.PansionField.PansionComment", b =>
-                {
-                    b.HasOne("Entities.Entities.Comment", null)
-                        .WithOne()
-                        .HasForeignKey("Entities.Entities.PansionField.PansionComment", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.PansionField.Pansion", "Pansion")
-                        .WithMany("PansionComments")
-                        .HasForeignKey("PansionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Pansion");
-                });
-
             modelBuilder.Entity("Entities.Entities.PostComment", b =>
                 {
                     b.HasOne("Entities.Entities.Comment", null)
@@ -8509,8 +8163,6 @@ namespace Persistence.Migrations
                     b.Navigation("CompanionTypes");
 
                     b.Navigation("CompanionUsers");
-
-                    b.Navigation("Pansions");
                 });
 
             modelBuilder.Entity("Entities.Entities.CompanionAssistance", b =>
@@ -8605,13 +8257,6 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Entities.Entities.Neighborhood", b =>
                 {
                     b.Navigation("NameFieldLangs");
-                });
-
-            modelBuilder.Entity("Entities.Entities.PansionField.Pansion", b =>
-                {
-                    b.Navigation("PansionComments");
-
-                    b.Navigation("PansionPets");
                 });
 
             modelBuilder.Entity("Entities.Entities.Payment", b =>

@@ -28,10 +28,14 @@ namespace Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSr
         public CompanionAssistancePackagePictureSearchDto SearchDto(CompanionAssistancePackagePictureInputDto dto)
         {
 
-            var model = _context.CompanionAssistancePackagePictures.Include(p => p.Picture).AsQueryable();
+            var model = _context.CompanionAssistancePackagePictures.Include(s => s.CompanionAssistancePackage).ThenInclude(s => s.CompanionAssistance).Include(p => p.Picture).AsQueryable();
             if (dto.CompanionAssistancePackageId.HasValue)
             {
                 model = model.Where(s => s.CompanionAssistancePackageId.Equals(dto.CompanionAssistancePackageId));
+            }
+            if (dto.CompanionId.HasValue)
+            {
+                model = model.Where(s => s.CompanionAssistancePackage.CompanionAssistance.CompanionId == dto.CompanionId);
             }
             return new CompanionAssistancePackagePictureSearchDto(dto, model, mapper);
 

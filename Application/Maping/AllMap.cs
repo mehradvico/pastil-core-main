@@ -78,6 +78,7 @@ using Application.Services.Order.ProductOrderItemSrv.Dto;
 using Application.Services.Order.ProductOrderSrv.Dto;
 using Application.Services.Order.ProductOrderStoreSrv.Dto;
 using Application.Services.Order.RebateSrv.Dto;
+using Application.Services.PansionSrvs.PansionSrv.Dto;
 using Application.Services.ProductSrvs.BrandCategorySrv.Dto;
 using Application.Services.ProductSrvs.BrandSrv.Dto;
 using Application.Services.ProductSrvs.DiscountGroupSrv.Dto;
@@ -113,6 +114,7 @@ using Application.Services.WeekDaySrv.WeekDaySrv.Dto;
 using AutoMapper;
 using Entities.Entities;
 using Entities.Entities.CompanionField;
+using Entities.Entities.PansionField;
 using Entities.Entities.Security;
 using NetTopologySuite.Geometries;
 using Resource;
@@ -443,6 +445,15 @@ namespace Application.Maping
             CreateMap<NoticeDto, Notice>().ForMember(x => x.CreateDate, y => y.Ignore()).ForMember(x => x.User, y => y.Ignore()).ForMember(x => x.Type, y => y.Ignore());
             CreateMap<Notice, NoticeVDto>().ForMember(x => x.IsRead, opt => opt.MapFrom(s => s.ReadDate.HasValue));
             //Notification
+
+
+            //Pansion
+            CreateMap<Pansion, PansionDto>();
+            CreateMap<PansionDto, Pansion>().ForMember(x => x.CommentCount, y => y.Ignore()).ForMember(x => x.RateAvg, y => y.Ignore()).ForMember(x => x.RateCount, y => y.Ignore());
+            CreateMap<Pansion, PansionVDto>();
+            CreateMap<Pansion, PansionActiveDto>().ReverseMap();
+            CreateMap<Pansion, PansionApproveDto>().ReverseMap();
+            //Pansion ----------------------------------------------
 
 
             //Pet

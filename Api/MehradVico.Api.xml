@@ -811,6 +811,49 @@
             حذف آیتم 
             </summary>  
         </member>
+        <member name="T:Api.Areas.Admin.Controllers.CompanionAssistancePackagePictureController">
+            <summary>
+            مدیریت تصویر پکیج ها
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionAssistancePackagePictureController.#ctor(Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Iface.ICompanionAssistancePackagePictureService)">
+            <summary>
+            مدیریت تصویر محصول ها
+            </summary>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionAssistancePackagePictureController.Get(System.Int64)">
+            <summary>
+            اطلاعات آیتم
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionAssistancePackagePictureController.Get(Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Dto.CompanionAssistancePackagePictureInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionAssistancePackagePictureController.Post(Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Dto.CompanionAssistancePackagePictureDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionAssistancePackagePictureController.Put(Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Dto.CompanionAssistancePackagePictureDto)">
+            <summary>
+            ویرایش آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionAssistancePackagePictureController.Delete(System.Int64)">
+            <summary>
+            حذف آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
         <member name="T:Api.Areas.Admin.Controllers.CompanionAssistanceReportController">
             <summary>
             مدیریت گزارشات تخلف خدمات همکاران
@@ -2369,6 +2412,39 @@
             <summary>
             مدیریت پیام های نوتیفیکیشن
             </summary>
+        </member>
+        <member name="T:Api.Areas.Admin.Controllers.PansionController">
+            <summary>
+            مدیریت پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionController.Get(Application.Services.PansionSrvs.PansionSrv.Dto.PansionInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionController.Get(System.Int64)">
+            <summary>
+             اطلاعات آیتم 
+            </summary>
+            <param name="id">شناسه پانسیون</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionController.Post(Application.Services.PansionSrvs.PansionSrv.Dto.PansionDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionController.Put(Application.Services.PansionSrvs.PansionSrv.Dto.PansionDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
         </member>
         <member name="T:Api.Areas.Admin.Controllers.PermissionController">
              <summary>
@@ -4439,6 +4515,49 @@
             <summary>
             حذف آیتم 
             </summary>  
+        </member>
+        <member name="T:Api.Areas.Companion.Controllers.CompanionAssistancePackagePictureController">
+            <summary>
+            مدیریت تصویر پکیج ها
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionAssistancePackagePictureController.#ctor(Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Iface.ICompanionAssistancePackagePictureService,Application.Common.Interface.ICurrentUserHelper)">
+            <summary>
+            مدیریت تصویر محصول ها
+            </summary>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionAssistancePackagePictureController.Get(System.Int64)">
+            <summary>
+            اطلاعات آیتم
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionAssistancePackagePictureController.Get(Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Dto.CompanionAssistancePackagePictureInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionAssistancePackagePictureController.Post(Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Dto.CompanionAssistancePackagePictureDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionAssistancePackagePictureController.Put(Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Dto.CompanionAssistancePackagePictureDto)">
+            <summary>
+            ویرایش آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionAssistancePackagePictureController.Delete(System.Int64)">
+            <summary>
+            حذف آیتم
+            </summary>
+            <returns></returns>
+            
         </member>
         <member name="T:Api.Areas.Companion.Controllers.CompanionAssistanceTimeController">
             <summary>
@@ -7098,6 +7217,29 @@
             <returns>
             </returns>
         </member>
+        <member name="T:Api.Controllers.CompanionAssistancePackagePictureController">
+            <summary>
+            مدیریت تصویر پکیج ها
+            </summary>
+            
+        </member>
+        <member name="M:Api.Controllers.CompanionAssistancePackagePictureController.#ctor(Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Iface.ICompanionAssistancePackagePictureService)">
+            <summary>
+            مدیریت تصویر محصول ها
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.CompanionAssistancePackagePictureController.Get(System.Int64)">
+            <summary>
+            اطلاعات آیتم
+            </summary>
+            
+        </member>
+        <member name="M:Api.Controllers.CompanionAssistancePackagePictureController.Get(Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSrv.Dto.CompanionAssistancePackagePictureInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Api.Controllers.CompanionAssistanceTimeController">
             <summary>
             مدیریت زمان های خدمات همکاران
@@ -7457,6 +7599,26 @@
             <summary>
             آیتم جدید
             </summary>  
+        </member>
+        <member name="T:Api.Controllers.PansionController">
+            <summary>
+            مدیریت  پانسیون ها
+            </summary>
+            
+        </member>
+        <member name="M:Api.Controllers.PansionController.Get(Application.Services.PansionSrvs.PansionSrv.Dto.PansionInputDto)">
+            <summary>
+             جستجو
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Api.Controllers.PansionController.Get(System.Int64)">
+            <summary>
+             اطلاعات آیتم 
+            </summary>
+            <param name="id">شناسه پانسیون</param>
+            <returns>
+            </returns>
         </member>
         <member name="T:Api.Controllers.PetController">
              <summary>

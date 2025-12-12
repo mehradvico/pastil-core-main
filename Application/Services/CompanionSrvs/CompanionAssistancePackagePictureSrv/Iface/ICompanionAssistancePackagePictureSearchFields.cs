@@ -9,5 +9,6 @@ namespace Application.Services.CompanionSrvs.CompanionAssistancePackagePictureSr
     public interface ICompanionAssistancePackagePictureSearchFields
     {
         public long? CompanionAssistancePackageId { get; set; }
+        public long? CompanionId { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Entities.Entities.CommonField;
 using Entities.Entities.CompanionField;
+using Entities.Entities.PansionField;
 using Entities.Entities.Security;
 using NetTopologySuite.Geometries;
 using System;
@@ -44,6 +45,7 @@ namespace Entities.Entities
         public ICollection<CompanionInsurancePackage> CompanionInsurancePackages { get; set; }
         public ICollection<CompanionPet> CompanionPets { get; set; }
         public ICollection<CompanionComment> CompanionComments { get; set; }
+        public ICollection<Pansion> Pansions { get; set; }
 
 
     }

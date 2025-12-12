@@ -1,5 +1,6 @@
 ﻿using Entities.Entities;
 using Entities.Entities.CompanionField;
+using Entities.Entities.PansionField;
 using Entities.Entities.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -133,6 +134,11 @@ namespace Persistence.Interface
         public DbSet<PushSubscriber> PushSubscribers { get; set; }
         public DbSet<CompanionComment> CompanionComments { get; set; }
         public DbSet<CompanionAssistancePackagePicture> CompanionAssistancePackagePictures { get; set; }
+        public DbSet<Pansion> Pansions { get; set; }
+        public DbSet<PansionReserve> PansionReserves { get; set; }
+        public DbSet<PansionPet> PansionPets { get; set; }
+        public DbSet<PansionComment> PansionComments { get; set; }
+        public DbSet<PansionPicture> PansionPictures { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         EntityEntry Entry(object entity);

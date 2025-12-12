@@ -180,6 +180,8 @@ using Application.Services.Order.ProductOrderStoreItemSrv;
 using Application.Services.Order.ProductOrderStoreSrv.Iface;
 using Application.Services.Order.RebateSrv;
 using Application.Services.Order.RebateSrv.Iface;
+using Application.Services.PansionSrvs.PansionSrv;
+using Application.Services.PansionSrvs.PansionSrv.Iface;
 using Application.Services.PermissionSrv;
 using Application.Services.ProductSrv.ProductCategorySrv;
 using Application.Services.ProductSrvs.BrandCategorySrv;
@@ -463,6 +465,9 @@ public static class ConfigureServices
         services.AddScoped<INotifyMessageService, NotifyMessageService>();
         services.AddScoped<ICompanionReserveUserPetService, CompanionReserveUserPetService>();
         services.AddScoped<ICompanionAssistancePackagePictureService, CompanionAssistancePackagePictureService>();
+        services.AddScoped<IPansionService, PansionService>();
+
+
         services.AddCors(option => option.AddPolicy("AllowAnyOrigin", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
         // تنظیم MapperConfiguration
         var mapperConfig = new MapperConfiguration(cfg =>
