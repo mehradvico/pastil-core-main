@@ -78,6 +78,7 @@ using Application.Services.Order.ProductOrderItemSrv.Dto;
 using Application.Services.Order.ProductOrderSrv.Dto;
 using Application.Services.Order.ProductOrderStoreSrv.Dto;
 using Application.Services.Order.RebateSrv.Dto;
+using Application.Services.PansionSrvs.PansionCommentSrv.Dto;
 using Application.Services.PansionSrvs.PansionSrv.Dto;
 using Application.Services.ProductSrvs.BrandCategorySrv.Dto;
 using Application.Services.ProductSrvs.BrandSrv.Dto;
@@ -455,6 +456,8 @@ namespace Application.Maping
             CreateMap<Pansion, PansionApproveDto>().ReverseMap();
             CreateMap<Pansion, PansionDto>().ReverseMap();
             CreateMap<Pansion, PansionVDto>();
+            CreateMap<PansionComment, PansionCommentDto>().ReverseMap();
+            CreateMap<PansionComment, PansionCommentVDto>().ForMember(x => x.CreateDate, o => o.MapFrom(m => m.CreateDate.ToShortDate())).ForMember(x => x.PansionName, o => o.MapFrom(m => m.Pansion.Name)); ;
             //Pansion ----------------------------------------------
 
 

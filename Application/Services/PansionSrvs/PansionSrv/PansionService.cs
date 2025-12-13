@@ -1,4 +1,5 @@
 ﻿using Application.Common.Dto.Result;
+using Application.Common.Enumerable;
 using Application.Common.Enumerable.Code;
 using Application.Common.Helpers;
 using Application.Common.Service;
@@ -31,7 +32,7 @@ namespace Application.Services.PansionSrvs.PansionSrv
         public async Task<BaseResultDto<PansionVDto>> FindAsyncVDto(long id)
         {
             var item = await _context.Pansions.Include(s => s.Picture).Include(s => s.Companion).Include(s => s.City).ThenInclude(s => s.State)
-                .Include(s => s.PansionPets).ThenInclude(s => s.Pet).FirstOrDefaultAsync(s => s.Id == id);
+                .Include(s => s.PansionPets).ThenInclude(s => s.Pet).Include(s => s.PansionComments).FirstOrDefaultAsync(s => s.Id == id);
             if (item != null)
             {
                 return new BaseResultDto<PansionVDto>(true, mapper.Map<PansionVDto>(item));
@@ -41,7 +42,7 @@ namespace Application.Services.PansionSrvs.PansionSrv
 
         public PansionSearchDto Search(PansionInputDto baseSearchDto)
         {
-            var model = _context.Pansions.Include(s => s.Picture).Include(s => s.Companion).Include(s => s.City).ThenInclude(s => s.State).AsQueryable();
+            var model = _context.Pansions.Include(s => s.Picture).Include(s => s.Companion).Include(s => s.City).ThenInclude(s => s.State).Include(s => s.PansionComments).AsQueryable();
 
             if (baseSearchDto.Available.HasValue)
             {
@@ -175,6 +176,14 @@ namespace Application.Services.PansionSrvs.PansionSrv
             _context.Pansions.Update(item);
             _context.SaveChanges();
             return new BaseResultDto(isSuccess: true);
+        }
+
+        public void UpdatePansionCommentCount(long pansionId)
+        {
+            var item = _context.Pansions.Include(s => s.PansionComments).ThenInclude(s => s.Status).AsTracking().FirstOrDefault(s => s.Id == pansionId);
+            item.CommentCount = item.PansionComments.Count(c => c.Status.Label == CommentEnum.Comment_Accept.ToString());
+            _context.Pansions.Update(item);
+            _context.SaveChanges();
         }
     }
 }

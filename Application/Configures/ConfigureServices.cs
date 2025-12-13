@@ -180,6 +180,8 @@ using Application.Services.Order.ProductOrderStoreItemSrv;
 using Application.Services.Order.ProductOrderStoreSrv.Iface;
 using Application.Services.Order.RebateSrv;
 using Application.Services.Order.RebateSrv.Iface;
+using Application.Services.PansionSrvs.PansionCommentSrv;
+using Application.Services.PansionSrvs.PansionCommentSrv.Iface;
 using Application.Services.PansionSrvs.PansionPetSrv;
 using Application.Services.PansionSrvs.PansionPetSrv.Iface;
 using Application.Services.PansionSrvs.PansionSrv;
@@ -469,6 +471,7 @@ public static class ConfigureServices
         services.AddScoped<ICompanionAssistancePackagePictureService, CompanionAssistancePackagePictureService>();
         services.AddScoped<IPansionService, PansionService>();
         services.AddScoped<IPansionPetService, PansionPetService>();
+        services.AddScoped<IPansionCommentService, PansionCommentService>();
 
 
         services.AddCors(option => option.AddPolicy("AllowAnyOrigin", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));

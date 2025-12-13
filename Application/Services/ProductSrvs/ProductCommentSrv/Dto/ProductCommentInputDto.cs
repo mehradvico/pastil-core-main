@@ -10,7 +10,5 @@ namespace Application.Services.ProductSrvs.ProductCommentSrv.Dto
         public long? ProductId { get; set; }
         public long? UserId { get; set; }
         public bool? AllStatus { get; set; }
-
-        public UserMinVDto User { get; set; }
     }
 }

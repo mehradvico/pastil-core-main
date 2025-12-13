@@ -18,5 +18,6 @@ namespace Application.Services.PansionSrvs.PansionSrv.Iface
         Task<BaseResultDto<PansionVDto>> FindAsyncVDto(long id);
         BaseResultDto UpdatePansionActiveDto(PansionActiveDto dto);
         BaseResultDto UpdatePansionApproveDto(PansionApproveDto dto);
+        void UpdatePansionCommentCount(long pansionId);
     }
 }
