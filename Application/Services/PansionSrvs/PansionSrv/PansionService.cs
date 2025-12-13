@@ -30,7 +30,8 @@ namespace Application.Services.PansionSrvs.PansionSrv
 
         public async Task<BaseResultDto<PansionVDto>> FindAsyncVDto(long id)
         {
-            var item = await _context.Pansions.Include(s => s.Picture).Include(s => s.Companion).Include(s => s.City).ThenInclude(s => s.State).FirstOrDefaultAsync(s => s.Id == id);
+            var item = await _context.Pansions.Include(s => s.Picture).Include(s => s.Companion).Include(s => s.City).ThenInclude(s => s.State)
+                .Include(s => s.PansionPets).ThenInclude(s => s.Pet).FirstOrDefaultAsync(s => s.Id == id);
             if (item != null)
             {
                 return new BaseResultDto<PansionVDto>(true, mapper.Map<PansionVDto>(item));
@@ -70,9 +71,10 @@ namespace Application.Services.PansionSrvs.PansionSrv
             {
                 model = model.Where(s => s.Suggested == baseSearchDto.Suggested.Value);
             }
-
-            //To do Pet Id 
-
+            if (baseSearchDto.PetId.HasValue)
+            {
+                model = model.Where(s => s.PansionPets.Any(s => s.PetId == baseSearchDto.PetId.Value));
+            }
             switch (baseSearchDto.SortBy)
             {
                 case Common.Enumerable.SortEnum.New:

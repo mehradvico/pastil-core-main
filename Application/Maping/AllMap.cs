@@ -453,6 +453,8 @@ namespace Application.Maping
             CreateMap<Pansion, PansionVDto>();
             CreateMap<Pansion, PansionActiveDto>().ReverseMap();
             CreateMap<Pansion, PansionApproveDto>().ReverseMap();
+            CreateMap<Pansion, PansionDto>().ReverseMap();
+            CreateMap<Pansion, PansionVDto>();
             //Pansion ----------------------------------------------
 
 

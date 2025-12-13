@@ -2413,6 +2413,32 @@
             مدیریت پیام های نوتیفیکیشن
             </summary>
         </member>
+        <member name="T:Api.Areas.Admin.Controllers.PansionActiveController">
+            <summary>
+            فعال سازی پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionActiveController.Put(Application.Services.PansionSrvs.PansionSrv.Dto.PansionActiveDto)">
+            <summary>
+             فعال سازی آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.Admin.Controllers.PansionApproveController">
+            <summary>
+            احراز هویت پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionApproveController.Put(Application.Services.PansionSrvs.PansionSrv.Dto.PansionApproveDto)">
+            <summary>
+             احراز هویت آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
         <member name="T:Api.Areas.Admin.Controllers.PansionController">
             <summary>
             مدیریت پانسیون
@@ -2445,6 +2471,44 @@
             </summary>
             <returns>
             </returns>
+        </member>
+        <member name="T:Api.Areas.Admin.Controllers.PansionPetController">
+            <summary>
+            مدیریت پت های پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionPetController.Get(Application.Services.PansionSrvs.PansionPetSrv.Dto.PansionPetInputDto)">
+            <summary>
+             جستجو
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionPetController.Get(System.Int64)">
+            <summary>
+             اطلاعات آیتم 
+            </summary>
+            <param name="id">شناسه خدمات</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionPetController.Post(Application.Services.PansionSrvs.PansionPetSrv.Dto.PansionPetDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionPetController.Put(Application.Services.PansionSrvs.PansionPetSrv.Dto.PansionPetDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionPetController.Delete(System.Int64)">
+            <summary>
+             حذف آیتم 
+            </summary>  
         </member>
         <member name="T:Api.Areas.Admin.Controllers.PermissionController">
              <summary>
@@ -4971,6 +5035,90 @@
             اطلاعات آیتم
             </summary>
             
+        </member>
+        <member name="T:Api.Areas.Companion.Controllers.PansionActiveController">
+            <summary>
+            فعال سازی پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionActiveController.Put(Application.Services.PansionSrvs.PansionSrv.Dto.PansionActiveDto)">
+            <summary>
+             فعال سازی آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.Companion.Controllers.PansionController">
+            <summary>
+            مدیریت پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionController.Get(Application.Services.PansionSrvs.PansionSrv.Dto.PansionInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionController.Get(System.Int64)">
+            <summary>
+             اطلاعات آیتم 
+            </summary>
+            <param name="id">شناسه پانسیون</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionController.Post(Application.Services.PansionSrvs.PansionSrv.Dto.PansionDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionController.Put(Application.Services.PansionSrvs.PansionSrv.Dto.PansionDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.Companion.Controllers.PansionPetController">
+            <summary>
+            مدیریت پت های پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionPetController.Get(Application.Services.PansionSrvs.PansionPetSrv.Dto.PansionPetInputDto)">
+            <summary>
+             جستجو
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionPetController.Get(System.Int64)">
+            <summary>
+             اطلاعات آیتم 
+            </summary>
+            <param name="id">شناسه خدمات</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionPetController.Post(Application.Services.PansionSrvs.PansionPetSrv.Dto.PansionPetDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionPetController.Put(Application.Services.PansionSrvs.PansionPetSrv.Dto.PansionPetDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionPetController.Delete(System.Int64)">
+            <summary>
+             حذف آیتم 
+            </summary>  
         </member>
         <member name="T:Api.Areas.Companion.Controllers.WeekDayController">
             <summary>

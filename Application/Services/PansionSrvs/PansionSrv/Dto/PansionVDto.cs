@@ -3,6 +3,7 @@ using Application.Services.CommonSrv.CitySrv.Dto;
 using Application.Services.CommonSrv.StateSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionSrv.Dto;
 using Application.Services.Filing.PictureSrv.Dto;
+using Application.Services.PansionSrvs.PansionPetSrv.Dto;
 using Entities.Entities;
 using Entities.Entities.PansionField;
 using System;
@@ -37,7 +38,7 @@ namespace Application.Services.PansionSrvs.PansionSrv.Dto
         public StateVDto State { get; set; }
         public CityVDto City { get; set; }
         public PictureVDto Picture { get; set; }
-        //public List<PansionPetVDto> PansionPets { get; set; }
+        public List<PansionPetVDto> PansionPets { get; set; }
         //public List<PansionCommentVDto> PansionComments { get; set; }
         //public List<PansionPictureVDto> PansionPictures { get; set; }
     }
