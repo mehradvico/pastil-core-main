@@ -13,7 +13,7 @@ namespace Application.Services.Accounting.UserSrv.Iface
     {
         UserVDto GetVDto(long userId);
         public UserSearchDto Search(UserInputDto searchDto);
-        Task<BaseResultDto> CheckUser(string token, long userId, string area, string controller, string action, long storeId);
+        Task<BaseResultDto> CheckUser(string token, long userId, string area, string controller, string action/*, long storeId*/);
         Task<BaseResultDto> SignIn(SignInDto user);
         Task<BaseResultDto> SignUp(SignUpDto user);
         Task<BaseResultDto> ChangePassword(ChangePasswordDto user);

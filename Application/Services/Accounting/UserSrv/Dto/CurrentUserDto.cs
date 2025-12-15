@@ -17,6 +17,7 @@ namespace Application.Services.Dto
         public string ClickGuid { get; set; }
         public long? CompanionId { get; set; }
         public long DriverId { get; set; }
+        public long StoreId { get; set; }
         public bool IsFemale { get; set; }
         public string Expertise { get; set; }
         public bool IsCompanionUser { get; set; }

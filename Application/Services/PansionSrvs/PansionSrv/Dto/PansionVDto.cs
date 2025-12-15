@@ -5,6 +5,7 @@ using Application.Services.CompanionSrvs.CompanionSrv.Dto;
 using Application.Services.Filing.PictureSrv.Dto;
 using Application.Services.PansionSrvs.PansionCommentSrv.Dto;
 using Application.Services.PansionSrvs.PansionPetSrv.Dto;
+using Application.Services.PansionSrvs.PansionPictureSrv.Dto;
 using Entities.Entities;
 using Entities.Entities.PansionField;
 using System;
@@ -41,6 +42,6 @@ namespace Application.Services.PansionSrvs.PansionSrv.Dto
         public PictureVDto Picture { get; set; }
         public List<PansionPetVDto> PansionPets { get; set; }
         public List<PansionCommentVDto> PansionComments { get; set; }
-        //public List<PansionPictureVDto> PansionPictures { get; set; }
+        public List<PansionPictureVDto> PansionPictures { get; set; }
     }
 }

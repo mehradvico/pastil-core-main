@@ -79,6 +79,7 @@ using Application.Services.Order.ProductOrderSrv.Dto;
 using Application.Services.Order.ProductOrderStoreSrv.Dto;
 using Application.Services.Order.RebateSrv.Dto;
 using Application.Services.PansionSrvs.PansionCommentSrv.Dto;
+using Application.Services.PansionSrvs.PansionPictureSrv.Dto;
 using Application.Services.PansionSrvs.PansionSrv.Dto;
 using Application.Services.ProductSrvs.BrandCategorySrv.Dto;
 using Application.Services.ProductSrvs.BrandSrv.Dto;
@@ -457,7 +458,10 @@ namespace Application.Maping
             CreateMap<Pansion, PansionDto>().ReverseMap();
             CreateMap<Pansion, PansionVDto>();
             CreateMap<PansionComment, PansionCommentDto>().ReverseMap();
-            CreateMap<PansionComment, PansionCommentVDto>().ForMember(x => x.CreateDate, o => o.MapFrom(m => m.CreateDate.ToShortDate())).ForMember(x => x.PansionName, o => o.MapFrom(m => m.Pansion.Name)); ;
+            CreateMap<PansionComment, PansionCommentVDto>().ForMember(x => x.CreateDate, o => o.MapFrom(m => m.CreateDate.ToShortDate())).ForMember(x => x.PansionName, o => o.MapFrom(m => m.Pansion.Name));
+            CreateMap<PansionPictureDto, PansionPicture>().ForMember(x => x.Id, opt => opt.Ignore()).ForMember(x => x.Picture, opt => opt.Ignore());
+            CreateMap<PansionPicture, PansionPictureDto>();
+            CreateMap<PansionPicture, PansionPictureVDto>();
             //Pansion ----------------------------------------------
 
 
@@ -652,7 +656,8 @@ namespace Application.Maping
                 .ForMember(x => x.IsFemale, o => o.MapFrom(m => m.IsFemale))
                 .ForMember(x => x.FullName, o => o.MapFrom(m => $"{m.FirstName} {m.LastName}"))
                 .ForMember(x => x.IsCompanionUser, o => o.MapFrom(m => m.Companions.Any(c => !c.Deleted) && m.CompanionUsers.Any(cu => cu.UserId == m.Id)))
-                .ForMember(x => x.PictureId, o => o.MapFrom(m => m.PictureId));
+                .ForMember(x => x.PictureId, o => o.MapFrom(m => m.PictureId))
+                .ForMember(x => x.StoreId, o => o.MapFrom(m => m.Stores.Where(c => !c.Deleted).Select(c => (long?)c.Id).FirstOrDefault()));
 
             CreateMap<SignUpDto, UserDto>();
             CreateMap<CreateUserTokenDto, UserTokenDto>();

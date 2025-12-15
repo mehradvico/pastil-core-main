@@ -15,14 +15,12 @@ namespace Api.Areas.Seller.Controllers
     [Authorize]
     public class StoreController : ControllerBase
     {
-        private IStoreService StoreService;
-        /// <summary>
-        /// مدیریت فروشنده ها
-        /// </summary>
+        private readonly IStoreService StoreService;
         public StoreController(IStoreService StoreService)
         {
             this.StoreService = StoreService;
         }
+
         /// <summary>
         /// اطلاعات آیتم
         /// </summary>

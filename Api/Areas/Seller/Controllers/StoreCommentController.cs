@@ -1,5 +1,6 @@
 ﻿using Application.Common.Dto.Result;
 using Application.Common.Helpers;
+using Application.Common.Interface;
 using Application.Services.ProductSrvs.StoreCommentSrv.Dto;
 using Application.Services.ProductSrvs.StoreCommentSrv.Iface;
 using Microsoft.AspNetCore.Authorization;
@@ -18,15 +19,15 @@ namespace Api.Areas.Seller.Controllers
     public class StoreCommentController : ControllerBase
     {
         private IStoreCommentService _storeCommentService;
-        private readonly long _storeId;
+        private readonly ICurrentUserHelper _currentUser;
         /// <summary>
         /// مدیریت نظرات فروشگاه ها
         /// </summary>
         ///
-        public StoreCommentController(IStoreCommentService storeCommentService, IHttpContextAccessor httpContextAccessor)
+        public StoreCommentController(IStoreCommentService storeCommentService, ICurrentUserHelper currentUser)
         {
             this._storeCommentService = storeCommentService;
-            _storeId = HttpContextHelper.GetStoreId(httpContextAccessor.HttpContext);
+            this._currentUser = currentUser;    
         }
         /// <summary>
         /// اطلاعات آیتم
@@ -50,7 +51,7 @@ namespace Api.Areas.Seller.Controllers
         [ProducesResponseType(typeof(BaseResultDto<StoreCommentDto>), 200)]
         public IActionResult Get([FromQuery] StoreCommentInputDto dto)
         {
-            dto.StoreId = _storeId;
+            dto.StoreId = _currentUser.CurrentUser.StoreId;
             var searchDto = _storeCommentService.Search(dto);
             return Ok(searchDto);
         }
@@ -63,7 +64,7 @@ namespace Api.Areas.Seller.Controllers
         [ProducesResponseType(typeof(BaseResultDto), 200)]
         public IActionResult Put(StoreCommentDto storeCommentDto)
         {
-            storeCommentDto.StoreId = _storeId;
+            storeCommentDto.StoreId = _currentUser.CurrentUser.StoreId;
             var dto = _storeCommentService.UpdateDto(storeCommentDto);
             return Ok(dto);
         }

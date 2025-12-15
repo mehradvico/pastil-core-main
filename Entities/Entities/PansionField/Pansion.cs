@@ -35,5 +35,6 @@ namespace Entities.Entities.PansionField
         public Picture Picture { get; set; }
         public ICollection<PansionPet> PansionPets { get; set; }
         public ICollection<PansionComment> PansionComments { get; set; }
+        public ICollection<PansionPicture> PansionPictures { get; set; }
     }
 }

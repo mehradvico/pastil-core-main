@@ -1,6 +1,7 @@
 ﻿using Application.Common.Dto.Input;
 using Application.Common.Dto.Result;
 using Application.Common.Helpers;
+using Application.Common.Interface;
 using Application.Services.Order.DeliverySrv.Dto;
 using Application.Services.Order.DeliverySrv.iface;
 using Microsoft.AspNetCore.Authorization;
@@ -19,17 +20,16 @@ namespace Api.Areas.Seller.Controllers
     public class DeliveryController : ControllerBase
     {
         private IDeliveryService DeliveryService;
-        private readonly long _storeId;
+        private readonly ICurrentUserHelper _currentUser;
 
         /// <summary>
         /// مدیریت حمل و نقل
         /// </summary>
         ///
-        public DeliveryController(IDeliveryService DeliveryService, IHttpContextAccessor httpContextAccessor)
+        public DeliveryController(IDeliveryService DeliveryService, ICurrentUserHelper currentUser)
         {
             this.DeliveryService = DeliveryService;
-            _storeId = HttpContextHelper.GetStoreId(httpContextAccessor.HttpContext);
-
+            this._currentUser = currentUser;
         }
         /// <summary>
         ///  اطلاعات آیتم 
@@ -53,7 +53,7 @@ namespace Api.Areas.Seller.Controllers
         [ProducesResponseType(typeof(BaseInputDto), 200)]
         public IActionResult Get([FromQuery] DeliveryInputDto dto)
         {
-            dto.StoreId = _storeId;
+            dto.StoreId = _currentUser.CurrentUser.StoreId;
             var searchDto = DeliveryService.Search(dto);
             return Ok(searchDto);
         }
@@ -64,7 +64,7 @@ namespace Api.Areas.Seller.Controllers
         [ProducesResponseType(typeof(BaseResultDto<DeliveryDto>), 200)]
         public async Task<IActionResult> Post(DeliveryDto deliveryDto)
         {
-            deliveryDto.StoreId = _storeId;
+            deliveryDto.StoreId = _currentUser.CurrentUser.StoreId;
             var dto = await DeliveryService.InsertAsyncDto(deliveryDto);
             return Ok(dto);
         }
@@ -76,7 +76,7 @@ namespace Api.Areas.Seller.Controllers
         [ProducesResponseType(typeof(BaseResultDto), 200)]
         public IActionResult Put(DeliveryDto DeliveryDto)
         {
-            DeliveryDto.StoreId = _storeId;
+            DeliveryDto.StoreId = _currentUser.CurrentUser.StoreId;
             var dto = DeliveryService.UpdateDto(DeliveryDto);
             return Ok(dto);
         }

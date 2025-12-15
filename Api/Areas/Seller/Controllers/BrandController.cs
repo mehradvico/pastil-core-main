@@ -1,4 +1,5 @@
 ﻿using Application.Common.Helpers;
+using Application.Common.Interface;
 using Application.Services.ProductSrvs.BrandSrv.Dto;
 using Application.Services.ProductSrvs.BrandSrv.Iface;
 using Microsoft.AspNetCore.Authorization;
@@ -17,16 +18,16 @@ namespace Api.Areas.Seller.Controllers
     public class BrandController : ControllerBase
     {
         private IBrandService brandService;
-        private readonly long _storeId;
+        private readonly ICurrentUserHelper _currentUser;
 
         /// <summary>
         /// مدیریت برند ها
         /// </summary>
         ///
-        public BrandController(IBrandService brandService, IHttpContextAccessor httpContextAccessor)
+        public BrandController(IBrandService brandService, ICurrentUserHelper currentUser)
         {
             this.brandService = brandService;
-            _storeId = HttpContextHelper.GetStoreId(httpContextAccessor.HttpContext);
+            this._currentUser = currentUser;
 
         }
 
@@ -34,7 +35,7 @@ namespace Api.Areas.Seller.Controllers
         [ProducesResponseType(typeof(BrandSearchDto), 200)]
         public IActionResult Get([FromQuery] BrandInputDto dto)
         {
-            dto.StoreId = _storeId;
+            dto.StoreId = _currentUser.CurrentUser.StoreId;
             var searchDto = brandService.Search(dto);
             return Ok(searchDto);
         }

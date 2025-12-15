@@ -6723,7 +6723,7 @@
              </summary>
             
         </member>
-        <member name="M:Api.Areas.Seller.Controllers.BrandController.#ctor(Application.Services.ProductSrvs.BrandSrv.Iface.IBrandService,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:Api.Areas.Seller.Controllers.BrandController.#ctor(Application.Services.ProductSrvs.BrandSrv.Iface.IBrandService,Application.Common.Interface.ICurrentUserHelper)">
              <summary>
              مدیریت برند ها
              </summary>
@@ -6735,7 +6735,7 @@
              </summary>
             
         </member>
-        <member name="M:Api.Areas.Seller.Controllers.DeliveryController.#ctor(Application.Services.Order.DeliverySrv.iface.IDeliveryService,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:Api.Areas.Seller.Controllers.DeliveryController.#ctor(Application.Services.Order.DeliverySrv.iface.IDeliveryService,Application.Common.Interface.ICurrentUserHelper)">
              <summary>
              مدیریت حمل و نقل
              </summary>
@@ -6777,7 +6777,7 @@
              </summary>
             
         </member>
-        <member name="M:Api.Areas.Seller.Controllers.DiscountController.#ctor(Application.Services.ProductSrvs.DiscountSrv.IFace.IDiscountService,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:Api.Areas.Seller.Controllers.DiscountController.#ctor(Application.Services.ProductSrvs.DiscountSrv.IFace.IDiscountService,Application.Common.Interface.ICurrentUserHelper)">
              <summary>
              مدیریت برند ها
              </summary>
@@ -6883,7 +6883,7 @@
              </summary>
             
         </member>
-        <member name="M:Api.Areas.Seller.Controllers.ProductController.#ctor(Application.Services.ProductSrvs.ProductSrv.Iface.IProductService,Application.Common.Interface.ICurrentUserHelper,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:Api.Areas.Seller.Controllers.ProductController.#ctor(Application.Services.ProductSrvs.ProductSrv.Iface.IProductService,Application.Common.Interface.ICurrentUserHelper)">
              <summary>
              مدیریت فروشگاه ها
              </summary>
@@ -6900,7 +6900,7 @@
              </summary>
             
         </member>
-        <member name="M:Api.Areas.Seller.Controllers.ProductItemController.#ctor(Application.Services.ProductSrvs.ProductItemSrv.Iface.IProductItemService,Application.Common.Interface.ICurrentUserHelper,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:Api.Areas.Seller.Controllers.ProductItemController.#ctor(Application.Services.ProductSrvs.ProductItemSrv.Iface.IProductItemService,Application.Common.Interface.ICurrentUserHelper)">
              <summary>
              مدیریت فروشگاه ها
              </summary>
@@ -6997,7 +6997,7 @@
              </summary>
             
         </member>
-        <member name="M:Api.Areas.Seller.Controllers.ProductOrderController.#ctor(Application.Services.Order.ProductOrderSrv.Iface.IProductOrderService,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:Api.Areas.Seller.Controllers.ProductOrderController.#ctor(Application.Services.Order.ProductOrderSrv.Iface.IProductOrderService,Application.Common.Interface.ICurrentUserHelper)">
              <summary>
              مدیریت سفارش ها
              </summary>
@@ -7023,7 +7023,7 @@
              </summary>
             
         </member>
-        <member name="M:Api.Areas.Seller.Controllers.ProductOrderStoreController.#ctor(Application.Services.Order.ProductOrderStoreSrv.Iface.IProductOrderStoreService,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:Api.Areas.Seller.Controllers.ProductOrderStoreController.#ctor(Application.Services.Order.ProductOrderStoreSrv.Iface.IProductOrderStoreService,Application.Common.Interface.ICurrentUserHelper)">
              <summary>
              مدیریت  آیتم سفارش ها
              </summary>
@@ -7058,7 +7058,7 @@
              </summary>
             
         </member>
-        <member name="M:Api.Areas.Seller.Controllers.StoreCommentController.#ctor(Application.Services.ProductSrvs.StoreCommentSrv.Iface.IStoreCommentService,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:Api.Areas.Seller.Controllers.StoreCommentController.#ctor(Application.Services.ProductSrvs.StoreCommentSrv.Iface.IStoreCommentService,Application.Common.Interface.ICurrentUserHelper)">
              <summary>
              مدیریت نظرات فروشگاه ها
              </summary>
@@ -7084,11 +7084,6 @@
             </summary>
         </member>
         <member name="T:Api.Areas.Seller.Controllers.StoreController">
-            <summary>
-            مدیریت فروشنده ها
-            </summary>
-        </member>
-        <member name="M:Api.Areas.Seller.Controllers.StoreController.#ctor(Application.Services.StoreSrv.Iface.IStoreService)">
             <summary>
             مدیریت فروشنده ها
             </summary>

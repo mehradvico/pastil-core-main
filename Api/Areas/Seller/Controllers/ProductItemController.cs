@@ -19,17 +19,15 @@ namespace Api.Areas.Seller.Controllers
     public class ProductItemController : ControllerBase
     {
         private readonly IProductItemService _productItemService;
-        private readonly ICurrentUserHelper _currentUserHelper;
-        private readonly long _storeId;
+        private readonly ICurrentUserHelper _currentUser;
         /// <summary>
         /// مدیریت فروشگاه ها
         /// </summary>
         ///
-        public ProductItemController(IProductItemService productItemService, ICurrentUserHelper currentUserHelper, IHttpContextAccessor httpContextAccessor)
+        public ProductItemController(IProductItemService productItemService, ICurrentUserHelper currentUser)
         {
             this._productItemService = productItemService;
-            this._currentUserHelper = currentUserHelper;
-            _storeId = HttpContextHelper.GetStoreId(httpContextAccessor.HttpContext);
+            this._currentUser = currentUser;
         }
         /// <summary>
         /// جستجو
@@ -38,7 +36,7 @@ namespace Api.Areas.Seller.Controllers
         [ProducesResponseType(typeof(ProductItemSearchDto), 200)]
         public IActionResult Get([FromQuery] ProductItemInputDto dto)
         {
-            dto.StoreId = _storeId;
+            dto.StoreId = _currentUser.CurrentUser.StoreId;
             dto.Available = true;
             var ProductItem = _productItemService.SearchDto(dto);
             return Ok(ProductItem);
@@ -51,7 +49,7 @@ namespace Api.Areas.Seller.Controllers
         public async Task<IActionResult> Get(long id)
         {
             var dto = new ProductItemListRequestDto();
-            dto.StoreId = _storeId;
+            dto.StoreId = _currentUser.CurrentUser.StoreId;
             dto.ProductId = id;
             var ProductItem = await _productItemService.GetInsertOrUpdateListAsync(dto);
             return Ok(ProductItem);
@@ -63,7 +61,7 @@ namespace Api.Areas.Seller.Controllers
         [ProducesResponseType(typeof(BaseResultDto<ProductItemDto>), 200)]
         public async Task<IActionResult> Post(ProductItemListUpdateDto dto)
         {
-            dto.StoreId = _storeId;
+            dto.StoreId = _currentUser.CurrentUser.StoreId;
             var ProductItem = await _productItemService.InsertOrUpdateAsync(dto);
             return Ok(ProductItem);
         }

@@ -1,4 +1,5 @@
 ﻿using Application.Common.Helpers;
+using Application.Common.Interface;
 using Application.Services.Order.ProductOrderStoreOrderSrv.Dto;
 using Application.Services.Order.ProductOrderStoreSrv.Dto;
 using Application.Services.Order.ProductOrderStoreSrv.Iface;
@@ -18,16 +19,16 @@ namespace Api.Areas.Seller.Controllers
     public class ProductOrderStoreController : ControllerBase
     {
         private readonly IProductOrderStoreService _productOrderStoreService;
-        private readonly long _storeId;
+        private readonly ICurrentUserHelper _currentUser;
 
         /// <summary>
         /// مدیریت  آیتم سفارش ها
         /// </summary>
         ///
-        public ProductOrderStoreController(IProductOrderStoreService productOrderStoreService, IHttpContextAccessor httpContextAccessor)
+        public ProductOrderStoreController(IProductOrderStoreService productOrderStoreService, ICurrentUserHelper currentUser)
         {
             this._productOrderStoreService = productOrderStoreService;
-            _storeId = HttpContextHelper.GetStoreId(httpContextAccessor.HttpContext);
+            this._currentUser = currentUser;
 
         }
 
@@ -39,7 +40,7 @@ namespace Api.Areas.Seller.Controllers
         [ProducesResponseType(typeof(ProductOrderStoreSearchDto), 200)]
         public IActionResult Get([FromQuery] ProductOrderStoreInputDto dto)
         {
-            dto.StoreId = _storeId;
+            dto.StoreId = _currentUser.CurrentUser.StoreId;
             var productOrderItems = _productOrderStoreService.Search(dto);
             return Ok(productOrderItems);
         }

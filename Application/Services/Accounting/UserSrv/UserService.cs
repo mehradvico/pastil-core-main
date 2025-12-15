@@ -298,7 +298,7 @@ namespace Application.Services.UserSrv
 
             return new UserSearchDto(searchDto, query, mapper);
         }
-        public async Task<BaseResultDto> CheckUser(string token, long userId, string area, string controller, string action, long storeId)
+        public async Task<BaseResultDto> CheckUser(string token, long userId, string area, string controller, string action/*, long storeId*/)
         {
 
             var hashed = token.Tosha256Hash();
@@ -318,8 +318,8 @@ namespace Application.Services.UserSrv
             }
             else if ((!string.IsNullOrEmpty(area)) && (area.ToLower().Equals("admin")) && !userToken.User.Role.Permissions.Any(s => s.Area.ToLower().Equals(area.ToLower()) && s.Controller.ToLower().Equals(controller.ToLower()) && s.Action.ToLower().Equals(action.ToLower())))
                 return new BaseResultDto(isSuccess: false, val: Resource.Notification.YouHaveNotPermission);
-            else if ((!string.IsNullOrEmpty(area)) && (area.ToLower().Equals("seller")) && !userToken.User.Stores.Any(s => s.Id == storeId))
-                return new BaseResultDto(isSuccess: false, val: Resource.Notification.YouHaveNotPermission);
+            //else if ((!string.IsNullOrEmpty(area)) && (area.ToLower().Equals("seller")) && !userToken.User.Stores.Any(s => s.Id == storeId))
+            //    return new BaseResultDto(isSuccess: false, val: Resource.Notification.YouHaveNotPermission);
             else
             {
                 return new BaseResultDto(isSuccess: true);
@@ -532,8 +532,10 @@ namespace Application.Services.UserSrv
             if (!string.IsNullOrEmpty(token))
             {
                 var hashed = token.Tosha256Hash();
-                var userToken = await _context.UserTokens.AsNoTracking().Include(s => s.User).ThenInclude(s => s.CompanionUsers).Include(s => s.User).ThenInclude(s => s.Picture).Include(s => s.User).ThenInclude(s => s.Role).Include(s => s.User).ThenInclude(s => s.Companions).Include(s => s.User).ThenInclude(s => s.Driver)
-                                .FirstOrDefaultAsync(x => x.TokenHash == hashed);
+                var userToken = await _context.UserTokens.AsNoTracking().Include(s => s.User).ThenInclude(s => s.CompanionUsers)
+                    .Include(s => s.User).ThenInclude(s => s.Picture).Include(s => s.User).ThenInclude(s => s.Role)
+                    .Include(s => s.User).ThenInclude(s => s.Companions).Include(s => s.User).ThenInclude(s => s.Driver)
+                    .Include(s => s.User).ThenInclude(s => s.Stores).FirstOrDefaultAsync(x => x.TokenHash == hashed);
                 if (userToken != null)
                     return mapper.Map<CurrentUserDto>(userToken.User);
             }

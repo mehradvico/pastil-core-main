@@ -184,6 +184,8 @@ using Application.Services.PansionSrvs.PansionCommentSrv;
 using Application.Services.PansionSrvs.PansionCommentSrv.Iface;
 using Application.Services.PansionSrvs.PansionPetSrv;
 using Application.Services.PansionSrvs.PansionPetSrv.Iface;
+using Application.Services.PansionSrvs.PansionPictureSrv;
+using Application.Services.PansionSrvs.PansionPictureSrv.Iface;
 using Application.Services.PansionSrvs.PansionSrv;
 using Application.Services.PansionSrvs.PansionSrv.Iface;
 using Application.Services.PermissionSrv;
@@ -472,6 +474,7 @@ public static class ConfigureServices
         services.AddScoped<IPansionService, PansionService>();
         services.AddScoped<IPansionPetService, PansionPetService>();
         services.AddScoped<IPansionCommentService, PansionCommentService>();
+        services.AddScoped<IPansionPictureService, PansionPictureService>();
 
 
         services.AddCors(option => option.AddPolicy("AllowAnyOrigin", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));

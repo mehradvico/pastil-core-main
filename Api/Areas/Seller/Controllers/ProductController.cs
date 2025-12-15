@@ -18,17 +18,15 @@ namespace Api.Areas.Seller.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-        private readonly ICurrentUserHelper _currentUserHelper;
-        private readonly long _storeId;
+        private readonly ICurrentUserHelper _currentUser;
         /// <summary>
         /// مدیریت فروشگاه ها
         /// </summary>
         ///
-        public ProductController(IProductService productService, ICurrentUserHelper currentUserHelper, IHttpContextAccessor httpContextAccessor)
+        public ProductController(IProductService productService, ICurrentUserHelper currentUser)
         {
             this._productService = productService;
-            this._currentUserHelper = currentUserHelper;
-            _storeId = HttpContextHelper.GetStoreId(httpContextAccessor.HttpContext);
+            this._currentUser = currentUser;
         }
         /// <summary>
         /// جستجو
@@ -37,7 +35,7 @@ namespace Api.Areas.Seller.Controllers
         [ProducesResponseType(typeof(ProductSearchDto), 200)]
         public IActionResult Get([FromQuery] ProductInputDto dto)
         {
-            dto.StoreId = _storeId;
+            dto.StoreId = _currentUser.CurrentUser.StoreId;
             dto.Available = true;
             var Product = _productService.Search(dto);
             return Ok(Product);

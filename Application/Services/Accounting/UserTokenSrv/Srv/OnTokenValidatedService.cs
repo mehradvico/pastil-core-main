@@ -1,5 +1,6 @@
 ﻿using Application.Common.Dto.Result;
 using Application.Common.Helpers;
+using Application.Common.Interface;
 using Application.Services.Accounting.RoleSrv.Iface;
 using Application.Services.Accounting.UserSrv.Iface;
 using Application.Services.Accounting.UserTokenSrv.Iface;
@@ -19,12 +20,14 @@ namespace Application.Services.Accounting.UserTokenSrv.Srv
         private IUserService userService;
         private IRoleService roleService;
         private IUserTokenService userTokenSevice;
+        private ICurrentUserHelper currentUserHelper;
 
-        public OnTokenValidatedService(IUserService userService, IRoleService roleService, IUserTokenService userTokenSevice)
+        public OnTokenValidatedService(IUserService userService, IRoleService roleService, IUserTokenService userTokenSevice, ICurrentUserHelper currentUserHelper)
         {
             this.userService = userService;
             this.roleService = roleService;
             this.userTokenSevice = userTokenSevice;
+            this.currentUserHelper = currentUserHelper;
         }
 
         public async Task Execute(TokenValidatedContext context)
@@ -57,11 +60,11 @@ namespace Application.Services.Accounting.UserTokenSrv.Srv
                 return;
             }
 
-            long storeId = HttpContextHelper.GetStoreId(context.HttpContext);
+            //long storeId = currentUserHelper.CurrentUser.StoreId;
             string area = (string)context.HttpContext.Request.RouteValues["area"] ?? null;
             string controller = (string)context.HttpContext.Request.RouteValues["controller"] ?? null;
             string action = (string)context.HttpContext.Request.RouteValues["action"] ?? null;
-            var userCheck = await userService.CheckUser(Token.UnsafeToString(), userLong, area, controller, action, storeId);
+            var userCheck = await userService.CheckUser(Token.UnsafeToString(), userLong, area, controller, action /*storeId*/);
             if (!userCheck.IsSuccess)
             {
                 context.NoResult();
