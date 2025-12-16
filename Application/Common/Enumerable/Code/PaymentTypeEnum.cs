@@ -7,6 +7,7 @@
         PaymentType_Trip,
         PaymentType_Cargo,
         PaymentType_Insurance,
+        PaymentType_PansionReserve,
         PaymentType_Wallet
     }
 }

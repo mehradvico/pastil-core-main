@@ -9,6 +9,7 @@ using AutoMapper;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using Entities.Entities;
 using Entities.Entities.CompanionField;
+using Entities.Entities.PansionField;
 using Persistence.Interface;
 using System;
 using System.Linq;
@@ -308,6 +309,31 @@ namespace Application.Services.Order.RebateSrv
             return new BaseResultDto<RebateVDto>(true, Resource.Notification.Success, rebateDto);
         }
 
+        public BaseResultDto<RebateVDto> GetRebateByCodeAsync(PansionReserve pansion, string Code)
+        {
+            DateTime justNow = DateTime.Now.Date;
+            double basePrice = pansion.Price;
+            var rebate = GetRebateByCodeValue(Code);
+
+            var commonCheck = ValidateRebateCommon(
+                rebate: rebate,
+                typeId: (long)RebateTypeEnum.RebateType_Trip,
+                justNow: justNow,
+                userId: pansion.BookerId,
+                rebateUserId: rebate?.UserId,
+                basePrice: basePrice
+            );
+
+            if (!commonCheck.IsSuccess)
+                return commonCheck;
+
+            var rebateDto = mapper.Map<RebateVDto>(rebate);
+            rebateDto.FinalPrice = rebateDto.IsPriceRebate
+                ? rebateDto.PriceValue
+                : Math.Round(basePrice * (rebateDto.PriceValue / 100));
+
+            return new BaseResultDto<RebateVDto>(true, Resource.Notification.Success, rebateDto);
+        }
         public void IncreaseUseCount(CompanionReserve reserve)
         {
             if (reserve.Rebate != null)
@@ -344,6 +370,16 @@ namespace Application.Services.Order.RebateSrv
             {
                 insurance.Rebate.UsedCount++;
                 _context.Rebate.Update(insurance.Rebate);
+                _context.SaveChanges();
+            }
+        }
+
+        public void IncreaseUseCount(PansionReserve pansion)
+        {
+            if (pansion.Rebate != null)
+            {
+                pansion.Rebate.UsedCount++;
+                _context.Rebate.Update(pansion.Rebate);
                 _context.SaveChanges();
             }
         }

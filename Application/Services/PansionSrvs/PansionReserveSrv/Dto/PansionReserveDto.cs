@@ -1,14 +1,14 @@
-﻿using Entities.Entities.CommonField;
-using Entities.Entities.Security;
+﻿using Application.Common.Dto.Field;
+using Entities.Entities.CommonField;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Entities.PansionField
+namespace Application.Services.PansionSrvs.PansionReserveSrv.Dto
 {
-    public class PansionReserve : Id_Field
+    public class PansionReserveDto : Id_FieldDto
     {
         public long PansionId { get; set; }
         public long BookerId { get; set; }
@@ -31,17 +31,5 @@ namespace Entities.Entities.PansionField
         public long? RebateId { get; set; }
         public double RebatePrice { get; set; }
         public long StatusId { get; set; }
-
-
-        public double CompanionShare { get; set; }
-        public double SiteShare { get; set; }
-
-        public Pansion Pansion { get; set; }
-        public UserPet UserPet { get; set; }
-        public Code Status { get; set; }
-        public Rebate Rebate { get; set; }
-        public Wallet Wallet { get; set; }
-        public User Booker { get; set; }
-
     }
 }

@@ -9,6 +9,7 @@ namespace Application.Services.Order.ProductOrderSrv.Dto
         public long? MerchantId { get; set; }
         public string ProductOrderId { get; set; }
         public long? CompanionReserveId { get; set; }
+        public long? PasnionReserveId { get; set; }
         public long? TripId { get; set; }
         public long? CargoId { get; set; }
         public long? CompanionInsurancePackageSaleId { get; set; }

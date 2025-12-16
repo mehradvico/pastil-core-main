@@ -1,8 +1,8 @@
 ﻿using Application.Common.Dto.Result;
 using Application.Common.Interface;
-using Application.Services.CompanionSrv.CompanionReserveSrv.Iface;
 using Application.Services.Order.PaymentSrv.Iface;
 using Application.Services.Order.ProductOrderSrv.Dto;
+using Application.Services.PansionSrvs.PansionReserveSrv.Iface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +16,14 @@ namespace Api.Areas.EndUser.Controllers
     [Route("api/[area]/[controller]")]
     [ApiController]
     [Authorize]
-    public class CompaninReservePaymentController : Controller
+    public class PansionReservePaymentController : Controller
     {
-        private readonly ICompanionReserveService _companionReserveService;
+        private readonly IPansionReserveService _PansionReserveService;
         private readonly ICurrentUserHelper _currentUserHelper;
         private readonly IPaymentService _paymentService;
-        public CompaninReservePaymentController(ICompanionReserveService companionReserveService, ICurrentUserHelper currentUserHelper, IPaymentService paymentService)
+        public PansionReservePaymentController(IPansionReserveService PansionReserveService, ICurrentUserHelper currentUserHelper, IPaymentService paymentService)
         {
-            this._companionReserveService = companionReserveService;
+            this._PansionReserveService = PansionReserveService;
             this._currentUserHelper = currentUserHelper;
             this._paymentService = paymentService;
         }

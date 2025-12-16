@@ -30,8 +30,6 @@ namespace Entities.Entities
         public long StateId { get; set; }
         public string StartTime { get; set; } // DogWalker
         public string EndTime { get; set; }
-        public DateTime? FromDate { get; set; } // Pansion
-        public DateTime? ToDate { get; set; }
         public DateTime DoDate { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? DoneDate { get; set; }

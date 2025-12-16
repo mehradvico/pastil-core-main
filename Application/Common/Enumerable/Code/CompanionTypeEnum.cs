@@ -6,7 +6,6 @@
         CompanionType_DogWalker = 10022,
         CompanionType_Laboratory = 10030,
         CompanionType_Barber = 10029,
-        CompanionType_Pansion = 10023,
         CompanionType_Nurse = 10075,
         CompanionType_Grooming = 10076
     }

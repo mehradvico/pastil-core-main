@@ -367,6 +367,15 @@ namespace Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Enter From Date.
+        /// </summary>
+        public static string PleaseEnterFromDate {
+            get {
+                return ResourceManager.GetString("PleaseEnterFromDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please Enter The Activation Value Reason.
         /// </summary>
         public static string PleaseEnterTheActivationValueReason {

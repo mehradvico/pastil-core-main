@@ -1,4 +1,5 @@
 ﻿using Application.Common.Dto.Result;
+using Application.Common.Interface;
 using Application.Services.CompanionSrvs.CompanionSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionSrv.Iface;
 using Microsoft.AspNetCore.Authorization;
@@ -17,9 +18,11 @@ namespace Api.Areas.EndUser.Controllers
     public class CompanionController : ControllerBase
     {
         private readonly ICompanionService _companionService;
-        public CompanionController(ICompanionService companionService)
+        private readonly ICurrentUserHelper _currentUser;
+        public CompanionController(ICompanionService companionService, ICurrentUserHelper currentUser)
         {
             this._companionService = companionService;
+            this._currentUser = currentUser;    
         }
 
 
@@ -48,6 +51,19 @@ namespace Api.Areas.EndUser.Controllers
         {
             var companion = await _companionService.FindAsyncVDto(id);
             return Ok(companion);
+        }
+
+        /// <summary>
+        /// آیتم جدید
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(typeof(BaseResultDto<CompanionDto>), 200)]
+        public async Task<IActionResult> Post(CompanionDto dto)
+        {
+            dto.OwnerId = _currentUser.CurrentUser.UserId;
+            var result = await _companionService.InsertAsyncDto(dto);
+            return Ok(result);
         }
     }
 }

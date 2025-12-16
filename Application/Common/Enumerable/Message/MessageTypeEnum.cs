@@ -43,6 +43,9 @@
         CargoAdmin,
         RequestAllDrivers,
         DriverNotAcceptedYet,
-        ProductOrderChangeStatus
+        ProductOrderChangeStatus,
+        PansionReserveForUser,
+        PansionReserveForPansion,
+        PansionReserveForAdmin,
     }
 }

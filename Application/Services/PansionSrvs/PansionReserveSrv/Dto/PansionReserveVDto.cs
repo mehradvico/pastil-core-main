@@ -1,4 +1,11 @@
-﻿using Entities.Entities.CommonField;
+﻿using Application.Common.Dto.Field;
+using Application.Services.Accounting.UserPetSrv.Dto;
+using Application.Services.Dto;
+using Application.Services.Order.RebateSrv.Dto;
+using Application.Services.PansionSrvs.PansionSrv.Dto;
+using Application.Services.ProductSrvs.WalletSrv.Dto;
+using Application.Services.Setting.CodeSrv.Dto;
+using Entities.Entities;
 using Entities.Entities.Security;
 using System;
 using System.Collections.Generic;
@@ -6,9 +13,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Entities.PansionField
+namespace Application.Services.PansionSrvs.PansionReserveSrv.Dto
 {
-    public class PansionReserve : Id_Field
+    public class PansionReserveVDto : Id_FieldDto
     {
         public long PansionId { get; set; }
         public long BookerId { get; set; }
@@ -36,12 +43,11 @@ namespace Entities.Entities.PansionField
         public double CompanionShare { get; set; }
         public double SiteShare { get; set; }
 
-        public Pansion Pansion { get; set; }
-        public UserPet UserPet { get; set; }
-        public Code Status { get; set; }
-        public Rebate Rebate { get; set; }
-        public Wallet Wallet { get; set; }
-        public User Booker { get; set; }
-
+        public PansionVDto Pansion { get; set; }
+        public UserPetVDto UserPet { get; set; }
+        public CodeVDto Status { get; set; }
+        public RebateVDto Rebate { get; set; }
+        public WalletVDto Wallet { get; set; }
+        public UserVDto Booker { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Entities.Entities.CommonField;
 using Entities.Entities.CompanionField;
+using Entities.Entities.PansionField;
 using Entities.Entities.Security;
 using System;
 
@@ -14,6 +15,7 @@ namespace Entities.Entities
         public long? PaymentId { get; set; }
         public string ProductOrderId { get; set; }
         public long? CompanionReserveId { get; set; }
+        public long? PansionReserveId { get; set; }
         public long? TripId { get; set; }
         public long? CargoId { get; set; }
         public long? CompanionInsurancePackageSaleId { get; set; }
@@ -23,6 +25,7 @@ namespace Entities.Entities
         public Payment Payment { get; set; }
         public ProductOrder ProductOrder { get; set; }
         public CompanionReserve CompanionReserve { get; set; }
+        public PansionReserve PansionReserve { get; set; }
         public Trip Trip { get; set; }
         public Cargo Cargo { get; set; }
         public CompanionInsurancePackageSale CompanionInsurancePackageSale { get; set; }

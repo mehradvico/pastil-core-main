@@ -465,4 +465,7 @@
   <data name="CodeValue" xml:space="preserve">
     <value>Code Value</value>
   </data>
+  <data name="PleaseEnterFromDate" xml:space="preserve">
+    <value>Please Enter From Date</value>
+  </data>
 </root>

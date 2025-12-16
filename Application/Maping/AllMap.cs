@@ -80,6 +80,7 @@ using Application.Services.Order.ProductOrderStoreSrv.Dto;
 using Application.Services.Order.RebateSrv.Dto;
 using Application.Services.PansionSrvs.PansionCommentSrv.Dto;
 using Application.Services.PansionSrvs.PansionPictureSrv.Dto;
+using Application.Services.PansionSrvs.PansionReserveSrv.Dto;
 using Application.Services.PansionSrvs.PansionSrv.Dto;
 using Application.Services.ProductSrvs.BrandCategorySrv.Dto;
 using Application.Services.ProductSrvs.BrandSrv.Dto;
@@ -462,6 +463,16 @@ namespace Application.Maping
             CreateMap<PansionPictureDto, PansionPicture>().ForMember(x => x.Id, opt => opt.Ignore()).ForMember(x => x.Picture, opt => opt.Ignore());
             CreateMap<PansionPicture, PansionPictureDto>();
             CreateMap<PansionPicture, PansionPictureVDto>();
+            CreateMap<PansionReserve, PansionReserveCancelDto>().ReverseMap();
+            CreateMap<PansionReserveDto, PansionReserve>()
+                .ForMember(x => x.FromWallet, y => y.Ignore()).ForMember(x => x.WalletPrice, y => y.Ignore()).ForMember(x => x.Wallet, y => y.Ignore())
+                .ForMember(x => x.Booker, y => y.Ignore()).ForMember(x => x.StatusId, y => y.Ignore());
+            CreateMap<PansionReserveRebateCodeDto, PansionReserve>();
+            CreateMap<PansionReserveWalletDto, PansionReserve>();
+            CreateMap<PansionReserveStatusDto, PansionReserve>().ReverseMap();
+            CreateMap<PansionReserve, PansionReserveDto>();
+            CreateMap<PansionReserve, PansionReserveShareDto>().ReverseMap();
+            CreateMap<PansionReserve, PansionReserveVDto>();
             //Pansion ----------------------------------------------
 
 

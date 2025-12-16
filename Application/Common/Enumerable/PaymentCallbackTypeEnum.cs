@@ -3,9 +3,10 @@
     public enum PaymentCallbackTypeEnum
     {
         ProductOrder,
-        Reserve,
+        CompanionReserve,
         Trip,
         Cargo,
-        Insurance
+        Insurance,
+        PansionReserve
     }
 }

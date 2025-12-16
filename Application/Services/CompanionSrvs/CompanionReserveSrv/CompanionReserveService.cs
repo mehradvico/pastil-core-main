@@ -210,13 +210,6 @@ namespace Application.Services.CompanionSrv.CompanionReserveSrv
                             return new BaseResultDto<CompanionReserveDto>(false, Resource.Notification.ToTimeMustBeBiggerThanFromTime, dto);
                         }
                     }
-                    if (companionAssistance.CompanionTypeId == (long)CompanionTypeEnum.CompanionType_Pansion)
-                    {
-                        if ((dto.FromDate == null) || (dto.ToDate == null))
-                        {
-                            return new BaseResultDto<CompanionReserveDto>(false, Resource.Notification.PleaseEnterTimeRange, dto);
-                        }
-                    }
                     var unPaidStatus = await _codeService.GetIdByLabelAsync(CompanionReserveStateEnum.CompanianReserveState_Registered.ToString());
                     item.StateId = unPaidStatus;
                     item.PaymentPrice = item.PrePaymentPrice;

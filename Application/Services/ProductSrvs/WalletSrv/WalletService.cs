@@ -264,6 +264,43 @@ namespace Application.Services.ProductSrvs.WalletSrv
                 return await InsertAsyncDto(dto);
             }
         }
+        public async Task<BaseResultDto<WalletDto>> InsertUpdatePansionReserveAsync(WalletDto dto, bool complete)
+        {
+            var item = await _context.Wallets.FirstOrDefaultAsync(s => s.PansionReserveId == dto.PansionReserveId);
+            if (item != null)
+            {
+
+                if (complete)
+                {
+                    item.Painding = false;
+                    _context.Wallets.Update(item);
+                    _context.SaveChanges();
+                    return new BaseResultDto<WalletDto>(true, mapper.Map<WalletDto>(item));
+                }
+                else
+                {
+                    item.Deleted = true;
+                    _context.Wallets.Update(item);
+                    _context.SaveChanges();
+                    return new BaseResultDto<WalletDto>(true, mapper.Map<WalletDto>(item));
+
+                }
+            }
+            else
+            {
+                dto.IsIncrease = false;
+                if (complete)
+                {
+                    dto.Painding = false;
+                }
+                else
+                {
+                    dto.Painding = true;
+                }
+
+                return await InsertAsyncDto(dto);
+            }
+        }
         public async Task<BaseResultDto<WalletDto>> InsertUpdateInsuranceAsync(WalletDto dto, bool complete)
         {
             var item = await _context.Wallets.FirstOrDefaultAsync(s => s.CompanionInsurancePackageSaleId == dto.CompanionInsurancePackageSaleId);

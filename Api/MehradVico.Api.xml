@@ -2540,6 +2540,116 @@
              حذف آیتم 
             </summary>  
         </member>
+        <member name="T:Api.Areas.Admin.Controllers.PansionPictureController">
+            <summary>
+            مدیریت تصویر پانسیون ها
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionPictureController.Get(System.Int64)">
+            <summary>
+            اطلاعات آیتم
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionPictureController.Get(Application.Services.PansionSrvs.PansionPictureSrv.Dto.PansionPictureInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionPictureController.Pansion(Application.Services.PansionSrvs.PansionPictureSrv.Dto.PansionPictureDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionPictureController.Put(Application.Services.PansionSrvs.PansionPictureSrv.Dto.PansionPictureDto)">
+            <summary>
+            ویرایش آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionPictureController.Delete(System.Int64)">
+            <summary>
+            حذف آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
+        <member name="T:Api.Areas.Admin.Controllers.PansionReserveCancelController">
+            <summary>
+            مدیریت کنسلی رزرو پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionReserveCancelController.Put(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveCancelDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.Admin.Controllers.PansionReserveChangeStatusController">
+            <summary>
+            مدیریت تغییر وضعیت رزرو پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionReserveChangeStatusController.Put(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveStatusDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.Admin.Controllers.PansionReserveController">
+            <summary>
+            مدیریت  رزرو پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionReserveController.Get(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveInputDto)">
+            <summary>
+             جستجو
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionReserveController.Get(System.Int64)">
+            <summary>
+             اطلاعات آیتم 
+            </summary>
+            <param name="id">شناسه همکار</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionReserveController.Post(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionReserveController.Put(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.Admin.Controllers.PansionReserveShareController">
+            <summary>
+            مدیریت محاسبه درصد رزرو پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.PansionReserveShareController.Put(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveShareDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
         <member name="T:Api.Areas.Admin.Controllers.PermissionController">
              <summary>
              مدیریت دسترسی ها
@@ -5150,6 +5260,44 @@
              حذف آیتم 
             </summary>  
         </member>
+        <member name="T:Api.Areas.Companion.Controllers.PansionPictureController">
+            <summary>
+            مدیریت تصویر پانسیون ها
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionPictureController.Get(System.Int64)">
+            <summary>
+            اطلاعات آیتم
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionPictureController.Get(Application.Services.PansionSrvs.PansionPictureSrv.Dto.PansionPictureInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionPictureController.Pansion(Application.Services.PansionSrvs.PansionPictureSrv.Dto.PansionPictureDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionPictureController.Put(Application.Services.PansionSrvs.PansionPictureSrv.Dto.PansionPictureDto)">
+            <summary>
+            ویرایش آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.PansionPictureController.Delete(System.Int64)">
+            <summary>
+            حذف آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
         <member name="T:Api.Areas.Companion.Controllers.WeekDayController">
             <summary>
             مدیریت روزهای هفته
@@ -5188,6 +5336,52 @@
             <summary>
              ویرایش آیتم 
             </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.Pansion.Controllers.PansionReserveCancelController">
+            <summary>
+            مدیریت کنسلی رزرو همکار
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Pansion.Controllers.PansionReserveCancelController.Put(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveCancelDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.Pansion.Controllers.PansionReserveChangeStateController">
+            <summary>
+            مدیریت تغییر وضعیت رزرو پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Pansion.Controllers.PansionReserveChangeStateController.Put(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveStatusDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.Pansion.Controllers.PansionReserveController">
+            <summary>
+            مدیریت رزرو همکاران
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Pansion.Controllers.PansionReserveController.Get(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveInputDto)">
+            <summary>
+             جستجو
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Api.Areas.Pansion.Controllers.PansionReserveController.Get(System.Int64)">
+            <summary>
+             اطلاعات آیتم 
+            </summary>
+            <param name="id">شناسه همکار</param>
             <returns>
             </returns>
         </member>
@@ -5547,17 +5741,6 @@
             آیتم جدید
             </summary>  
         </member>
-        <member name="T:Api.Areas.EndUser.Controllers.CompaninReservePaymentController">
-            <summary>
-            مدیریت پرداخت رزرو خدمات ها
-            </summary>
-            
-        </member>
-        <member name="M:Api.Areas.EndUser.Controllers.CompaninReservePaymentController.Post(Application.Services.Order.ProductOrderSrv.Dto.PaymentStartDto)">
-            <summary>
-            آیتم جدید پرداختی
-            </summary>  
-        </member>
         <member name="T:Api.Areas.EndUser.Controllers.CompanionAssistanceController">
             <summary>
             مدیریت خدمات همکاران
@@ -5634,6 +5817,12 @@
             <param name="id">شناسه همکار</param>
             <returns>
             </returns>
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.CompanionController.Post(Application.Services.CompanionSrvs.CompanionSrv.Dto.CompanionDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Api.Areas.EndUser.Controllers.CompanionInsurancePackageSaleController">
             <summary>
@@ -5790,6 +5979,17 @@
             </summary>
             <returns>
             </returns>
+        </member>
+        <member name="T:Api.Areas.EndUser.Controllers.CompanionReservePaymentController">
+            <summary>
+            مدیریت پرداخت رزرو خدمات ها
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.CompanionReservePaymentController.Post(Application.Services.Order.ProductOrderSrv.Dto.PaymentStartDto)">
+            <summary>
+            آیتم جدید پرداختی
+            </summary>  
         </member>
         <member name="T:Api.Areas.EndUser.Controllers.CompanionReserveRemoveRebateController">
             <summary>
@@ -6006,6 +6206,43 @@
         <member name="M:Api.Areas.EndUser.Controllers.PansionCommentController.Post(Application.Services.PansionSrvs.PansionCommentSrv.Dto.PansionCommentDto)">
             <summary>
             آیتم جدید
+            </summary>  
+        </member>
+        <member name="T:Api.Areas.EndUser.Controllers.PansionReserveController">
+            <summary>
+            مدیریت رزرو همکاران
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.PansionReserveController.Get(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveInputDto)">
+            <summary>
+             جستجو
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.PansionReserveController.Get(System.Int64)">
+            <summary>
+             اطلاعات آیتم 
+            </summary>
+            <param name="id">شناسه رزرو همکار</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.PansionReserveController.Post(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Areas.EndUser.Controllers.PansionReservePaymentController">
+            <summary>
+            مدیریت پرداخت رزرو خدمات ها
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.PansionReservePaymentController.Post(Application.Services.Order.ProductOrderSrv.Dto.PaymentStartDto)">
+            <summary>
+            آیتم جدید پرداختی
             </summary>  
         </member>
         <member name="T:Api.Areas.EndUser.Controllers.PermissionMenuController">
@@ -7813,6 +8050,19 @@
             <param name="id">شناسه پانسیون</param>
             <returns>
             </returns>
+        </member>
+        <member name="T:Api.Controllers.PansionReserveController">
+            <summary>
+            مدیریت  رزرو پانسیون
+            </summary>
+            
+        </member>
+        <member name="M:Api.Controllers.PansionReserveController.GetCount(System.Int64)">
+            <summary>
+            تعداد رزروهای آیتم
+            </summary>
+            <param name="PansionId">شناسه همکار</param>
+            <returns>تعداد رزروها</returns>
         </member>
         <member name="T:Api.Controllers.PetController">
              <summary>

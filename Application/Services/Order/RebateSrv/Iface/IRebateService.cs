@@ -4,6 +4,7 @@ using Application.Common.Interface;
 using Application.Services.Order.RebateSrv.Dto;
 using Entities.Entities;
 using Entities.Entities.CompanionField;
+using Entities.Entities.PansionField;
 
 namespace Application.Services.Order.RebateSrv.Iface
 {
@@ -15,11 +16,13 @@ namespace Application.Services.Order.RebateSrv.Iface
         BaseResultDto<RebateVDto> GetRebateByCodeAsync(Cargo cargo, string Code);
         BaseResultDto<RebateVDto> GetRebateByCodeAsync(CompanionInsurancePackageSale insurance, string Code);
         BaseResultDto<RebateVDto> GetRebateByCodeAsync(Trip trip, string Code);
+        BaseResultDto<RebateVDto> GetRebateByCodeAsync(PansionReserve pansion, string Code);
         void IncreaseUseCount(ProductOrder order);
         void IncreaseUseCount(CompanionReserve reserve);
         void IncreaseUseCount(Cargo cargo);
         void IncreaseUseCount(Trip trip);
         void IncreaseUseCount(CompanionInsurancePackageSale insurance);
+        void IncreaseUseCount(PansionReserve pansion);
 
     }
 }

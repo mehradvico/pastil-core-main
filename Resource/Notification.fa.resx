@@ -465,4 +465,7 @@
   <data name="CodeValue" xml:space="preserve">
     <value>کد محصول</value>
   </data>
+  <data name="PleaseEnterFromDate" xml:space="preserve">
+    <value>لطفا تاریخ درخواست را مشخص نمایید</value>
+  </data>
 </root>

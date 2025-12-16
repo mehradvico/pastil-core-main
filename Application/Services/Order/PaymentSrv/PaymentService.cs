@@ -10,6 +10,7 @@ using Application.Services.Order.PaymentSrv.Dto;
 using Application.Services.Order.PaymentSrv.Iface;
 using Application.Services.Order.ProductOrderSrv.Dto;
 using Application.Services.Order.ProductOrderSrv.Iface;
+using Application.Services.PansionSrvs.PansionReserveSrv.Iface;
 using Application.Services.ProductSrvs.WalletSrv.Dto;
 using Application.Services.ProductSrvs.WalletSrv.IFace;
 using Application.Services.Setting.CodeSrv.Iface;
@@ -36,8 +37,9 @@ namespace Application.Services.Order.PaymentSrv
         private readonly ITripService _tripService;
         private readonly ICargoService _cargoService;
         private readonly ICompanionInsurancePackageSaleService _companionInsurance;
+        private readonly IPansionReserveService _pansionReserve;
 
-        public PaymentService(IDataBaseContext _context, IMapper mapper, ICodeService codeService, IWalletService walletService, IMerchantService merchantService, IProductOrderService productOrderService, ICompanionReserveService companionReserveService, ITripService tripService, ICargoService cargoService, ICompanionInsurancePackageSaleService companionInsurance) : base(_context, mapper)
+        public PaymentService(IDataBaseContext _context, IMapper mapper, ICodeService codeService, IWalletService walletService, IMerchantService merchantService, IPansionReserveService pansionReserve, IProductOrderService productOrderService, ICompanionReserveService companionReserveService, ITripService tripService, ICargoService cargoService, ICompanionInsurancePackageSaleService companionInsurance) : base(_context, mapper)
         {
             this._context = _context;
             this.mapper = mapper;
@@ -49,6 +51,9 @@ namespace Application.Services.Order.PaymentSrv
             _tripService = tripService;
             _cargoService = cargoService;
             _companionInsurance = companionInsurance;
+            _pansionReserve = pansionReserve;
+
+            
 
 
         }
@@ -133,11 +138,26 @@ namespace Application.Services.Order.PaymentSrv
                         else if (payment.Type.Label == PaymentTypeEnum.PaymentType_CompanionReserve.ToString())
                         {
                             await _walletService.WalletPaymentCallback(payment);
-                            if (payment.CallBackTypeLabel == PaymentCallbackTypeEnum.Reserve.ToString())
+                            if (payment.CallBackTypeLabel == PaymentCallbackTypeEnum.CompanionReserve.ToString())
                             {
                                 if (long.TryParse(payment.CallBackTypeLabel, out var reserveId))
                                 {
                                     var productPaymentCallback = await _companionReserveService.CompanionReservePaymentCallback(reserveId, fromWallet: true);
+                                    if (!productPaymentCallback.IsSuccess)
+                                    {
+                                        return new BaseResultDto<PaymentDto>(isSuccess: false, val: Resource.Notification.Unsuccess, null);
+                                    }
+                                }
+                            }
+                        }
+                        else if (payment.Type.Label == PaymentTypeEnum.PaymentType_PansionReserve.ToString())
+                        {
+                            await _walletService.WalletPaymentCallback(payment);
+                            if (payment.CallBackTypeLabel == PaymentCallbackTypeEnum.PansionReserve.ToString())
+                            {
+                                if (long.TryParse(payment.CallBackTypeLabel, out var reserveId))
+                                {
+                                    var productPaymentCallback = await _pansionReserve.PansionReservePaymentCallback(reserveId, fromWallet: true);
                                     if (!productPaymentCallback.IsSuccess)
                                     {
                                         return new BaseResultDto<PaymentDto>(isSuccess: false, val: Resource.Notification.Unsuccess, null);
@@ -282,13 +302,54 @@ namespace Application.Services.Order.PaymentSrv
                 {
                     dto.Amount = reservedetail.PrePaymentPrice - walletAmount;
                     dto.ProductOrderId = null;
-                    dto.CallBackTypeLabel = PaymentCallbackTypeEnum.Reserve.ToString();
+                    dto.CallBackTypeLabel = PaymentCallbackTypeEnum.CompanionReserve.ToString();
                     dto.CallBackId = reservedetail.Id.ToString();
                     return await InsertWalletPaymentAsyncDto(dto);
 
                 }
             }
             var PaymentType_AgencyReserve = await _codeService.GetIdByLabelAsync(PaymentTypeEnum.PaymentType_CompanionReserve.ToString());
+            dto.IsOnline = true;
+            dto.ProductOrderId = null;
+            dto.TypeId = PaymentType_AgencyReserve;
+            return await StartPayment(dto);
+        }
+
+        public async Task<BaseResultDto> InsertPansionReservePaymentAsyncDto(PaymentStartDto dto)
+        {
+            var reservedetail = await _context.PansionReserves.FirstOrDefaultAsync(s => s.Id == dto.PansionReserveId);
+
+            dto.Amount = reservedetail.PaymentPrice;
+
+            if (dto.Amount < 1)
+            {
+                return new BaseResultDto(false, Resource.Notification.AmountNotCorrect);
+            }
+            else if (dto.MerchantId == null)
+            {
+                return new BaseResultDto(false, Resource.Notification.PleaseSelectTheMerchant);
+
+            }
+            if (reservedetail.FromWallet)
+            {
+                var walletAmount = await _walletService.GetAmountValueAsync(reservedetail.BookerId);
+
+                if (walletAmount >= reservedetail.PaymentPrice)
+                {
+                    await _pansionReserve.PansionReservePaymentCallback(reservedetail.Id, true);
+                    return new BaseResultDto<PaymentStartDto>(true, dto);
+                }
+                else
+                {
+                    dto.Amount = reservedetail.PaymentPrice - walletAmount;
+                    dto.ProductOrderId = null;
+                    dto.CallBackTypeLabel = PaymentCallbackTypeEnum.PansionReserve.ToString();
+                    dto.CallBackId = reservedetail.Id.ToString();
+                    return await InsertWalletPaymentAsyncDto(dto);
+
+                }
+            }
+            var PaymentType_AgencyReserve = await _codeService.GetIdByLabelAsync(PaymentTypeEnum.PaymentType_PansionReserve.ToString());
             dto.IsOnline = true;
             dto.ProductOrderId = null;
             dto.TypeId = PaymentType_AgencyReserve;
