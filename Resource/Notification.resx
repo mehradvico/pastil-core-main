@@ -468,4 +468,7 @@
   <data name="PleaseEnterFromDate" xml:space="preserve">
     <value>Please Enter From Date</value>
   </data>
+  <data name="ThisCompanionHasNoActivityInYourZone" xml:space="preserve">
+    <value>This Companion Has No Activity In Your Zone</value>
+  </data>
 </root>

@@ -468,4 +468,7 @@
   <data name="PleaseEnterFromDate" xml:space="preserve">
     <value>لطفا تاریخ درخواست را مشخص نمایید</value>
   </data>
+  <data name="ThisCompanionHasNoActivityInYourZone" xml:space="preserve">
+    <value>این کلینیک در محدوده آدرس شما فعالیت ندارد</value>
+  </data>
 </root>

@@ -147,6 +147,7 @@ namespace Persistence.Context
         public DbSet<PansionPet> PansionPets { get; set; }
         public DbSet<PansionComment> PansionComments { get; set; }
         public DbSet<PansionPicture> PansionPictures { get; set; }
+        public DbSet<CompanionZone> CompanionZones { get; set; }
 
         public IDbContextTransaction CurrentTransaction => base.Database.CurrentTransaction;
 
@@ -283,6 +284,10 @@ namespace Persistence.Context
             modelBuilder.Entity<CompanionAssistance>()
                 .HasMany<Code>(s => s.Codes)
                 .WithMany(c => c.CompanionAssistances);
+
+            modelBuilder.Entity<CompanionReserve>()
+                .HasMany<UserPet>(s => s.UserPets)
+                .WithMany(c => c.CompanionReserves);
 
             modelBuilder.Entity<CompanionAssistance>()
                 .HasOne(ca => ca.CompanionType)

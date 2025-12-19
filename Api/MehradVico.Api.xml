@@ -1419,6 +1419,44 @@
             <returns></returns>
             
         </member>
+        <member name="T:Api.Areas.Admin.Controllers.CompanionZoneController">
+            <summary>
+            مدیریت محل فعالیت همکاران
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionZoneController.Get(System.Int64)">
+            <summary>
+            اطلاعات آیتم
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionZoneController.Get(Application.Services.CompanionSrvs.CompanionZoneSrv.Dto.CompanionZoneInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionZoneController.Post(Application.Services.CompanionSrvs.CompanionZoneSrv.Dto.CompanionZoneDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionZoneController.Put(Application.Services.CompanionSrvs.CompanionZoneSrv.Dto.CompanionZoneDto)">
+            <summary>
+            ویرایش آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.CompanionZoneController.Delete(System.Int64)">
+            <summary>
+            حذف آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
         <member name="T:Api.Areas.Admin.Controllers.ContactUsController">
              <summary>
              مدیریت ارتباط با ما
@@ -2528,13 +2566,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Api.Areas.Admin.Controllers.PansionPetController.Put(Application.Services.PansionSrvs.PansionPetSrv.Dto.PansionPetDto)">
-            <summary>
-             ویرایش آیتم 
-            </summary>
-            <returns>
-            </returns>
-        </member>
         <member name="M:Api.Areas.Admin.Controllers.PansionPetController.Delete(System.Int64)">
             <summary>
              حذف آیتم 
@@ -2563,13 +2594,6 @@
             آیتم جدید
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:Api.Areas.Admin.Controllers.PansionPictureController.Put(Application.Services.PansionSrvs.PansionPictureSrv.Dto.PansionPictureDto)">
-            <summary>
-            ویرایش آیتم
-            </summary>
-            <returns></returns>
-            
         </member>
         <member name="M:Api.Areas.Admin.Controllers.PansionPictureController.Delete(System.Int64)">
             <summary>
@@ -5176,6 +5200,44 @@
             </summary>
             
         </member>
+        <member name="T:Api.Areas.Companion.Controllers.CompanionZoneController">
+            <summary>
+            مدیریت محل فعالیت همکاران
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionZoneController.Get(System.Int64)">
+            <summary>
+            اطلاعات آیتم
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionZoneController.Get(Application.Services.CompanionSrvs.CompanionZoneSrv.Dto.CompanionZoneInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns> 
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionZoneController.Post(Application.Services.CompanionSrvs.CompanionZoneSrv.Dto.CompanionZoneDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionZoneController.Put(Application.Services.CompanionSrvs.CompanionZoneSrv.Dto.CompanionZoneDto)">
+            <summary>
+            ویرایش آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
+        <member name="M:Api.Areas.Companion.Controllers.CompanionZoneController.Delete(System.Int64)">
+            <summary>
+            حذف آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
         <member name="T:Api.Areas.Companion.Controllers.PansionActiveController">
             <summary>
             فعال سازی پانسیون
@@ -6244,6 +6306,45 @@
             <summary>
             آیتم جدید پرداختی
             </summary>  
+        </member>
+        <member name="T:Api.Areas.EndUser.Controllers.PansionReserveRemoveRebateController">
+            <summary>
+            مدیریت حذف تخفیف رزرو همکار
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.PansionReserveRemoveRebateController.Put(System.Int64)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.EndUser.Controllers.PansionReserveSetRebateController">
+            <summary>
+            مدیریت افزودن تخفیف رزرو همکار
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.PansionReserveSetRebateController.Put(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveRebateCodeDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="T:Api.Areas.EndUser.Controllers.PansionReserveSetWalletController">
+            <summary>
+            مدیریت تغییر وضعیت کیف پول رزرو
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.PansionReserveSetWalletController.Put(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveWalletDto)">
+            <summary>
+             ویرایش آیتم 
+            </summary>
+            <returns>
+            </returns>
         </member>
         <member name="T:Api.Areas.EndUser.Controllers.PermissionMenuController">
              <summary>

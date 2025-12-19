@@ -188,7 +188,18 @@ namespace Application.Services.CompanionSrv.CompanionReserveSrv
                     {
                         item.PrePaymentPrice = prepay.PrePaymentPrice;
                     }
-                    var companionAssistance = await _context.CompanionAssistances.FirstOrDefaultAsync(s => s.Id == dto.CompanionAssistanceId);
+                    var companionAssistance = await _context.CompanionAssistances.Include(s => s.Companion).ThenInclude(s => s.CompanionZones).FirstOrDefaultAsync(s => s.Id == dto.CompanionAssistanceId);
+
+                    if (dto.AddressId.HasValue)
+                    {
+                        var address = await _context.Addresses.FirstOrDefaultAsync(s => s.Id == dto.AddressId);
+                        if (companionAssistance.Companion.CompanionZones.Any(s => s.CityId == address.CityId))
+                        {
+                            return new BaseResultDto<CompanionReserveDto>(false, Resource.Notification.ThisCompanionHasNoActivityInYourZone, dto);
+                        }
+
+                    }
+
                     if (companionAssistance.CompanionTypeId == (long)CompanionTypeEnum.CompanionType_DogWalker || companionAssistance.CompanionTypeId == (long)CompanionTypeEnum.CompanionType_Nurse || companionAssistance.CompanionTypeId == (long)CompanionTypeEnum.CompanionType_Grooming)
                     {
                         if (string.IsNullOrEmpty(dto.StartTime) || string.IsNullOrEmpty(dto.EndTime))

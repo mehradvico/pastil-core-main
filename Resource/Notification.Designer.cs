@@ -880,6 +880,15 @@ namespace Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This Companion Has No Activity In Your Zone.
+        /// </summary>
+        public static string ThisCompanionHasNoActivityInYourZone {
+            get {
+                return ResourceManager.GetString("ThisCompanionHasNoActivityInYourZone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This discount code has expired.
         /// </summary>
         public static string ThisDiscountCodeExpired {

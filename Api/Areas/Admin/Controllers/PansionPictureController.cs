@@ -57,19 +57,6 @@ namespace Api.Areas.Admin.Controllers
             return Ok(result);
         }
         /// <summary>
-        /// ویرایش آیتم
-        /// </summary>
-        /// <returns></returns>
-        /// 
-        [HttpPut]
-        [ProducesResponseType(typeof(BaseResultDto<PansionPictureDto>), 200)]
-        public IActionResult Put(PansionPictureDto PansionPictureDto)
-        {
-            var result = PansionPictureService.UpdateDto(PansionPictureDto);
-            return Ok(result);
-        }
-
-        /// <summary>
         /// حذف آیتم
         /// </summary>
         /// <returns></returns>

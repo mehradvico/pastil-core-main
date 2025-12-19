@@ -11,16 +11,17 @@ using Application.Services.Filing.PictureSrv.Dto;
 using Application.Services.Setting.CodeSrv.Iface;
 using Application.Services.Setting.NoticeSrv.Iface;
 using AutoMapper;
+using Dapper;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Entities.Entities;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Persistence.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Dapper;
-using Microsoft.Extensions.Configuration;
 
 namespace Application.Services.CompanionSrvs.CompanionSrv
 {
@@ -45,7 +46,9 @@ namespace Application.Services.CompanionSrvs.CompanionSrv
 
         public async Task<BaseResultDto<CompanionVDto>> FindAsyncVDto(long id)
         {
-            var item = await _context.Companions.Include(s => s.Picture).Include(s => s.CompanionPets).Include(s => s.Icon).Include(s => s.City).ThenInclude(s => s.State).Include(s => s.Neighborhood).Include(s => s.Owner).Include(s => s.CompanionTypes).FirstOrDefaultAsync(s => s.Id == id && !s.Deleted);
+            var item = await _context.Companions.Include(s => s.Picture).Include(s => s.CompanionPets).Include(s => s.Icon).Include(s => s.City).ThenInclude(s => s.State)
+                .Include(s => s.Neighborhood).Include(s => s.Owner).Include(s => s.CompanionTypes).Include(s => s.CompanionZones).ThenInclude(s => s.City).ThenInclude(s => s.State)
+                .Include(s => s.CompanionZones).ThenInclude(s => s.Neighborhood).FirstOrDefaultAsync(s => s.Id == id && !s.Deleted);
             if (item != null)
             {
                 return new BaseResultDto<CompanionVDto>(true, mapper.Map<CompanionVDto>(item));
@@ -55,7 +58,9 @@ namespace Application.Services.CompanionSrvs.CompanionSrv
 
         public override async Task<BaseResultDto<CompanionDto>> FindAsyncDto(long id)
         {
-            var item = await _context.Companions.Include(s => s.Picture).Include(s => s.CompanionPets).Include(s => s.Icon).Include(s => s.City).ThenInclude(s => s.State).Include(s => s.Neighborhood).Include(s => s.Owner).Include(s => s.CompanionTypes).FirstOrDefaultAsync(s => s.Id == id && !s.Deleted);
+            var item = await _context.Companions.Include(s => s.Picture).Include(s => s.CompanionPets).Include(s => s.Icon).Include(s => s.City).ThenInclude(s => s.State)
+                .Include(s => s.Neighborhood).Include(s => s.Owner).Include(s => s.CompanionTypes).Include(s => s.CompanionZones).ThenInclude(s => s.City).ThenInclude(s => s.State)
+                .Include(s => s.CompanionZones).ThenInclude(s => s.Neighborhood).FirstOrDefaultAsync(s => s.Id == id && !s.Deleted);
             if (item != null)
             {
                 return new BaseResultDto<CompanionDto>(true, mapper.Map<CompanionDto>(item));
@@ -64,7 +69,9 @@ namespace Application.Services.CompanionSrvs.CompanionSrv
         }
         public CompanionSearchDto Search(CompanionInputDto baseSearchDto)
         {
-            var model = _context.Companions.Include(s => s.CompanionAssistances).Include(s => s.Owner).Include(s => s.Picture).Include(s => s.Icon).Include(s => s.City).ThenInclude(s => s.State).Include(s => s.Neighborhood).Include(s => s.CompanionTypes).Include(s => s.CompanionPets).AsQueryable().Where(s => !s.Deleted);
+            var model = _context.Companions.Include(s => s.CompanionAssistances).Include(s => s.Owner).Include(s => s.Picture).Include(s => s.Icon).Include(s => s.City).ThenInclude(s => s.State)
+                .Include(s => s.Neighborhood).Include(s => s.CompanionTypes).Include(s => s.CompanionPets).Include(s => s.Neighborhood).Include(s => s.Owner).Include(s => s.CompanionTypes).Include(s => s.CompanionZones).ThenInclude(s => s.City).ThenInclude(s => s.State)
+                .Include(s => s.CompanionZones).ThenInclude(s => s.Neighborhood).AsQueryable().Where(s => !s.Deleted);
 
             if (baseSearchDto.Available.HasValue)
             {

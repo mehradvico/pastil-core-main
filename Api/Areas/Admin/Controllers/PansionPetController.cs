@@ -61,19 +61,6 @@ namespace Api.Areas.Admin.Controllers
         }
 
         /// <summary>
-        ///  ویرایش آیتم 
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        [HttpPut]
-        [ProducesResponseType(typeof(BaseResultDto), 200)]
-        public IActionResult Put(PansionPetDto dto)
-        {
-            var agency = _PansionPetService.UpdateDto(dto);
-            return Ok(agency);
-        }
-
-        /// <summary>
         ///  حذف آیتم 
         /// </summary>  
         [HttpDelete]

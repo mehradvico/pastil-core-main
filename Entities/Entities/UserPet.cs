@@ -25,6 +25,7 @@ namespace Entities.Entities
         public Pet Pet { get; set; }
         public User User { get; set; }
         public Picture Picture { get; set; }
+        public ICollection<CompanionReserve> CompanionReserves { get; set; }
         public ICollection<UserPetRecord> UserPetRecords { get; set; }
     }
 }

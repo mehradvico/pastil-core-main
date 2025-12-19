@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using Persistence.Context;
@@ -12,9 +13,11 @@ using Persistence.Context;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20251219110811_mig_companionreserveuserpet")]
+    partial class mig_companionreserveuserpet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1595,42 +1598,6 @@ namespace Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("CompanionUsers");
-                });
-
-            modelBuilder.Entity("Entities.Entities.CompanionField.CompanionZone", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CityId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CompanionId")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("NeighborhoodId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("StateId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityId");
-
-                    b.HasIndex("CompanionId");
-
-                    b.HasIndex("NeighborhoodId");
-
-                    b.HasIndex("StateId");
-
-                    b.ToTable("CompanionZones");
                 });
 
             modelBuilder.Entity("Entities.Entities.CompanionReserve", b =>
@@ -6601,39 +6568,6 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entities.Entities.CompanionField.CompanionZone", b =>
-                {
-                    b.HasOne("Entities.Entities.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.Companion", "Companion")
-                        .WithMany("CompanionZones")
-                        .HasForeignKey("CompanionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Entities.Neighborhood", "Neighborhood")
-                        .WithMany()
-                        .HasForeignKey("NeighborhoodId");
-
-                    b.HasOne("Entities.Entities.State", "State")
-                        .WithMany()
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("City");
-
-                    b.Navigation("Companion");
-
-                    b.Navigation("Neighborhood");
-
-                    b.Navigation("State");
-                });
-
             modelBuilder.Entity("Entities.Entities.CompanionReserve", b =>
                 {
                     b.HasOne("Entities.Entities.Address", "Address")
@@ -8614,8 +8548,6 @@ namespace Persistence.Migrations
                     b.Navigation("CompanionTypes");
 
                     b.Navigation("CompanionUsers");
-
-                    b.Navigation("CompanionZones");
 
                     b.Navigation("Pansions");
                 });

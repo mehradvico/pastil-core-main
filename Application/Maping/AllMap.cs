@@ -40,6 +40,7 @@ using Application.Services.CompanionSrvs.CompanionReserveSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionTypeSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionUserSrv.Dto;
+using Application.Services.CompanionSrvs.CompanionZoneSrv.Dto;
 using Application.Services.Content.BannerSrv.Dto;
 using Application.Services.Content.CargoSrv.Dto;
 using Application.Services.Content.ContactUsGroupSrv.Dto;
@@ -317,7 +318,9 @@ namespace Application.Maping
             CreateMap<CompanionPetDto, CompanionPet>().ForMember(x => x.Pet, y => y.Ignore()).ForMember(x => x.Companion, y => y.Ignore());
             CreateMap<CompanionType, CompanionTypeVDto>();
             CreateMap<CompanionType, CompanionTypeDto>();
-            CreateMap<CompanionTypeDto, CompanionType>().ForMember(x => x.Type, y => y.Ignore()).ForMember(x => x.Companion, y => y.Ignore()); ;
+            CreateMap<CompanionTypeDto, CompanionType>().ForMember(x => x.Type, y => y.Ignore()).ForMember(x => x.Companion, y => y.Ignore());
+            CreateMap<CompanionZone, CompanionZoneDto>().ReverseMap();
+            CreateMap<CompanionZone, CompanionZoneVDto>();
             //Companion End ----------------------------------------------
 
 

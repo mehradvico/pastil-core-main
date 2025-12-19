@@ -86,6 +86,8 @@ using Application.Services.CompanionSrvs.CompanionTypeSrv;
 using Application.Services.CompanionSrvs.CompanionTypeSrv.Iface;
 using Application.Services.CompanionSrvs.CompanionUserSrv;
 using Application.Services.CompanionSrvs.CompanionUserSrv.Iface;
+using Application.Services.CompanionSrvs.CompanionZoneSrv;
+using Application.Services.CompanionSrvs.CompanionZoneSrv.Iface;
 using Application.Services.Content.AddressSrv;
 using Application.Services.Content.BannerSrv;
 using Application.Services.Content.BannerSrv.Iface;
@@ -478,6 +480,7 @@ public static class ConfigureServices
         services.AddScoped<IPansionCommentService, PansionCommentService>();
         services.AddScoped<IPansionPictureService, PansionPictureService>();
         services.AddScoped<IPansionReserveService, PansionReserveService>();
+        services.AddScoped<ICompanionZoneService, CompanionZoneService>();
 
 
         services.AddCors(option => option.AddPolicy("AllowAnyOrigin", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));

@@ -6,6 +6,7 @@ using Application.Services.CompanionSrvs.CompanionPetSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionTypeSrv.Dto;
 using Application.Services.Dto;
 using Application.Services.Filing.PictureSrv.Dto;
+using Entities.Entities.CompanionField;
 using System;
 using System.Collections.Generic;
 
@@ -46,5 +47,6 @@ namespace Application.Services.CompanionSrvs.CompanionSrv.Dto
         public PictureVDto Icon { get; set; }
         public List<CompanionPetVDto> CompanionPets { get; set; }
         public List<CompanionTypeVDto> CompanionTypes { get; set; }
+        public List<CompanionZone> CompanionZones { get; set; }
     }
 }
