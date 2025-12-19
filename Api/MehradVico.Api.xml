@@ -5414,13 +5414,13 @@
             <returns>
             </returns>
         </member>
-        <member name="T:Api.Areas.Pansion.Controllers.PansionReserveChangeStateController">
+        <member name="T:Api.Areas.Pansion.Controllers.PansionReserveChangeStatusController">
             <summary>
             مدیریت تغییر وضعیت رزرو پانسیون
             </summary>
             
         </member>
-        <member name="M:Api.Areas.Pansion.Controllers.PansionReserveChangeStateController.Put(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveStatusDto)">
+        <member name="M:Api.Areas.Pansion.Controllers.PansionReserveChangeStatusController.Put(Application.Services.PansionSrvs.PansionReserveSrv.Dto.PansionReserveStatusDto)">
             <summary>
              ویرایش آیتم 
             </summary>

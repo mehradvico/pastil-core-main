@@ -14,10 +14,10 @@ namespace Api.Areas.Pansion.Controllers
     [Route("api/[area]/[controller]")]
     [ApiController]
     [Authorize]
-    public class PansionReserveChangeStateController : ControllerBase
+    public class PansionReserveChangeStatusController : ControllerBase
     {
         private readonly IPansionReserveService _PansionReserveService;
-        public PansionReserveChangeStateController(IPansionReserveService PansionReserveService)
+        public PansionReserveChangeStatusController(IPansionReserveService PansionReserveService)
         {
             this._PansionReserveService = PansionReserveService;
         }
