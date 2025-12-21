@@ -43,11 +43,9 @@ namespace Application.Services.PansionSrvs.PansionReserveSrv.Dto
         public double CompanionShare { get; set; }
         public double SiteShare { get; set; }
 
-        public PansionVDto Pansion { get; set; }
+        public PansionMinVDto Pansion { get; set; }
         public UserPetVDto UserPet { get; set; }
         public CodeVDto Status { get; set; }
-        public RebateVDto Rebate { get; set; }
-        public WalletVDto Wallet { get; set; }
-        public UserVDto Booker { get; set; }
+        public UserMinVDto Booker { get; set; }
     }
 }

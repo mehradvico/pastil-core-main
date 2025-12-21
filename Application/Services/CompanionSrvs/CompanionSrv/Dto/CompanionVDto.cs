@@ -4,8 +4,10 @@ using Application.Services.CommonSrv.CitySrv.Dto;
 using Application.Services.CommonSrv.NeighborhoodSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionPetSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionTypeSrv.Dto;
+using Application.Services.CompanionSrvs.CompanionZoneSrv.Dto;
 using Application.Services.Dto;
 using Application.Services.Filing.PictureSrv.Dto;
+using Application.Services.PansionSrvs.PansionSrv.Dto;
 using Entities.Entities.CompanionField;
 using System;
 using System.Collections.Generic;
@@ -37,6 +39,7 @@ namespace Application.Services.CompanionSrvs.CompanionSrv.Dto
         public bool IsGold { get; set; }
         public int SharePercent { get; set; }
         public string SearchKey { get; set; }
+        public bool HasPansion { get; set; }
 
         public UserMinVDto Owner { get; set; }
         public CityVDto City { get; set; }
@@ -47,6 +50,7 @@ namespace Application.Services.CompanionSrvs.CompanionSrv.Dto
         public PictureVDto Icon { get; set; }
         public List<CompanionPetVDto> CompanionPets { get; set; }
         public List<CompanionTypeVDto> CompanionTypes { get; set; }
-        public List<CompanionZone> CompanionZones { get; set; }
+        public List<CompanionZoneVDto> CompanionZones { get; set; }
+        public List<PansionVDto> Pansions { get; set; }
     }
 }

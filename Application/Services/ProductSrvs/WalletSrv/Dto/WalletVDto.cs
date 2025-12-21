@@ -4,6 +4,7 @@ using Application.Services.CompanionSrvs.CompanionInsurancePackageSaleSrv.Dto;
 using Application.Services.Content.CargoSrv.Dto;
 using Application.Services.Dto;
 using Application.Services.Order.ProductOrderSrv.Dto;
+using Application.Services.PansionSrvs.PansionReserveSrv.Dto;
 using Application.Services.TripSrv.TripSrv.Dto;
 using Entities.Entities;
 using Entities.Entities.CompanionField;
@@ -30,6 +31,7 @@ namespace Application.Services.ProductSrvs.WalletSrv.Dto
         public PaymentVDto Payment { get; set; }
         public ProductOrderVDto ProductOrder { get; set; }
         public CompanionReserveVDto CompanionReserve { get; set; }
+        public PansionReserveVDto PansionReserveVDto { get; set; }
         public TripVDto Trip { get; set; }
         public CargoVDto Cargo { get; set; }
         public CompanionInsurancePackageSaleVDto CompanionInsurancePackageSale { get; set; }

@@ -1,13 +1,5 @@
 ﻿using Application.Common.Dto.Field;
-using Application.Services.CommonSrv.CitySrv.Dto;
-using Application.Services.CommonSrv.StateSrv.Dto;
 using Application.Services.CompanionSrvs.CompanionSrv.Dto;
-using Application.Services.Filing.PictureSrv.Dto;
-using Application.Services.PansionSrvs.PansionCommentSrv.Dto;
-using Application.Services.PansionSrvs.PansionPetSrv.Dto;
-using Application.Services.PansionSrvs.PansionPictureSrv.Dto;
-using Entities.Entities;
-using Entities.Entities.PansionField;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services.PansionSrvs.PansionSrv.Dto
 {
-    public class PansionVDto : Name_FieldDto
+    public class PansionMinVDto : Name_FieldDto
     {
         public bool IsSchool { get; set; }
         public long CompanionId { get; set; }
@@ -35,13 +27,5 @@ namespace Application.Services.PansionSrvs.PansionSrv.Dto
         public string Regulations { get; set; }
         public string OpenHour { get; set; }
         public string CloseHour { get; set; }
-
-        public CompanionMinVDto Companion { get; set; }
-        public StateVDto State { get; set; }
-        public CityVDto City { get; set; }
-        public PictureVDto Picture { get; set; }
-        public List<PansionPetVDto> PansionPets { get; set; }
-        public List<PansionCommentVDto> PansionComments { get; set; }
-        public List<PansionPictureVDto> PansionPictures { get; set; }
     }
 }

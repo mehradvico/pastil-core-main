@@ -240,7 +240,8 @@ namespace Application.Maping
                 .ForMember(dest => dest.Picture, opt => opt.MapFrom(src => src.Picture))
                 .ForMember(dest => dest.Icon, opt => opt.MapFrom(src => src.Icon))
                 .ForMember(dest => dest.IsGold, opt => opt.MapFrom(src => src.GoldAccountDate.HasValue && src.GoldAccountDate > DateTime.Now))
-                .ForMember(dest => dest.IsSilver, opt => opt.MapFrom(src => src.SilverAccountDate.HasValue && src.SilverAccountDate > DateTime.Now));
+                .ForMember(dest => dest.IsSilver, opt => opt.MapFrom(src => src.SilverAccountDate.HasValue && src.SilverAccountDate > DateTime.Now))
+                .ForMember(dest => dest.HasPansion, opt => opt.MapFrom(src => src.Pansions != null && src.Pansions.Any()));
             CreateMap<Companion, CompanionMinVDto>()
                 .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner))
                 .ForMember(dest => dest.IsGold, opt => opt.MapFrom(src => src.GoldAccountDate.HasValue && src.GoldAccountDate > DateTime.Now))
@@ -462,6 +463,7 @@ namespace Application.Maping
             CreateMap<Pansion, PansionApproveDto>().ReverseMap();
             CreateMap<Pansion, PansionDto>().ReverseMap();
             CreateMap<Pansion, PansionVDto>();
+            CreateMap<Pansion, PansionMinVDto>();
             CreateMap<PansionComment, PansionCommentDto>().ReverseMap();
             CreateMap<PansionComment, PansionCommentVDto>().ForMember(x => x.CreateDate, o => o.MapFrom(m => m.CreateDate.ToShortDate())).ForMember(x => x.PansionName, o => o.MapFrom(m => m.Pansion.Name));
             CreateMap<PansionPictureDto, PansionPicture>().ForMember(x => x.Id, opt => opt.Ignore()).ForMember(x => x.Picture, opt => opt.Ignore());

@@ -48,7 +48,7 @@ namespace Application.Services.CompanionSrvs.CompanionSrv
         {
             var item = await _context.Companions.Include(s => s.Picture).Include(s => s.CompanionPets).Include(s => s.Icon).Include(s => s.City).ThenInclude(s => s.State)
                 .Include(s => s.Neighborhood).Include(s => s.Owner).Include(s => s.CompanionTypes).Include(s => s.CompanionZones).ThenInclude(s => s.City).ThenInclude(s => s.State)
-                .Include(s => s.CompanionZones).ThenInclude(s => s.Neighborhood).FirstOrDefaultAsync(s => s.Id == id && !s.Deleted);
+                .Include(s => s.CompanionZones).ThenInclude(s => s.Neighborhood).Include(s => s.Pansions).FirstOrDefaultAsync(s => s.Id == id && !s.Deleted);
             if (item != null)
             {
                 return new BaseResultDto<CompanionVDto>(true, mapper.Map<CompanionVDto>(item));
@@ -60,7 +60,7 @@ namespace Application.Services.CompanionSrvs.CompanionSrv
         {
             var item = await _context.Companions.Include(s => s.Picture).Include(s => s.CompanionPets).Include(s => s.Icon).Include(s => s.City).ThenInclude(s => s.State)
                 .Include(s => s.Neighborhood).Include(s => s.Owner).Include(s => s.CompanionTypes).Include(s => s.CompanionZones).ThenInclude(s => s.City).ThenInclude(s => s.State)
-                .Include(s => s.CompanionZones).ThenInclude(s => s.Neighborhood).FirstOrDefaultAsync(s => s.Id == id && !s.Deleted);
+                .Include(s => s.CompanionZones).ThenInclude(s => s.Neighborhood).Include(s => s.Pansions).FirstOrDefaultAsync(s => s.Id == id && !s.Deleted);
             if (item != null)
             {
                 return new BaseResultDto<CompanionDto>(true, mapper.Map<CompanionDto>(item));

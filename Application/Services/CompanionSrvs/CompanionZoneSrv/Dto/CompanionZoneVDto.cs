@@ -19,7 +19,6 @@ namespace Application.Services.CompanionSrvs.CompanionZoneSrv.Dto
         public long CityId { get; set; }
         public long? NeighborhoodId { get; set; }
 
-        public CompanionVDto Companion { get; set; }
         public StateVDto State { get; set; }
         public CityVDto City { get; set; }
         public NeighborhoodVDto Neighborhood { get; set; }
