@@ -23,6 +23,7 @@ namespace Entities.Entities.PansionField
         public string CancelDetail { get; set; }
         public string StartTime { get; set; } // School
         public string EndTime { get; set; }
+        public DateTime? SchoolCreateDate { get; set; }
         public DateTime? FromDate { get; set; } // Pansion
         public DateTime? ToDate { get; set; }
         public DateTime CreateDate { get; set; }
@@ -31,7 +32,8 @@ namespace Entities.Entities.PansionField
         public long? RebateId { get; set; }
         public double RebatePrice { get; set; }
         public long StatusId { get; set; }
-
+        public int HourCount { get; set; }
+        public int DayCount { get; set; }
 
         public double CompanionShare { get; set; }
         public double SiteShare { get; set; }

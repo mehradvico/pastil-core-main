@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services.PansionSrvs.PansionPictureSrv.Dto
 {
-    public class PansionPictureSearchDto : BaseSearchDto<PansionPicture, PansionPictureDto>, IPansionPictureSearchFields
+    public class PansionPictureSearchDto : BaseSearchDto<PansionPicture, PansionPictureVDto>, IPansionPictureSearchFields
     {
         public PansionPictureSearchDto(PansionPictureInputDto dto, IQueryable<PansionPicture> list, IMapper mapper) : base(dto, list, mapper)
         {

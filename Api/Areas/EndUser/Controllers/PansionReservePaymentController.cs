@@ -37,7 +37,7 @@ namespace Api.Areas.EndUser.Controllers
         {
             payment.UserId = _currentUserHelper.CurrentUser.UserId;
             payment.User = new Application.Services.Dto.UserMinVDto() { Email = _currentUserHelper.CurrentUser.Email, Mobile = _currentUserHelper.CurrentUser.Mobile, Id = _currentUserHelper.CurrentUser.UserId };
-            var dto = await _paymentService.InsertReservePaymentAsyncDto(payment);
+            var dto = await _paymentService.InsertPansionReservePaymentAsyncDto(payment);
             return Ok(dto);
         }
     }

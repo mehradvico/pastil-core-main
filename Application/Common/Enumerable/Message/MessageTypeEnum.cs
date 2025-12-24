@@ -47,5 +47,6 @@
         PansionReserveForUser,
         PansionReserveForPansion,
         PansionReserveForAdmin,
+        PansionReserveCancelForAdmin
     }
 }

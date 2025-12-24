@@ -28,7 +28,7 @@ namespace Application.Services.PansionSrvs.PansionPictureSrv
 
         public async Task<BaseResultDto<PansionPictureVDto>> FindAsyncVDto(long id)
         {
-            var item = await _context.PansionPictures.FirstOrDefaultAsync(s => s.Id == id);
+            var item = await _context.PansionPictures.Include(s => s.Picture).FirstOrDefaultAsync(s => s.Id == id);
             if (item != null)
                 return new BaseResultDto<PansionPictureVDto>(true, mapper.Map<PansionPictureVDto>(item));
             return new BaseResultDto<PansionPictureVDto>(false, mapper.Map<PansionPictureVDto>(item));

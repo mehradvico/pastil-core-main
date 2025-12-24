@@ -119,12 +119,12 @@ namespace Application.Services.PansionSrvs.PansionReserveSrv
                 else
                 {
                     var item = mapper.Map<PansionReserve>(dto);
-                    item.IsCancel = false;                    
-                    bool existed = await _context.PansionReserves.AnyAsync(s => s.PansionId == dto.PansionId && s.BookerId == dto.BookerId && s.UserPetId == dto.UserPetId && s.IsReserved && !s.IsCancel && ((s.StartTime == dto.StartTime && s.EndTime == dto.EndTime) || (s.FromDate == dto.FromDate && s.EndTime == dto.EndTime)));
-                    if (existed)
-                    {
-                        return new BaseResultDto<PansionReserveDto>(false, Resource.Notification.HaveBeenReserved, dto);
-                    }
+                    item.IsCancel = false;
+                    //bool existed = await _context.PansionReserves.AnyAsync(s => s.PansionId == dto.PansionId && s.BookerId == dto.BookerId && s.UserPetId == dto.UserPetId && s.IsReserved && !s.IsCancel && ((s.StartTime == dto.StartTime && s.EndTime == dto.EndTime) || (s.FromDate == dto.FromDate && s.EndTime == dto.EndTime)));
+                    //if (existed)
+                    //{
+                    //    return new BaseResultDto<PansionReserveDto>(false, Resource.Notification.HaveBeenReserved, dto);
+                    //}
                     item.CreateDate = DateTime.Now;
                     if (_currentUser.CurrentUser.RoleEnum == RoleEnum.Admin.ToString())
                     {
@@ -134,55 +134,80 @@ namespace Application.Services.PansionSrvs.PansionReserveSrv
                     {
                         item.IsReserved = false;
                     }
-                    var mainPrice = await _context.Pansions.FirstOrDefaultAsync(s => s.Id == dto.PansionId);
+                    var pansion = await _context.Pansions.FirstOrDefaultAsync(s => s.Id == dto.PansionId);
+                    var hasSchoolInputs = !string.IsNullOrWhiteSpace(dto.StartTime) && !string.IsNullOrWhiteSpace(dto.EndTime) && dto.SchoolCreateDate.HasValue;
+                    var hasPansionInputs = dto.FromDate.HasValue && dto.ToDate.HasValue;
 
-                    item.PaymentPrice = mainPrice.Price;
-                    
-                    var pansionType = await _context.Pansions.FirstOrDefaultAsync(s => s.Id == dto.PansionId);
-                    if (pansionType.IsSchool)
+                    if (!hasSchoolInputs && !hasPansionInputs)
                     {
-                        if (!dto.FromDate.HasValue)
-                        {
-                            return new BaseResultDto<PansionReserveDto>(false, Resource.Notification.PleaseEnterFromDate, dto);
-                        }
-                        if (string.IsNullOrEmpty(dto.StartTime) || string.IsNullOrEmpty(dto.EndTime))
-                        {
-                            return new BaseResultDto<PansionReserveDto>(false, Resource.Notification.PleaseEnterTimeRange, dto);
-                        }
+                        return new BaseResultDto<PansionReserveDto>(false, Resource.Notification.PleaseEnterTimeRange, dto);
+                    }
+
+                    if (hasSchoolInputs)
+                    {
+                        item.FromDate = null;
+                        item.ToDate = null;
+
                         if (!TimeSpan.TryParseExact(dto.StartTime, "hh\\:mm", CultureInfo.InvariantCulture, out var startTime) ||
-!TimeSpan.TryParseExact(dto.EndTime, "hh\\:mm", CultureInfo.InvariantCulture, out var endTime))
+                            !TimeSpan.TryParseExact(dto.EndTime, "hh\\:mm", CultureInfo.InvariantCulture, out var endTime))
                         {
                             return new BaseResultDto<PansionReserveDto>(false, Resource.Notification.InvalidTimeFormat, dto);
-                        }
-                        if (startTime.TotalHours < 0 || startTime.TotalHours > 23 || endTime.TotalHours < 0 || endTime.TotalHours > 23)
-                        {
-                            return new BaseResultDto<PansionReserveDto>(false, Resource.Notification.TheTimeRangeMustBeBetween0And23, dto);
                         }
 
                         if (startTime >= endTime)
                         {
                             return new BaseResultDto<PansionReserveDto>(false, Resource.Notification.ToTimeMustBeBiggerThanFromTime, dto);
                         }
+
+                        var totalHours = (endTime - startTime).TotalHours;
+
+                        item.HourCount = (int)Math.Ceiling(totalHours);
+                        item.DayCount = 0;
+
+                        item.Price = pansion.SchoolPrice * item.HourCount;
+                        item.PaymentPrice = item.Price;
                     }
-                    if (!pansionType.IsSchool)
+
+                    if (hasPansionInputs)
                     {
-                        if ((dto.FromDate == null) || (dto.ToDate == null))
+                        item.StartTime = null;
+                        item.EndTime = null;
+                        item.SchoolCreateDate = null;
+
+                        var from = dto.FromDate.Value.Date;
+                        var to = dto.ToDate.Value.Date;
+
+                        if (to < from)
                         {
                             return new BaseResultDto<PansionReserveDto>(false, Resource.Notification.PleaseEnterTimeRange, dto);
                         }
+
+                        item.DayCount = (to - from).Days + 1;
+                        item.HourCount = 0;
+
+                        item.Price = pansion.PansionPrice * item.DayCount;
+                        item.PaymentPrice = item.Price;
                     }
+
                     var status = await _codeService.GetIdByLabelAsync(PansionReserveStatusEnum.PansionReserveState_Registered.ToString());
                     item.StatusId = status;
-
                     await _context.PansionReserves.AddAsync(item);
                     await _context.SaveChangesAsync();
 
                     var booker = _context.Users.FirstOrDefault(u => u.Id == item.BookerId);
                     var Pansion = _context.Pansions.Include(s => s.Companion).ThenInclude(s => s.Owner).FirstOrDefault(a => a.Id == item.PansionId);
                     var adminMobile = _adminSettingHelper.BaseAdminSetting.AdminMobiles;
-
-                    await _messageSender.SendMessageAsync(messageType: MessageTypeEnum.PansionReserveForUser, mobileReceptor: booker.Mobile, emailReceptor: null, token1: Pansion.Name, token2: item.FromDate.ToShortDate().ToString());
-                    await _messageSender.SendMessageAsync(messageType: MessageTypeEnum.PansionReserveForPansion, mobileReceptor: Pansion.Companion.Owner.Mobile, emailReceptor: null, token1: Pansion.Name, token2: booker.FirstName, token3: item.FromDate.ToShortDate().ToString());
+                    string dateOnly = null;
+                    if (hasSchoolInputs)
+                    {
+                        dateOnly = item.SchoolCreateDate?.ToString("yyyy/MM/dd");
+                    }
+                    else if (hasPansionInputs)
+                    {
+                        dateOnly = item.FromDate?.ToString("yyyy/MM/dd");
+                    }
+                    await _messageSender.SendMessageAsync(messageType: MessageTypeEnum.PansionReserveForUser, mobileReceptor: booker.Mobile, emailReceptor: null, token1: Pansion.Name, token2: dateOnly);
+                    await _messageSender.SendMessageAsync(messageType: MessageTypeEnum.PansionReserveForPansion, mobileReceptor: Pansion.Companion.Owner.Mobile, emailReceptor: null, token1: Pansion.Name, token2: booker.FirstName, token3: dateOnly);
                     await _messageSender.SendMessageAsync(messageType: MessageTypeEnum.PansionReserveForAdmin, mobileReceptor: adminMobile, emailReceptor: null, token1: booker.Id.ToString(), token2: Pansion.Name);
                     return new BaseResultDto<PansionReserveDto>(true, mapper.Map<PansionReserveDto>(item));
                 }
@@ -258,6 +283,12 @@ namespace Application.Services.PansionSrvs.PansionReserveSrv
             }
             _context.PansionReserves.Update(model);
             await _context.SaveChangesAsync();
+
+            var adminMobile = _adminSettingHelper.BaseAdminSetting.AdminMobiles;
+            var booker = _context.Users.FirstOrDefault(u => u.Id == model.BookerId);
+
+            var Pansion = _context.Pansions.Include(s => s.Companion).ThenInclude(s => s.Owner).FirstOrDefault(a => a.Id == model.PansionId);
+            await _messageSender.SendMessageAsync(messageType: MessageTypeEnum.PansionReserveCancelForAdmin, mobileReceptor: adminMobile, emailReceptor: null, token1: booker.Id.ToString(), token2: Pansion.Name);
             await _notificationService.InsertNoticeAsync(model.Id, NoticeTypeEnum.NotifType_UserReserveCancell, NoticeUserTypeEnum.NoticeUserType_User);
             return new BaseResultDto<PansionReserveCancelDto>(true, mapper.Map<PansionReserveCancelDto>(model));
         }

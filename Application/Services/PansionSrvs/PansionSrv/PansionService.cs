@@ -51,7 +51,8 @@ namespace Application.Services.PansionSrvs.PansionSrv
             }
             if (baseSearchDto.IsSchool.HasValue)
             {
-                model = model.Where(s => s.IsSchool == baseSearchDto.IsSchool.Value);
+                var isSchool = baseSearchDto.IsSchool.Value;
+                model = model.Where(s => s.IsSchool == null || s.IsSchool == isSchool);
             }
             if (baseSearchDto.CompanionId.HasValue)
             {
@@ -101,12 +102,20 @@ namespace Application.Services.PansionSrvs.PansionSrv
                     }
                 case Common.Enumerable.SortEnum.Expensive:
                     {
-                        model = model.OrderByDescending(s => s.Price);
+                        model = model.OrderByDescending(s =>
+                            s.IsSchool == true
+                                ? s.SchoolPrice
+                                : s.PansionPrice
+                        );
                         break;
                     }
                 case Common.Enumerable.SortEnum.Inexpensive:
                     {
-                        model = model.OrderBy(s => s.Price);
+                        model = model.OrderBy(s =>
+                            s.IsSchool == true
+                                ? s.SchoolPrice
+                                : s.PansionPrice
+                        );
                         break;
                     }
                 default:

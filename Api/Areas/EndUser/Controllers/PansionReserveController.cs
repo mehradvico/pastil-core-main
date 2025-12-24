@@ -19,11 +19,11 @@ namespace Api.Areas.EndUser.Controllers
     public class PansionReserveController : ControllerBase
     {
         private readonly IPansionReserveService _PansionReserveService;
-        private readonly CurrentUserDto _currentUserHelper;
+        private readonly ICurrentUserHelper _currentUserHelper;
         public PansionReserveController(IPansionReserveService PansionReserveService, ICurrentUserHelper currentUserHelper)
         {
             this._PansionReserveService = PansionReserveService;
-            this._currentUserHelper = currentUserHelper.CurrentUser;
+            this._currentUserHelper = currentUserHelper;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Api.Areas.EndUser.Controllers
         [ProducesResponseType(typeof(PansionReserveSearchDto), 200)]
         public IActionResult Get([FromQuery] PansionReserveInputDto dto)
         {
-            dto.BookerId = _currentUserHelper.UserId;
+            dto.BookerId = _currentUserHelper.CurrentUser.UserId;
             var search = _PansionReserveService.Search(dto);
             return Ok(search);
         }
@@ -63,7 +63,7 @@ namespace Api.Areas.EndUser.Controllers
         [ProducesResponseType(typeof(BaseResultDto<PansionReserveDto>), 200)]
         public async Task<IActionResult> Post(PansionReserveDto dto)
         {
-            dto.BookerId = _currentUserHelper.UserId;
+            dto.BookerId = _currentUserHelper.CurrentUser.UserId;
             var result = await _PansionReserveService.InsertAsyncDto(dto);
             return Ok(result);
         }

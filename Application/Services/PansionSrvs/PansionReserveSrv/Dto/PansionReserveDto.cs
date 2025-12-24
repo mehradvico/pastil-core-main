@@ -23,6 +23,7 @@ namespace Application.Services.PansionSrvs.PansionReserveSrv.Dto
         public string CancelDetail { get; set; }
         public string StartTime { get; set; } // School
         public string EndTime { get; set; }
+        public DateTime? SchoolCreateDate { get; set; }
         public DateTime? FromDate { get; set; } // Pansion
         public DateTime? ToDate { get; set; }
         public DateTime CreateDate { get; set; }

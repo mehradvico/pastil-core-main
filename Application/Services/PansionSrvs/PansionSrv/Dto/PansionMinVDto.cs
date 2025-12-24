@@ -10,7 +10,7 @@ namespace Application.Services.PansionSrvs.PansionSrv.Dto
 {
     public class PansionMinVDto : Name_FieldDto
     {
-        public bool IsSchool { get; set; }
+        public bool? IsSchool { get; set; }
         public long CompanionId { get; set; }
         public bool Active { get; set; }
         public bool Approve { get; set; }
@@ -23,7 +23,8 @@ namespace Application.Services.PansionSrvs.PansionSrv.Dto
         public int RateCount { get; set; }
         public long? PictureId { get; set; }
         public bool Suggested { get; set; }
-        public double Price { get; set; }
+        public double PansionPrice { get; set; }
+        public double SchoolPrice { get; set; }
         public string Regulations { get; set; }
         public string OpenHour { get; set; }
         public string CloseHour { get; set; }
