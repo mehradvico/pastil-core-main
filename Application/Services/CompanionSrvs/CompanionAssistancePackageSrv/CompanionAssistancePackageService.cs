@@ -67,7 +67,10 @@ namespace Application.Services.CompanionSrv.CompanionAssistancePackageSrv
             {
                 model = model.Where(s => s.CompanionAssistanceId == baseSearchDto.CompanionAssistanceId.Value);
             }
-
+            if (baseSearchDto.Available.HasValue)
+            {
+                model = model.Where(s => s.Active == baseSearchDto.Available.Value);
+            }
             switch (baseSearchDto.SortBy)
             {
                 case Common.Enumerable.SortEnum.New:
@@ -128,11 +131,6 @@ namespace Application.Services.CompanionSrv.CompanionAssistancePackageSrv
                 else
                 {
                     var item = mapper.Map<CompanionAssistancePackage>(dto);
-                    bool exists = _context.CompanionAssistancePackages.Any(a => a.CompanionAssistanceId == dto.CompanionAssistanceId && a.Price == dto.Price && !a.Deleted);
-                    if (exists)
-                    {
-                        return new BaseResultDto<CompanionAssistancePackageDto>(false, Resource.Notification.DuplicateValue, dto);
-                    }
                     _context.CompanionAssistancePackages.Attach(item);
                     _context.Entry(item).State = EntityState.Modified;
                     _context.SaveChanges();

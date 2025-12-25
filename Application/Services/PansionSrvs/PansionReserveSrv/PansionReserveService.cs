@@ -53,7 +53,7 @@ namespace Application.Services.PansionSrvs.PansionReserveSrv
         }
         public async Task<BaseResultDto<PansionReserveVDto>> FindAsyncVDto(long id)
         {
-            var item = await _context.PansionReserves.Include(s => s.Status).Include(s => s.Booker).Include(s => s.UserPet).FirstOrDefaultAsync(s => s.Id == id);
+            var item = await _context.PansionReserves.Include(s => s.Status).Include(s => s.Booker).Include(s => s.UserPet).Include(s => s.Rebate).FirstOrDefaultAsync(s => s.Id == id);
             if (item != null)
             {
                 return new BaseResultDto<PansionReserveVDto>(true, mapper.Map<PansionReserveVDto>(item));
@@ -207,13 +207,13 @@ namespace Application.Services.PansionSrvs.PansionReserveSrv
                         dateOnly = item.FromDate?.ToString("yyyy/MM/dd");
                     }
                     await _messageSender.SendMessageAsync(messageType: MessageTypeEnum.PansionReserveForUser, mobileReceptor: booker.Mobile, emailReceptor: null, token1: Pansion.Name, token2: dateOnly);
-                    await _messageSender.SendMessageAsync(messageType: MessageTypeEnum.PansionReserveForPansion, mobileReceptor: Pansion.Companion.Owner.Mobile, emailReceptor: null, token1: Pansion.Name, token2: booker.FirstName, token3: dateOnly);
+                    await _messageSender.SendMessageAsync(messageType: MessageTypeEnum.PansionReserveForPansion, mobileReceptor: Pansion.Companion.Owner.Mobile, emailReceptor: null, token1: Pansion.Name, token2: booker.LastName, token3: dateOnly);
                     await _messageSender.SendMessageAsync(messageType: MessageTypeEnum.PansionReserveForAdmin, mobileReceptor: adminMobile, emailReceptor: null, token1: booker.Id.ToString(), token2: Pansion.Name);
                     return new BaseResultDto<PansionReserveDto>(true, mapper.Map<PansionReserveDto>(item));
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 return new BaseResultDto<PansionReserveDto>(isSuccess: false, val: ex.Message, data: dto);
             }

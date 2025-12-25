@@ -58,7 +58,11 @@ namespace Application.Services.CompanionSrv.CompanionReserveSrv
 
         public async Task<BaseResultDto<CompanionReserveAdminVDto>> FindAsyncAdminVDto(long id)
         {
-            var item = await _context.CompanionReserves.Include(s => s.State).Include(s => s.CompanionAssistanceUser).ThenInclude(s => s.CompanionAssistance).ThenInclude(s => s.Companion).Include(s => s.CompanionAssistanceUser).ThenInclude(s => s.User).Include(s => s.Booker).Include(s => s.UserPets).Include(s => s.CompanionAssistance).ThenInclude(s => s.Assistance).Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion).Include(s => s.CompanionAssistancePackages).Include(s => s.CompanionAssistanceTime).ThenInclude(s => s.WeekDay).Include(s => s.CompanionAssistanceType).Include(s => s.OperatorState).FirstOrDefaultAsync(s => s.Id == id);
+            var item = await _context.CompanionReserves.Include(s => s.State).Include(s => s.CompanionAssistanceUser).ThenInclude(s => s.CompanionAssistance).ThenInclude(s => s.Companion)
+                .Include(s => s.CompanionAssistanceUser).ThenInclude(s => s.User).Include(s => s.Booker).Include(s => s.UserPets)
+                .Include(s => s.CompanionAssistance).ThenInclude(s => s.Assistance).Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion)
+                .Include(s => s.CompanionAssistancePackages).Include(s => s.CompanionAssistanceTime).ThenInclude(s => s.WeekDay).Include(s => s.CompanionAssistanceType)
+                .Include(s => s.OperatorState).Include(s => s.Rebate).FirstOrDefaultAsync(s => s.Id == id);
             if (item != null)
             {
                 return new BaseResultDto<CompanionReserveAdminVDto>(true, mapper.Map<CompanionReserveAdminVDto>(item));
@@ -68,7 +72,11 @@ namespace Application.Services.CompanionSrv.CompanionReserveSrv
 
         public async Task<BaseResultDto<CompanionReserveVDto>> FindAsyncVDto(long id)
         {
-            var item = await _context.CompanionReserves.Include(s => s.State).Include(s => s.CompanionAssistanceUser).ThenInclude(s => s.CompanionAssistance).ThenInclude(s => s.Companion).Include(s => s.CompanionAssistanceUser).ThenInclude(s => s.User).Include(s => s.Booker).Include(s => s.UserPets).Include(s => s.CompanionAssistance).ThenInclude(s => s.Assistance).Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion).Include(s => s.CompanionAssistancePackages).Include(s => s.CompanionAssistanceTime).ThenInclude(s => s.WeekDay).Include(s => s.CompanionAssistanceType).Include(s => s.OperatorState).FirstOrDefaultAsync(s => s.Id == id);
+            var item = await _context.CompanionReserves.Include(s => s.State).Include(s => s.CompanionAssistanceUser).ThenInclude(s => s.CompanionAssistance).ThenInclude(s => s.Companion)
+                .Include(s => s.CompanionAssistanceUser).ThenInclude(s => s.User).Include(s => s.Booker).Include(s => s.UserPets)
+                .Include(s => s.CompanionAssistance).ThenInclude(s => s.Assistance).Include(s => s.CompanionAssistance).ThenInclude(s => s.Companion)
+                .Include(s => s.CompanionAssistancePackages).Include(s => s.CompanionAssistanceTime).ThenInclude(s => s.WeekDay).Include(s => s.CompanionAssistanceType)
+                .Include(s => s.OperatorState).Include(s => s.Rebate).FirstOrDefaultAsync(s => s.Id == id);
             if (item != null)
             {
                 return new BaseResultDto<CompanionReserveVDto>(true, mapper.Map<CompanionReserveVDto>(item));

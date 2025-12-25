@@ -49,5 +49,6 @@ namespace Application.Services.PansionSrvs.PansionReserveSrv.Dto
         public UserPetVDto UserPet { get; set; }
         public CodeVDto Status { get; set; }
         public UserMinVDto Booker { get; set; }
+        public RebateVDto Rebate { get; set; }
     }
 }

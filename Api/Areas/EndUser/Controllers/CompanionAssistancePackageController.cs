@@ -30,6 +30,7 @@ namespace Api.Areas.EndUser.Controllers
         [ProducesResponseType(typeof(CompanionAssistancePackageSearchDto), 200)]
         public IActionResult Get([FromQuery] CompanionAssistancePackageInputDto dto)
         {
+            dto.Available = true;
             var search = _companionAssistancePackageService.Search(dto);
             return Ok(search);
         }

@@ -6,6 +6,7 @@ using Application.Services.CompanionSrv.CompanionAssistanceTimeSrv.Dto;
 using Application.Services.CompanionSrv.CompanionAssistanceUserSrv.Dto;
 using Application.Services.Dto;
 using Application.Services.Order.AddressSrv.Dto;
+using Application.Services.Order.RebateSrv.Dto;
 using Application.Services.Setting.CodeSrv.Dto;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ namespace Application.Services.CompanionSrv.CompanionReserveSrv.Dto
         public CodeVDto OperatorState { get; set; }
         public CodeVDto CompanionAssistanceType { get; set; }
         public AddressVDto Address { get; set; }
-
+        public RebateVDto Rebate { get; set; }
         public List<UserPetVDto> UserPets { get; set; }
         public List<CompanionAssistancePackageVDto> CompanionAssistancePackages { get; set; }
     }
