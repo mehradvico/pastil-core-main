@@ -117,6 +117,10 @@ namespace Application.Services.Order.PaymentSrv
                 {
                     return new BaseResultDto<PaymentDto>(isSuccess: false, val: Resource.Notification.Unsuccess, null);
                 }
+                if (payment.IsSuccess != null)
+                {
+                    return new BaseResultDto<PaymentDto>(isSuccess: false, val: Resource.Notification.Unsuccess, null);
+                }
                 else
                 {
                     var callback = await _merchantService.CallbackAsync(payment, test);
@@ -124,7 +128,6 @@ namespace Application.Services.Order.PaymentSrv
                     {
                         if (payment.Type.Label == PaymentTypeEnum.PaymentType_ProductOrder.ToString())
                         {
-                            await _walletService.WalletPaymentCallback(payment);
                             if (payment.CallBackTypeLabel == PaymentCallbackTypeEnum.ProductOrder.ToString())
                             {
                                 var productPaymentCallback = await _productOrderService.ProductPaymentCallback(payment.CallBackTypeLabel, fromWallet: true);
@@ -137,7 +140,6 @@ namespace Application.Services.Order.PaymentSrv
                         }
                         else if (payment.Type.Label == PaymentTypeEnum.PaymentType_CompanionReserve.ToString())
                         {
-                            await _walletService.WalletPaymentCallback(payment);
                             if (payment.CallBackTypeLabel == PaymentCallbackTypeEnum.CompanionReserve.ToString())
                             {
                                 if (long.TryParse(payment.CallBackTypeLabel, out var reserveId))
@@ -152,7 +154,6 @@ namespace Application.Services.Order.PaymentSrv
                         }
                         else if (payment.Type.Label == PaymentTypeEnum.PaymentType_PansionReserve.ToString())
                         {
-                            await _walletService.WalletPaymentCallback(payment);
                             if (payment.CallBackTypeLabel == PaymentCallbackTypeEnum.PansionReserve.ToString())
                             {
                                 if (long.TryParse(payment.CallBackTypeLabel, out var reserveId))
@@ -167,7 +168,6 @@ namespace Application.Services.Order.PaymentSrv
                         }
                         else if (payment.Type.Label == PaymentTypeEnum.PaymentType_Trip.ToString())
                         {
-                            await _walletService.WalletPaymentCallback(payment);
                             if (payment.CallBackTypeLabel == PaymentCallbackTypeEnum.Trip.ToString())
                             {
                                 if (long.TryParse(payment.CallBackTypeLabel, out var tripId))
@@ -182,7 +182,6 @@ namespace Application.Services.Order.PaymentSrv
                         }
                         else if (payment.Type.Label == PaymentTypeEnum.PaymentType_Cargo.ToString())
                         {
-                            await _walletService.WalletPaymentCallback(payment);
                             if (payment.CallBackTypeLabel == PaymentCallbackTypeEnum.Cargo.ToString())
                             {
                                 if (long.TryParse(payment.CallBackTypeLabel, out var cargoId))
@@ -197,7 +196,6 @@ namespace Application.Services.Order.PaymentSrv
                         }
                         else if (payment.Type.Label == PaymentTypeEnum.PaymentType_Insurance.ToString())
                         {
-                            await _walletService.WalletPaymentCallback(payment);
                             if (payment.CallBackTypeLabel == PaymentCallbackTypeEnum.Insurance.ToString())
                             {
                                 if (long.TryParse(payment.CallBackTypeLabel, out var insurabceId))

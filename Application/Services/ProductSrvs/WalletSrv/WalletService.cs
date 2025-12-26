@@ -400,9 +400,9 @@ namespace Application.Services.ProductSrvs.WalletSrv
                 Name = Resource.Lang.OnlinePayment,
             };
             var result = await InsertAsyncDto(walletDto);
-            if (result.IsSuccess == true && string.IsNullOrEmpty(payment.CallBackTypeLabel))
+            if (result.IsSuccess == true)
             {
-                await _smsService.SendSmsAsync(smsType: Common.Enumerable.Message.MessageTypeEnum.IncreaseWallet, payment.User.Mobile, token1: payment.User.FirstName, token2: payment.Amount.ToString(), sendDate: DateTime.Now);
+                await _smsService.SendSmsAsync(smsType: Common.Enumerable.Message.MessageTypeEnum.IncreaseWallet, payment.User.Mobile, token1: payment.User.FirstName, token2: payment.Amount.ToString()/*, sendDate: DateTime.Now*/);
             }
             return result;
         }

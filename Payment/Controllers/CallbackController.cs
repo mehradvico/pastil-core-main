@@ -1,4 +1,5 @@
-﻿using Application.Common.Helpers.Iface;
+﻿using Application.Common.Helpers;
+using Application.Common.Helpers.Iface;
 using Application.Services.Order.PaymentSrv.Iface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +21,7 @@ namespace Payment.Controllers
         {
             var payment = await _paymentService.CallbackPayment(id, test);
 
-            TempData["ReturnToSiteUrl"] = _adminSettingHelper.BaseAdminSetting.ReturnToSiteUrl;
+            TempData["ReturnToSiteUrl"] = AppSettingsHelper.BaseUrl;
             TempData["ReturnToOrderUrl"] = _adminSettingHelper.BaseAdminSetting.ReturnToOrderUrl;
             return View(payment);
         }
