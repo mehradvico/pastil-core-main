@@ -1,7 +1,6 @@
 ﻿using Application.Common.Dto.Result;
 using Application.Common.Interface;
 using Application.Services.PansionSrvs.PansionCommentSrv.Dto;
-using Application.Services.PansionSrvs.PansionCommentSrv.Dto;
 using Entities.Entities;
 using Entities.Entities.PansionField;
 using System;

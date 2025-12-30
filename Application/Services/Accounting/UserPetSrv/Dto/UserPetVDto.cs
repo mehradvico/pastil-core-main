@@ -1,8 +1,10 @@
 ﻿using Application.Common.Dto.Field;
 using Application.Services.Accounting.PetSrv.Dto;
 using Application.Services.Accounting.UserPerRecordSrv.Dto;
+using Application.Services.Accounting.UserPetPictureSrv.Dto;
 using Application.Services.Dto;
 using Application.Services.Filing.PictureSrv.Dto;
+using Entities.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -26,5 +28,6 @@ namespace Application.Services.Accounting.UserPetSrv.Dto
         public PetVDto Pet { get; set; }
         public PictureVDto Picture { get; set; }
         public List<UserPetRecordMinVDto> UserPetRecords { get; set; }
+        public List<UserPetPictureVDto> UserPetPictures { get; set; }
     }
 }

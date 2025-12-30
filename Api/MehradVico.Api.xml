@@ -4389,6 +4389,37 @@
             </summary>
             <returns></returns> 
         </member>
+        <member name="T:Api.Areas.Admin.Controllers.UserPetPictureController">
+            <summary>
+            مدیریت تصویر پت ها
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.UserPetPictureController.Get(System.Int64)">
+            <summary>
+            اطلاعات آیتم
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.UserPetPictureController.Get(Application.Services.Accounting.UserPetPictureSrv.Dto.UserPetPictureInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.UserPetPictureController.UserPet(Application.Services.Accounting.UserPetPictureSrv.Dto.UserPetPictureDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.Admin.Controllers.UserPetPictureController.Delete(System.Int64)">
+            <summary>
+            حذف آیتم
+            </summary>
+            <returns></returns>
+            
+        </member>
         <member name="T:Api.Areas.Admin.Controllers.UserPetRecordController">
              <summary>
              مدیریت تاریخچه پت ها
@@ -6886,6 +6917,37 @@
              <summary>
              حذف آیتم
              </summary>
+            
+        </member>
+        <member name="T:Api.Areas.EndUser.Controllers.UserPetPictureController">
+            <summary>
+            مدیریت تصویر پت ها
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.UserPetPictureController.Get(System.Int64)">
+            <summary>
+            اطلاعات آیتم
+            </summary>
+            
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.UserPetPictureController.Get(Application.Services.Accounting.UserPetPictureSrv.Dto.UserPetPictureInputDto)">
+            <summary>
+            جستجو
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.UserPetPictureController.UserPet(Application.Services.Accounting.UserPetPictureSrv.Dto.UserPetPictureDto)">
+            <summary>
+            آیتم جدید
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Areas.EndUser.Controllers.UserPetPictureController.Delete(System.Int64)">
+            <summary>
+            حذف آیتم
+            </summary>
+            <returns></returns>
             
         </member>
         <member name="T:Api.Areas.EndUser.Controllers.UserPetRecordController">

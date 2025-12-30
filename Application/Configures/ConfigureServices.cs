@@ -22,6 +22,8 @@ using Application.Services.Accounting.TicketItemSrv.Iface;
 using Application.Services.Accounting.TicketSrv.Iface;
 using Application.Services.Accounting.UserPerRecordSrv;
 using Application.Services.Accounting.UserPerRecordSrv.Iface;
+using Application.Services.Accounting.UserPetPictureSrv;
+using Application.Services.Accounting.UserPetPictureSrv.Iface;
 using Application.Services.Accounting.UserPetSrv;
 using Application.Services.Accounting.UserPetSrv.Iface;
 using Application.Services.Accounting.UserProductSrv;
@@ -477,10 +479,11 @@ public static class ConfigureServices
         services.AddScoped<ICompanionAssistancePackagePictureService, CompanionAssistancePackagePictureService>();
         services.AddScoped<IPansionService, PansionService>();
         services.AddScoped<IPansionPetService, PansionPetService>();
-        services.AddScoped<IPansionCommentService, PansionCommentService>();
+        services.AddScoped<IPansionCommentService, PansionReserveCommentService>();
         services.AddScoped<IPansionPictureService, PansionPictureService>();
         services.AddScoped<IPansionReserveService, PansionReserveService>();
         services.AddScoped<ICompanionZoneService, CompanionZoneService>();
+        services.AddScoped<IUserPetPictureService, UserPetPictureService>();
 
 
         services.AddCors(option => option.AddPolicy("AllowAnyOrigin", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));

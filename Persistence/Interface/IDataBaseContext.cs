@@ -140,6 +140,7 @@ namespace Persistence.Interface
         public DbSet<PansionComment> PansionComments { get; set; }
         public DbSet<PansionPicture> PansionPictures { get; set; }
         public DbSet<CompanionZone> CompanionZones { get; set; }
+        public DbSet<UserPetPicture> UserPetPictures { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         EntityEntry Entry(object entity);

@@ -35,7 +35,7 @@ namespace Api.Areas.Admin.Controllers
         [ProducesResponseType(typeof(BaseResultDto<UserPetDto>), 200)]
         public async Task<IActionResult> Get(long id)
         {
-            var role = await UserPetService.FindAsyncDto(id);
+            var role = await UserPetService.FindAsyncVDto(id);
             return Ok(role);
         }
         /// <summary>

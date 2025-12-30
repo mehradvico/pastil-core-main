@@ -34,7 +34,7 @@ namespace Api.Controllers
         [ProducesResponseType(typeof(BaseResultDto<UserPetDto>), 200)]
         public async Task<IActionResult> Get(long id)
         {
-            var role = await _petService.FindAsyncDto(id);
+            var role = await _petService.FindAsyncVDto(id);
             return Ok(role);
         }
         /// <summary>

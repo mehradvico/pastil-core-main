@@ -4,8 +4,10 @@ using Application.Common.Helpers;
 using Application.Common.Service;
 using Application.Services.PansionSrvs.PansionCommentSrv.Dto;
 using Application.Services.PansionSrvs.PansionCommentSrv.Iface;
+using Application.Services.PansionSrvs.PansionReserveSrv.Iface;
 using Application.Services.Setting.CodeSrv.Iface;
 using AutoMapper;
+using Dapper;
 using Entities.Entities;
 using Entities.Entities.PansionField;
 using Microsoft.Data.SqlClient;
@@ -17,11 +19,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
 
 namespace Application.Services.PansionSrvs.PansionCommentSrv
 {
-    public class PansionCommentService : CommonSrv<PansionComment, PansionCommentDto>, IPansionCommentService
+    public class PansionReserveCommentService : CommonSrv<PansionComment, PansionCommentDto>, IPansionCommentService
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper mapper;
@@ -29,7 +30,7 @@ namespace Application.Services.PansionSrvs.PansionCommentSrv
         private readonly string connectionString;
 
 
-        public PansionCommentService(IDataBaseContext _context, IConfiguration config, IMapper mapper, ICodeService codeService) : base(_context, mapper)
+        public PansionReserveCommentService(IDataBaseContext _context, IConfiguration config, IMapper mapper, ICodeService codeService) : base(_context, mapper)
         {
             this.codeService = codeService;
             this._context = _context;
@@ -53,7 +54,16 @@ namespace Application.Services.PansionSrvs.PansionCommentSrv
                     {
                         return new BaseResultDto<PansionCommentDto>(false, val1: Resource.Notification.TheRangeEnteredIsNotCorrect, val2: nameof(dto.Rate), data: dto);
                     }
+
                     var item = mapper.Map<PansionComment>(dto);
+                    if (dto.UserId.HasValue)
+                    {
+                        item.IsReserved = await _context.PansionReserves.AnyAsync(r => r.BookerId == dto.UserId.Value && r.PansionId == dto.PansionId && !r.IsCancel && r.IsReserved);
+                    }
+                    else
+                    {
+                        item.IsReserved = false;
+                    }
                     var commentStatus = await codeService.GetByLabelAsync(CommentEnum.Comment_NotChecked.ToString());
                     if (commentStatus != null)
                     {

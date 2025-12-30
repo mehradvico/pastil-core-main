@@ -12,6 +12,7 @@ namespace Application.Services.PansionSrvs.PansionCommentSrv.Dto
     public class PansionCommentInputDto : BaseInputDto, IPansionCommentSearchFields
     {
         public long? PansionId { get; set; }
+        public bool? IsReserved { get; set; }
         public long? UserId { get; set; }
         public bool? AllStatus { get; set; }
 

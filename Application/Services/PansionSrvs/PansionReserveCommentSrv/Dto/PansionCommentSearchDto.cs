@@ -18,10 +18,12 @@ namespace Application.Services.PansionSrvs.PansionCommentSrv.Dto
         public PansionCommentSearchDto(PansionCommentInputDto dto, IQueryable<PansionComment> list, IMapper mapper) : base(dto, list, mapper)
         {
             this.PansionId = dto.PansionId;
+            this.IsReserved = dto.IsReserved;
             this.UserId = dto.UserId;
             this.AllStatus = dto.AllStatus;
         }
         public long? PansionId { get; set; }
+        public bool? IsReserved { get; set; }
         public long? UserId { get; set; }
         public bool? AllStatus { get; set; }
 

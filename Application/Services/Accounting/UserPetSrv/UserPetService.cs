@@ -21,18 +21,9 @@ namespace Application.Services.Accounting.UserPetSrv
             this.mapper = mapper;
         }
 
-
-        public override async Task<BaseResultDto<UserPetDto>> FindAsyncDto(long id)
-        {
-            var item = await _context.UserPets.Include(s => s.User).Include(s => s.Pet).Include(s => s.Picture).Where(s => s.Deleted == false).FirstOrDefaultAsync(s => s.Id == id && s.Active && s.Deleted == false);
-            if (item != null)
-                return new BaseResultDto<UserPetDto>(true, mapper.Map<UserPetDto>(item));
-            return new BaseResultDto<UserPetDto>(false, mapper.Map<UserPetDto>(item));
-        }
-
         public async Task<BaseResultDto<UserPetVDto>> FindAsyncVDto(long id)
         {
-            var item = await _context.UserPets.Include(s => s.User).Include(s => s.Pet).Include(s => s.Picture).Where(s => s.Deleted == false).FirstOrDefaultAsync(s => s.Id == id && s.Active && s.Deleted == false);
+            var item = await _context.UserPets.Include(s => s.User).Include(s => s.Pet).Include(s => s.Picture).Include(s => s.UserPetPictures).ThenInclude(s => s.Picture).Where(s => s.Deleted == false).FirstOrDefaultAsync(s => s.Id == id && s.Active && s.Deleted == false);
             if (item != null)
                 return new BaseResultDto<UserPetVDto>(true, mapper.Map<UserPetVDto>(item));
             return new BaseResultDto<UserPetVDto>(false, mapper.Map<UserPetVDto>(item));

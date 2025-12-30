@@ -148,6 +148,7 @@ namespace Persistence.Context
         public DbSet<PansionComment> PansionComments { get; set; }
         public DbSet<PansionPicture> PansionPictures { get; set; }
         public DbSet<CompanionZone> CompanionZones { get; set; }
+        public DbSet<UserPetPicture> UserPetPictures { get; set; }
 
         public IDbContextTransaction CurrentTransaction => base.Database.CurrentTransaction;
 

@@ -9,6 +9,7 @@ namespace Application.Services.PansionSrvs.PansionCommentSrv.Iface
     public interface IPansionCommentSearchFields
     {
         public long? PansionId { get; set; }
+        public bool? IsReserved { get; set; }
         public long? UserId { get; set; }
         public bool? AllStatus { get; set; }
     }

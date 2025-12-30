@@ -8,6 +8,7 @@ using Application.Services.Accounting.RolePermission.Dto;
 using Application.Services.Accounting.TicketItemSrv.Dto;
 using Application.Services.Accounting.TicketSrv.Dto;
 using Application.Services.Accounting.UserPerRecordSrv.Dto;
+using Application.Services.Accounting.UserPetPictureSrv.Dto;
 using Application.Services.Accounting.UserPetSrv.Dto;
 using Application.Services.Accounting.UserProductSrv.Dto;
 using Application.Services.Accounting.UserTokenSrv.Dto;
@@ -495,6 +496,8 @@ namespace Application.Maping
             CreateMap<UserPetRecord, UserPetRecordDto>();
             CreateMap<UserPetRecordDto, UserPetRecord>().ForMember(x => x.UserPet, y => y.Ignore()).ForMember(x => x.Operator, y => y.Ignore());
             CreateMap<UserPetRecord, UserPetRecordVDto>();
+            CreateMap<UserPetPicture, UserPetPictureDto>().ReverseMap();
+            CreateMap<UserPetPicture, UserPetPictureVDto>();
             //Pet End ----------------------------------------------
 
 
