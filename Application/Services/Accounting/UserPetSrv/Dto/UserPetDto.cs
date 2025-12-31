@@ -20,6 +20,7 @@ namespace Application.Services.Accounting.UserPetSrv.Dto
         public bool IsSterile { get; set; }
         public string SpecificDisease { get; set; }
         public string SpecificMedicene { get; set; }
+        public string AddressValue { get; set; }
         public bool Active { get; set; }
 
 
