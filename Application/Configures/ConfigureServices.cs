@@ -42,6 +42,10 @@ using Application.Services.CommonSrv.CountrySrv;
 using Application.Services.CommonSrv.CountrySrv.Iface;
 using Application.Services.CommonSrv.NeighborhoodSrv;
 using Application.Services.CommonSrv.NeighborhoodSrv.Iface;
+using Application.Services.CommonSrv.PushBroadcastSrv;
+using Application.Services.CommonSrv.PushBroadcastSrv.Iface;
+using Application.Services.CommonSrv.PushSubscriptionSrv;
+using Application.Services.CommonSrv.PushSubscriptionSrv.Iface;
 using Application.Services.CommonSrv.SearchSrv;
 using Application.Services.CommonSrv.SearchSrv.Iface;
 using Application.Services.CommonSrv.StateSrv;
@@ -260,9 +264,6 @@ using Application.Services.Setting.NoticeSrv;
 using Application.Services.Setting.NoticeSrv.Iface;
 using Application.Services.Setting.NotifyMessageSrv;
 using Application.Services.Setting.NotifyMessageSrv.Iface;
-using Application.Services.Setting.PushMessageSrv;
-using Application.Services.Setting.PushMessageSrv.Dto;
-using Application.Services.Setting.PushMessageSrv.Iface;
 using Application.Services.Setting.SettingSrv;
 using Application.Services.Setting.SmsSrv;
 using Application.Services.Setting.SmsSrv.Iface;
@@ -473,7 +474,6 @@ public static class ConfigureServices
         services.AddScoped<IUserPetRecordService, UserPetRecordService>();
         services.AddScoped<IDayToDateService, DayToDateService>();
         services.AddScoped<ICompanionReserveExcelService, CompanionReserveExcelService>();
-        services.AddScoped<IPushService, PushService>();
         services.AddScoped<INotifyMessageService, NotifyMessageService>();
         services.AddScoped<ICompanionReserveUserPetService, CompanionReserveUserPetService>();
         services.AddScoped<ICompanionAssistancePackagePictureService, CompanionAssistancePackagePictureService>();
@@ -484,6 +484,8 @@ public static class ConfigureServices
         services.AddScoped<IPansionReserveService, PansionReserveService>();
         services.AddScoped<ICompanionZoneService, CompanionZoneService>();
         services.AddScoped<IUserPetPictureService, UserPetPictureService>();
+        services.AddScoped<IPushSubscriptionService, PushSubscriptionService>();
+        services.AddScoped<IPushBroadcastService, PushBroadcastService>();
 
 
         services.AddCors(option => option.AddPolicy("AllowAnyOrigin", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));

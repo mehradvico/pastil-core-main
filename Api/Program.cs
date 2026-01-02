@@ -2,9 +2,7 @@
 using Api.Swagger;
 using Application.Configures;
 using Application.Services.Accounting.UserTokenSrv.Iface;
-using Application.Services.Setting.PushMessageSrv;
-using Application.Services.Setting.PushMessageSrv.Dto;
-using Application.Services.Setting.PushMessageSrv.Iface;
+using Application.Services.CommonSrv.PushSubscriptionSrv.Dto;
 using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -32,6 +30,8 @@ builder.Services.AddScoped<IRestSharpApi, RestSharpApi>();
 builder.Services.AddScoped<IBackgroundTask, HangFireSchedule>();
 builder.Services.AddScoped<IControllerActionDiscoveryService, ControllerActionDiscoveryService>();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.Configure<VapidKeysOption>(
+builder.Configuration.GetSection("VapidKeys"));
 builder.Services.AddSwaggerGen(c =>
 {
     c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MehradVico.Api.xml"), true);
@@ -64,8 +64,6 @@ builder.Services.AddSwaggerGen(c =>
     c.SchemaFilter<EnumSchemaFilter>();
     c.DocumentFilter<AlphabeticalTagsDocumentFilter>();
 });
-builder.Services.Configure<VapidSettings>(builder.Configuration.GetSection("Vapid"));
-
 builder.Services.AddAuthentication(Options =>
 {
     Options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;

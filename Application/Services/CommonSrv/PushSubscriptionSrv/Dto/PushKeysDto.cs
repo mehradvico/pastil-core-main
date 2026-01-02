@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Services.Setting.PushMessageSrv.Dto
+namespace Application.Services.CommonSrv.PushSubscriptionSrv.Dto
 {
-    public class PushSubscriptionDto
+    public class PushKeysDto
     {
-        public string Endpoint { get; set; }
         public string P256dh { get; set; }
         public string Auth { get; set; }
-        public long UserId { get; set; }
     }
 }

@@ -8,13 +8,18 @@ using System.Threading.Tasks;
 
 namespace Entities.Entities
 {
-    public class PushSubscriber : Id_Field
+    public class PushSubscription : Id_Field
     {
+        public long? UserId { get; set; }
+        public User User { get; set; }
+
         public string Endpoint { get; set; }
         public string P256dh { get; set; }
         public string Auth { get; set; }
-        public long UserId { get; set; }
 
-        public User User { get; set; }
+        public string UserAgent { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime? LastSeen { get; set; }
+        public bool IsActive { get; set; }
     }
 }

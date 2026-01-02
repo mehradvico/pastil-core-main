@@ -22,9 +22,5 @@ namespace Application.Services.Accounting.UserPetSrv.Dto
         public string SpecificMedicene { get; set; }
         public string AddressValue { get; set; }
         public bool Active { get; set; }
-
-
-        public PictureVDto Picture { get; set; }
-        public List<UserPetRecordMinVDto> UserPetRecords { get; set; }
     }
 }

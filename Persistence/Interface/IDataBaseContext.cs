@@ -131,7 +131,7 @@ namespace Persistence.Interface
         public DbSet<ReminderType> ReminderTypes { get; set; }
         public DbSet<UserPetRecord> UserPetRecords { get; set; }
         public DbSet<NotifyMessage> NotifyMessages { get; set; }
-        public DbSet<PushSubscriber> PushSubscribers { get; set; }
+        public DbSet<PushSubscription> PushSubscriptions { get; set; }
         public DbSet<CompanionComment> CompanionComments { get; set; }
         public DbSet<CompanionAssistancePackagePicture> CompanionAssistancePackagePictures { get; set; }
         public DbSet<Pansion> Pansions { get; set; }

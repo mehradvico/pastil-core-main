@@ -7502,11 +7502,6 @@
             </summary>
             
         </member>
-        <member name="M:Api.Areas.Public.Controllers.SubscribeController.Register(Application.Services.Setting.PushMessageSrv.Dto.PushSubscriptionDto)">
-            <summary>
-            ذخیره اشتراک Push Notification
-            </summary>
-        </member>
         <member name="T:Api.Controllers.AccountController">
             <summary>
             مدیریت حساب کاربری

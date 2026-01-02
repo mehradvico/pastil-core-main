@@ -16,9 +16,6 @@ using Application.Services.Setting.BaseDetailSrv.Iface;
 using Application.Services.Setting.MessageSenderSrv.Iface;
 using Application.Services.Setting.NoticeSrv;
 using Application.Services.Setting.NoticeSrv.Iface;
-using Application.Services.Setting.PushMessageSrv;
-using Application.Services.Setting.PushMessageSrv.Dto;
-using Application.Services.Setting.PushMessageSrv.Iface;
 using AutoMapper;
 using Entities.Entities.Security;
 using Microsoft.EntityFrameworkCore;
@@ -41,9 +38,8 @@ namespace Application.Services.UserSrv
         private readonly IRegixHelper RegixHelper;
         private readonly IBaseDetailService _baseDetailService;
         private readonly IMessageSenderService _messageSenderService;
-        private readonly IPushService _pushService;
 
-        public UserService(IDataBaseContext _context, IUserTokenService userTokenSevice, IPushService pushService, IOtpVerifyService otpVerifyService, IMapper mapper, IConfiguration configuration, IRegixHelper RegixHelper, IBaseDetailService baseDetailService, IMessageSenderService messageSenderService) : base(_context, mapper)
+        public UserService(IDataBaseContext _context, IUserTokenService userTokenSevice, IOtpVerifyService otpVerifyService, IMapper mapper, IConfiguration configuration, IRegixHelper RegixHelper, IBaseDetailService baseDetailService, IMessageSenderService messageSenderService) : base(_context, mapper)
         {
             this._context = _context;
             this.mapper = mapper;
@@ -53,7 +49,6 @@ namespace Application.Services.UserSrv
             this.RegixHelper = RegixHelper;
             this._baseDetailService = baseDetailService;
             this._messageSenderService = messageSenderService;
-            this._pushService = pushService;
         }
         public override async Task<BaseResultDto<UserDto>> InsertAsyncDto(UserDto dto)
         {
@@ -390,13 +385,6 @@ namespace Application.Services.UserSrv
 
             var token = userTokenSevice.CreateToken(item, user.IsAdmin);
             await ChangUserCartAsync(item.Id, user.CartCode);
-            await _pushService.SendToUserAsync(item.Id, new PushMessageDto
-            {
-                Title = "ورود موفق",
-                Body = $"سلام {item.FirstName} 👋 خوش برگشتی!",
-                Url = "https://app.pastil.pet/",
-                Icon = "https://file.pastil.pet/Media/2025/12/8/8fe6c41fa2854202ab5ffc1b18a0b2cb.png"
-            });
             return new BaseResultDto<UserTokenDto>(isSuccess: true, data: token);
         }
         private UserTokenDto CreateToken(long userId)

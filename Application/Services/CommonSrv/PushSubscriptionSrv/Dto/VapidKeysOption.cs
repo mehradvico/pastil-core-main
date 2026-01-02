@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Services.Setting.PushMessageSrv.Dto
+namespace Application.Services.CommonSrv.PushSubscriptionSrv.Dto
 {
-    public class VapidSettings
+    public class VapidKeysOption
     {
         public string PublicKey { get; set; }
         public string PrivateKey { get; set; }
-        public string Subject { get; set; }
     }
 }

@@ -140,7 +140,7 @@ namespace Persistence.Context
         public DbSet<TripAddress> TripAddresses { get; set; }
         public DbSet<UserPetRecord> UserPetRecords { get; set; }
         public DbSet<NotifyMessage> NotifyMessages { get; set; }
-        public DbSet<PushSubscriber> PushSubscribers { get; set; }
+        public DbSet<PushSubscription> PushSubscriptions { get; set; }
         public DbSet<CompanionAssistancePackagePicture> CompanionAssistancePackagePictures { get; set; }
         public DbSet<Pansion> Pansions { get; set; }
         public DbSet<PansionReserve> PansionReserves { get; set; }
@@ -485,6 +485,21 @@ namespace Persistence.Context
                  .UsingEntity(join => join.ToTable("GalleryItemFullNameFieldLangs"));
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<PushSubscription>(e =>
+            {
+                e.ToTable("PushSubscriptions");
+
+                e.Property(x => x.Endpoint).IsRequired();
+                e.Property(x => x.P256dh).IsRequired();
+                e.Property(x => x.Auth).IsRequired();
+
+                e.HasIndex(x => x.Endpoint).IsUnique();
+
+                e.HasOne(x => x.User)
+                 .WithMany()
+                 .HasForeignKey(x => x.UserId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            });
 
         }
 
