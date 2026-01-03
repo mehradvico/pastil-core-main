@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("api/[area]/push")]
+    [Route("api/[area]/[controller]")]
     [ApiController]
     [Authorize]
     public class PushAdminController : ControllerBase
@@ -18,7 +18,7 @@ namespace Api.Areas.Admin.Controllers
             _broadcast = broadcast;
         }
 
-        [HttpPost("broadcast")]
+        [HttpPost]
         public async Task<IActionResult> Broadcast([FromBody] PushBroadcastDto dto)
         {
             var res = await _broadcast.BroadcastAsync(dto);

@@ -69,9 +69,9 @@ namespace Application.Services.CompanionSrvs.CompanionSrv
         }
         public CompanionSearchDto Search(CompanionInputDto baseSearchDto)
         {
-            var model = _context.Companions.Include(s => s.CompanionAssistances).Include(s => s.Owner).Include(s => s.BackgroundPicture).Include(s => s.Icon).Include(s => s.City).ThenInclude(s => s.State)
-                .Include(s => s.Neighborhood).Include(s => s.CompanionTypes).Include(s => s.CompanionPets).Include(s => s.Neighborhood).Include(s => s.Owner).Include(s => s.CompanionTypes).Include(s => s.CompanionZones).ThenInclude(s => s.City).ThenInclude(s => s.State)
-                .Include(s => s.CompanionZones).ThenInclude(s => s.Neighborhood).AsQueryable().Where(s => !s.Deleted);
+            var model = _context.Companions.Include(s => s.CompanionAssistances).Include(s => s.Owner).Include(s => s.Picture).Include(s => s.City).ThenInclude(s => s.State)
+                .Include(s => s.Neighborhood).Include(s => s.CompanionTypes).Include(s => s.CompanionPets).Include(s => s.Neighborhood).Include(s => s.Owner).Include(s => s.CompanionTypes)
+                .Include(s => s.CompanionZones).ThenInclude(s => s.City).ThenInclude(s => s.State).AsQueryable().Where(s => !s.Deleted);
 
             if (baseSearchDto.Available.HasValue)
             {
