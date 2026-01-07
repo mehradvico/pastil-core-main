@@ -32,7 +32,8 @@
         PermissionMenu,
         GalleryOne,
         GallerySearch,
-        StaticPage
+        StaticPage,
+        StoryGroupSearch
 
     }
 }

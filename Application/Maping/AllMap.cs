@@ -61,6 +61,7 @@ using Application.Services.Content.PostPictureSrv.Dto;
 using Application.Services.Content.PostProductSrv.Dto;
 using Application.Services.Content.PostSrv.Dto;
 using Application.Services.Content.StaticPageSrv.Dto;
+using Application.Services.Content.StoryGroupSrv.Dto;
 using Application.Services.Dto;
 using Application.Services.Filing.FileSrv.Dto;
 using Application.Services.Filing.PictureSrv.Dto;
@@ -628,6 +629,12 @@ namespace Application.Maping
             CreateMap<StoreComment, StoreCommentVDto>().ForMember(x => x.CreateDate, o => o.MapFrom(m => m.CreateDate.ToShortDate())).ForMember(x => x.StoreName, o => o.MapFrom(m => m.Store.Name));
             CreateMap<StoreComment, StoreCommentDto>().ReverseMap();
             //Store End ----------------------------------------------
+
+
+            //Story
+            CreateMap<StoryGroup, StoryGroupDto>().ReverseMap();
+            CreateMap<StoryGroup, StoryGroupVDto>();
+            //Story End ----------------------------------------------
 
 
             //Ticket

@@ -23,8 +23,7 @@ namespace Application.Services.CommonSrv.PushSubscriptionSrv
 
         public async Task<BaseResultDto> SubscribeAsync(long? userId, PushSubscribeDto dto)
         {
-            var sub = await _context.PushSubscriptions
-                .FirstOrDefaultAsync(x => x.Endpoint == dto.Endpoint);
+            var sub = await _context.PushSubscriptions.FirstOrDefaultAsync(x => x.Endpoint == dto.Endpoint);
 
             if (sub == null)
             {

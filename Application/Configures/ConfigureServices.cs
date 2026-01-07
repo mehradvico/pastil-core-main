@@ -136,6 +136,8 @@ using Application.Services.Content.PostSrv;
 using Application.Services.Content.PostSrv.Iface;
 using Application.Services.Content.StaticPageSrv;
 using Application.Services.Content.StaticPageSrv.Iface;
+using Application.Services.Content.StoryGroupSrv;
+using Application.Services.Content.StoryGroupSrv.Iface;
 using Application.Services.Filing.FileSrv;
 using Application.Services.Filing.FileSrv.Iface;
 using Application.Services.Filing.PictureSrv;
@@ -486,6 +488,7 @@ public static class ConfigureServices
         services.AddScoped<IUserPetPictureService, UserPetPictureService>();
         services.AddScoped<IPushSubscriptionService, PushSubscriptionService>();
         services.AddScoped<IPushBroadcastService, PushBroadcastService>();
+        services.AddScoped<IStoryGroupService, StoryGroupService>();
 
 
         services.AddCors(option => option.AddPolicy("AllowAnyOrigin", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
